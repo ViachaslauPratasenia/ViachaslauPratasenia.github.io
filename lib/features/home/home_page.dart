@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/features/home/social_buttons.dart';
+import 'package:personal_website/features/home/components/languages_block.dart';
+import 'package:personal_website/features/home/components/social_buttons.dart';
+import 'package:personal_website/features/home/components/work_item.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:personal_website/theme/typografy.dart';
 
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
         children: [
           SizedBox(width: MediaQuery.sizeOf(context).width * 0.05),
           Expanded(
-            flex: 5,
+            flex: 4,
             child: SizedBox(
               height: MediaQuery.sizeOf(context).height,
               child: Center(
@@ -40,6 +42,8 @@ class HomePage extends StatelessWidget {
                       textAlign: TextAlign.start,
                       style: AppTheme.typography.semiLarge.regular.textBase,
                     ),
+                    const SizedBox(height: 56),
+                    const LanguagesBlock(),
                     const Spacer(),
                     const SocialButtons(),
                     const SizedBox(height: 56),
@@ -54,12 +58,41 @@ class HomePage extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: ListView(
+                shrinkWrap: true,
                 children: [
                   const SizedBox(height: 56),
                   Text(
                     'I am a highly skilled software engineer with 5 years of commercial experience in building top-notch applications for Android, iOS, MacOS, Windows and Web platforms using Flutter.\n\nI have a strong passion for creating robust and user-friendly applications that exceed client’s expectations. Throughout my career, I have gained expertise in various aspects of software development, including design, development, testing, and maintenance.\n\nMy deep understanding of programming languages, frameworks, and tools, coupled with my problem-solving skills, has enabled me to deliver complex projects within tight deadlines.',
                     style: AppTheme.typography.semiLarge.regular.textBase,
-                  )
+                  ),
+                  const SizedBox(height: 80),
+                  const WorkItem(
+                    from: 'SEPT 2022',
+                    to: 'PRESENT',
+                    title: 'Flutter Developer - Aventus IT',
+                    subtitle:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut rutrum risus, eu posuere neque. Duis urna erat, maximus sit amet ullamcorper sed, tempor id metus. Aenean a tellus at ex eleifend convallis nec et ligula. Etiam aliquet euismod fermentum. Fusce suscipit et felis a consequat. Integer sem lacus, ultrices sed ipsum sit amet, ultrices tristique velit.',
+                    skills: ['Flutter', 'Dart', 'Kotlin', 'Swift', 'Java'],
+                  ),
+                  const SizedBox(height: 32),
+                  const WorkItem(
+                    from: 'SEPT 2021',
+                    to: 'SEPT 2022',
+                    title: 'Flutter Developer - Symfa',
+                    subtitle:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut rutrum risus, eu posuere neque. Duis urna erat, maximus sit amet ullamcorper sed, tempor id metus. Aenean a tellus at ex eleifend convallis nec et ligula. Etiam aliquet euismod fermentum. Fusce suscipit et felis a consequat. Integer sem lacus, ultrices sed ipsum sit amet, ultrices tristique velit.',
+                    skills: ['Flutter', 'Dart', 'React Native'],
+                  ),
+                  const SizedBox(height: 32),
+                  const WorkItem(
+                    from: 'APR 2019',
+                    to: 'SEPT 2021',
+                    title: 'Android/Flutter Developer - HEAPIX',
+                    subtitle:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut rutrum risus, eu posuere neque. Duis urna erat, maximus sit amet ullamcorper sed, tempor id metus. Aenean a tellus at ex eleifend convallis nec et ligula. Etiam aliquet euismod fermentum. Fusce suscipit et felis a consequat. Integer sem lacus, ultrices sed ipsum sit amet, ultrices tristique velit.',
+                    skills: ['Android', 'Java', 'Kotlin', 'Flutter', 'Dart'],
+                  ),
+                  const SizedBox(height: 80),
                 ],
               ),
             ),
