@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/features/home/data/developer_profile.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:personal_website/theme/typografy.dart';
 
 class LanguagesBlock extends StatelessWidget {
-  const LanguagesBlock({super.key});
+  final List<Language> languages;
+
+  const LanguagesBlock({super.key, required this.languages});
 
   @override
   Widget build(BuildContext context) {
-    final skills = {
-      'English': 'B1',
-      'French': 'A2',
-      'Russian': 'C2',
-      'Belarusian': 'C2',
-      'Polish': 'A1'
-    };
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,12 +23,11 @@ class LanguagesBlock extends StatelessWidget {
           spacing: 16,
           runSpacing: 12,
           children: List.generate(
-            skills.length,
-            (index) {
-              final skill = skills.keys.elementAt(index);
-              final level = skills[skill];
-              return _LanguageBlock(language: skill, level: level ?? '');
-            },
+            languages.length,
+            (index) => _LanguageBlock(
+              language: languages[index].name,
+              level: languages[index].level,
+            ),
           ),
         )
       ],
@@ -59,7 +54,7 @@ class _LanguageBlock extends StatelessWidget {
           text: language,
           style: AppTheme.typography.standard.regular.accent,
           children: [
-            if(level.isNotEmpty)
+            if (level.isNotEmpty)
               TextSpan(
                 text: ' $level',
                 style: AppTheme.typography.standard.bold.accent,

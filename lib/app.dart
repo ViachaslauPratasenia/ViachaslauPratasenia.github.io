@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:personal_website/features/home/home_page.dart';
+import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
+import 'package:personal_website/features/home/presentation/home_page.dart';
 import 'package:personal_website/theme/theme.dart';
 
 class App extends StatefulWidget {
@@ -12,20 +14,14 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late final GlobalKey<NavigatorState> _mainPageNavigatorKey = GlobalKey();
-
   late final _router = GoRouter(
     navigatorKey: GlobalKey(),
     initialLocation: HomePage.routeName,
     routes: [
       GoRoute(
         path: HomePage.routeName,
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => const HomePage(),
       ),
-      // GoRoute(
-      //   path: CheckoutPage.routeName,
-      //   builder: (context, state) => CheckoutPage.fromPath(state.location),
-      // ),
     ],
   );
 
@@ -33,11 +29,16 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
-      builder: (context, child) => MaterialApp.router(
-        title: 'Viachaslau Pratasenia',
-        routerConfig: _router,
-        theme: AppTheme.defaultThemeData,
-        debugShowCheckedModeBanner: false,
+      builder: (context, child) => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => ProfileCubit()),
+        ],
+        child: MaterialApp.router(
+          title: 'Viachaslau Pratasenia',
+          routerConfig: _router,
+          theme: AppTheme.defaultThemeData,
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }
