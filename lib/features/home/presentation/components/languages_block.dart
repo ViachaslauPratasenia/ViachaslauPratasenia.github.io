@@ -20,8 +20,8 @@ class LanguagesBlock extends StatelessWidget {
         const SizedBox(height: 16),
         Wrap(
           direction: Axis.horizontal,
-          spacing: 16,
-          runSpacing: 12,
+          spacing: 12,
+          runSpacing: 8,
           children: List.generate(
             languages.length,
             (index) => _LanguageBlock(

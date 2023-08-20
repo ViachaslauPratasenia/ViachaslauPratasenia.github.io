@@ -75,8 +75,8 @@ class _WorkItemState extends State<WorkItem> {
                     const SizedBox(height: 8),
                     Wrap(
                       direction: Axis.horizontal,
-                      spacing: 16,
-                      runSpacing: 12,
+                      spacing: 12,
+                      runSpacing: 8,
                       children: List.generate(
                         widget.workExperience.skills.length,
                         (index) => SkillElement(skillName: widget.workExperience.skills[index]),
