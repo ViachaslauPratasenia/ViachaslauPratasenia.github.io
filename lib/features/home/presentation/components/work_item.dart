@@ -24,7 +24,7 @@ class _WorkItemState extends State<WorkItem> {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onHover: (value) => setState(() {
-        containerColor = AppTheme.colors.accent.withOpacity(0.1);
+        containerColor = AppTheme.colors.accent.withOpacity(0.03);
         titleColor = AppTheme.colors.secondary;
       }),
       onExit: (value) => setState(() {

@@ -12,7 +12,7 @@ class SkillElement extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppTheme.colors.primary,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(32),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Text(
