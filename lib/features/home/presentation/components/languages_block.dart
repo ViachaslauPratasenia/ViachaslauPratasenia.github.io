@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/developer_profile.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:personal_website/theme/typografy.dart';
@@ -10,12 +11,18 @@ class LanguagesBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = OrientationProvider.of(context).orientation;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Languages',
-          style: AppTheme.typography.huge.bold.accent,
+          style: AppTheme.typography.bold.accent.copyWith(
+            fontSize: orientation == Orientation.landscape
+                ? AppTheme.typography.huge.fontSize
+                : AppTheme.typography.semiLarge.fontSize,
+          ),
         ),
         const SizedBox(height: 16),
         Wrap(
@@ -43,6 +50,9 @@ class _LanguageBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = OrientationProvider.of(context).orientation == Orientation.landscape
+        ? AppTheme.typography.standard.fontSize
+        : AppTheme.typography.small.fontSize;
     return Container(
       decoration: BoxDecoration(
         color: AppTheme.colors.primary,
@@ -52,12 +62,12 @@ class _LanguageBlock extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: language,
-          style: AppTheme.typography.standard.regular.accent,
+          style: AppTheme.typography.regular.accent.copyWith(fontSize: fontSize),
           children: [
             if (level.isNotEmpty)
               TextSpan(
                 text: ' $level',
-                style: AppTheme.typography.standard.bold.accent,
+                style: AppTheme.typography.bold.accent.copyWith(fontSize: fontSize),
               ),
           ],
         ),
