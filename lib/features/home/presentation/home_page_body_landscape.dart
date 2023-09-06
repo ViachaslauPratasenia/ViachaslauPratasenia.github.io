@@ -52,12 +52,14 @@ class HomePageBodyLandscape extends StatelessWidget {
           ),
         ),
         SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Align(
             alignment: Alignment.topRight,
             child: Container(
               padding: const EdgeInsets.only(right: 56),
               width: MediaQuery.sizeOf(context).width * 0.55,
               child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: [
                   const SizedBox(height: 56),
@@ -71,6 +73,7 @@ class HomePageBodyLandscape extends StatelessWidget {
                   ],
                   const SizedBox(height: 80),
                   ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: profile.work.length,
                     separatorBuilder: (context, index) => const SizedBox(height: 32),
