@@ -1,0 +1,138 @@
+{
+  "name": "Viachaslau Pratasenia",
+  "job_title": "Flutter Developer at Aventus IT",
+  "short_description": "Crafting sleek, intuitive Flutter applications for Android, iOS, desktop, and web to enhance user experience.",
+  "fullDescription": "I am a highly skilled software engineer with 5 years of commercial experience in building top-notch applications for Android, iOS, MacOS, Windows and Web platforms using Flutter.\n\nI have a strong passion for creating robust and user-friendly applications that exceed client’s expectations. Throughout my career, I have gained expertise in various aspects of software development, including design, development, testing, and maintenance.\n\nMy deep understanding of programming languages, frameworks, and tools, coupled with my problem-solving skills, has enabled me to deliver complex projects within tight deadlines.",
+  "social_links": [
+    {
+      "name": "email",
+      "url": "viachaslau.pratasenia@gmail.com"
+    },
+    {
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/in/viachaslaupratasenia/"
+    },
+    {
+      "name": "github",
+      "url": "https://github.com/ViachaslauPratasenia"
+    },
+    {
+      "name": "instagram",
+      "url": "https://www.instagram.com/proslau/"
+    },
+    {
+      "name": "telegram",
+      "url": "https://t.me/proslau"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "B2"
+    },
+    {
+      "name": "French",
+      "level": "A2"
+    },
+    {
+      "name": "Russian",
+      "level": "C2"
+    },
+    {
+      "name": "Belarusian",
+      "level": "C2"
+    },
+    {
+      "name": "Polish",
+      "level": "A1"
+    }
+  ],
+  "work": [
+    {
+      "title": "Flutter Developer - Aventus IT",
+      "company_link": "https://aventusit.eu/",
+      "description": "As a mobile developer for 7VPN, I played a key role within a 3-person dev team. My responsibilities spanned across various platforms, including iOS, MacOS, and Windows. I spearheaded UI design and core logic implementation, ensuring a seamless user experience.\n\nBeyond mobile development, I also contributed to the creation of a personal account website. My technical contributions included setting up CI/CD with Codemagic, integrating deep links, handling notifications, and rolling out social login functionalities. Staying updated with the latest news was made possible due to the news feature I implemented. Regular bug fixing and creating build environments were also under my purview.\n\nThroughout this journey, my tools of choice were XCode, Android Studio, Figma, Firebase, and Google Cloud Platforms.",
+      "from": "SEPT 2022",
+      "to": "PRESENT",
+      "links": [
+        {
+          "name": "7VPN",
+          "url": "https://7vpn.com/"
+        },
+        {
+          "name": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.sevenvpn"
+        },
+        {
+          "name": "App Store",
+          "url": "https://apps.apple.com/app/7-vpn-fast-and-secure-proxy/id6444400604"
+        },
+        {
+          "name": "Snap Store",
+          "url": "https://snapcraft.io/7vpn"
+        }
+      ],
+      "skills": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Java",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Flutter Developer - Symfa",
+      "company_link": "https://symfa.com/",
+      "description": "Over the years, I've honed my expertise as a Flutter and React Native developer, navigating through a wide spectrum of applications. I've revamped the UI of a corporate chat application, transitioning its business logic from BLoC to Redux, and ensured seamless publishing for both iOS and Android. In a dating app project, I delved into advanced UI design, user verification systems, state management via BLoC and Cubit, and integrated backend communication using Dio.\n\nMy work in a workout app covered chat implementations and video controller creation, while in another React Native-based chat application, I've resolved complex build errors and publishing issues.\n\nTools like Android Studio, Figma, XCode, and Firebase have been crucial in my journey.",
+      "from": "SEPT 2021",
+      "to": "SEPT 2022",
+      "links": [
+        {
+          "name": "Symfa Chat",
+          "url": "https://play.google.com/store/apps/details?id=chat.rocket.ais&hl=en_US"
+        },
+        {
+          "name": "Linea",
+          "url": "https://play.google.com/store/apps/details?id=com.mixort.linealife&hl=en"
+        }
+      ],
+      "skills": [
+        "Flutter",
+        "Dart",
+        "React Native"
+      ]
+    },
+    {
+      "title": "Android/Flutter Developer - Heapix",
+      "company_link": "https://heapix.com/",
+      "description": "Throughout my career as an Android and Flutter developer, I've been involved in a broad array of projects, leveraging diverse technologies and tools. I've specialized in UI design, ensuring apps not only look good but also offer impeccable functionality. My expertise encompasses dependency injection using Kodein, multiple architectural patterns like MVVM, MVP, and BLoC, and handling asynchronous data processes with tools like RxJava.\n\nI have hands-on experience in integrating various SDKs, libraries, and APIs, ranging from Twilio chat library to MQTT protocol for real-time communication. I've tapped into the Android's built-in audio capabilities to modify sounds, integrated Google Calendar API, and ensured data storage on devices using Realm and SharedPreferences.\n\nMoreover, I've successfully tackled challenges of reading and writing binary packages, implemented QR code functionalities, and built features using connectivity libraries for real-time updates. My toolset includes Android Studio, Figma, Firebase, and Adobe Illustrator.",
+      "from": "APR 2019",
+      "to": "SEPT 2021",
+      "links": [
+        {
+          "name": "Timate",
+          "url": "https://timate.me/"
+        },
+        {
+          "name": "Nero Server",
+          "url": "https://play.google.com/store/apps/details?id=com.nero.nerocenter"
+        },
+        {
+          "name": "Somnology",
+          "url": "https://play.google.com/store/apps/details?id=com.somnologymd.SLaaSapp"
+        },
+        {
+          "name": "Beengo",
+          "url": "https://apkpure.com/beengo/com.beengo"
+        }
+      ],
+      "skills": [
+        "Android",
+        "Java",
+        "Kotlin",
+        "Flutter",
+        "Dart"
+      ]
+    }
+  ]
+}
