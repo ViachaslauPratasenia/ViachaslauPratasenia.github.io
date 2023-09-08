@@ -35,7 +35,7 @@ class _AppState extends State<App> {
           BlocProvider<ProfileCubit>(create: (context) => locator.get()),
         ],
         child: MaterialApp.router(
-          title: 'Viachaslau Pratasenia',
+          title: 'Slava Pratasenia',
           routerConfig: _router,
           theme: AppTheme.defaultThemeData,
           debugShowCheckedModeBanner: false,
