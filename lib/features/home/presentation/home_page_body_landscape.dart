@@ -11,6 +11,9 @@ class HomePageBodyLandscape extends StatelessWidget {
 
   const HomePageBodyLandscape({super.key, required this.profile});
 
+  static const maxHeightForLanguageBlock = 700;
+  static const maxHeightForSocialButtons = 465;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -43,7 +46,7 @@ class HomePageBodyLandscape extends StatelessWidget {
                     style: AppTheme.typography.semiLarge.regular.textBase,
                   ),
                   const SizedBox(height: 56),
-                  if (MediaQuery.sizeOf(context).height > 600)
+                  if (MediaQuery.sizeOf(context).height > maxHeightForLanguageBlock)
                     LanguagesBlock(languages: profile.languages),
                   const Spacer(),
                 ],
@@ -67,7 +70,11 @@ class HomePageBodyLandscape extends StatelessWidget {
                     profile.fullDescription,
                     style: AppTheme.typography.semiLarge.regular.textBase,
                   ),
-                  if(MediaQuery.sizeOf(context).height <= 600) ...[
+                  if(MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
+                    const SizedBox(height: 36),
+                    SocialButtons(socialLinks: profile.socialLinks),
+                  ],
+                  if (MediaQuery.sizeOf(context).height <= maxHeightForLanguageBlock) ...[
                     const SizedBox(height: 56),
                     LanguagesBlock(languages: profile.languages),
                   ],
@@ -87,11 +94,12 @@ class HomePageBodyLandscape extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: 56,
-          left: 56,
-          child: SocialButtons(socialLinks: profile.socialLinks),
-        )
+        if (MediaQuery.sizeOf(context).height > maxHeightForSocialButtons)
+          Positioned(
+            bottom: 56,
+            left: 56,
+            child: SocialButtons(socialLinks: profile.socialLinks),
+          )
       ],
     );
   }

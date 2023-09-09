@@ -1,11 +1,11 @@
 {
-    "name": "personal_website",
-    "short_name": "personal_website",
+    "name": "Viachaslau Pratasenia - Personal Website",
+    "short_name": "Viachaslau Pratasenia",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#10172A",
     "theme_color": "#10172A",
-    "description": "A new Flutter project.",
+    "description": "Personal Website created with Flutter",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
