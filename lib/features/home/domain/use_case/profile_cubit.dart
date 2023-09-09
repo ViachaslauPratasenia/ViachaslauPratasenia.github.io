@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_website/features/home/data/developer_profile.dart';
 import 'package:personal_website/features/home/data/repository/local_profile_repository.dart';
 import 'package:personal_website/features/home/data/repository/remote_profile_repository.dart';
+import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 
-class ProfileCubit extends Cubit<DeveloperProfile?> {
+class ProfileCubit extends Cubit<ProfileState> {
   final RemoteProfileRepository remoteProfileRepository;
   final LocalProfileRepository localProfileRepository;
 
   ProfileCubit({
     required this.remoteProfileRepository,
     required this.localProfileRepository,
-  }) : super(null) {
+  }) : super(ProfileState.initial()) {
     loadProfile();
   }
 
@@ -19,9 +19,11 @@ class ProfileCubit extends Cubit<DeveloperProfile?> {
       var developerProfile = await remoteProfileRepository.getProfile();
       developerProfile ??= await localProfileRepository.loadProfile();
 
-      emit(developerProfile);
+      emit(state.copyWith(developerProfile: developerProfile));
     } on Exception {
-      //todo: handle exception
+      //todo: send to crashlytics
+    } finally {
+      emit(state.copyWith(isLoading: false));
     }
   }
 }

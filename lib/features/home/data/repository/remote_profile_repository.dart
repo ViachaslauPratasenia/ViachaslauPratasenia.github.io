@@ -21,6 +21,8 @@ class RemoteProfileRepository {
       return DeveloperProfile.fromJson(json as Map<String, dynamic>);
     } on Exception {
       return null;
+    } on Error {
+      return null;
     }
   }
 }
