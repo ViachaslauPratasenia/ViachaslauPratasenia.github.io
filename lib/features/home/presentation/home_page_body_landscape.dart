@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/features/home/presentation/components/work_item.dart';
@@ -11,8 +13,8 @@ class HomePageBodyLandscape extends StatelessWidget {
 
   const HomePageBodyLandscape({super.key, required this.profile});
 
-  static const maxHeightForLanguageBlock = 700;
-  static const maxHeightForSocialButtons = 465;
+  static const maxHeightForLanguageBlock = 760;
+  static const maxHeightForSocialButtons = 520;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,8 @@ class HomePageBodyLandscape extends StatelessWidget {
                   ),
                   if(MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
                     const SizedBox(height: 36),
+                    DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
+                    const SizedBox(height: 16),
                     SocialButtons(socialLinks: profile.socialLinks),
                   ],
                   if (MediaQuery.sizeOf(context).height <= maxHeightForLanguageBlock) ...[
@@ -98,7 +102,15 @@ class HomePageBodyLandscape extends StatelessWidget {
           Positioned(
             bottom: 56,
             left: 56,
-            child: SocialButtons(socialLinks: profile.socialLinks),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
+                const SizedBox(height: 16),
+                SocialButtons(socialLinks: profile.socialLinks),
+              ],
+            ),
           )
       ],
     );

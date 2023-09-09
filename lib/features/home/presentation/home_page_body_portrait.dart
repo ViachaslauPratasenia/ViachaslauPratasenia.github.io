@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/features/home/presentation/components/work_item.dart';
@@ -34,8 +36,6 @@ class HomePageBodyPortrait extends StatelessWidget {
               profile.shortDescription,
               style: AppTheme.typography.small.regular.textBase,
             ),
-            const SizedBox(height: 24),
-            SocialButtons(socialLinks: profile.socialLinks),
             const SizedBox(height: 48),
             Text(
               'About',
@@ -46,6 +46,10 @@ class HomePageBodyPortrait extends StatelessWidget {
               profile.fullDescription,
               style: AppTheme.typography.small.regular.textBase,
             ),
+            const SizedBox(height: 24),
+            DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
+            const SizedBox(height: 24),
+            SocialButtons(socialLinks: profile.socialLinks),
             const SizedBox(height: 48),
             LanguagesBlock(languages: profile.languages),
             const SizedBox(height: 48),
