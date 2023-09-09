@@ -61,6 +61,7 @@ dependencies:
   url_launcher: ^6.1.10
   url_strategy: ^0.2.0
   json_annotation: 4.8.0
+  dio: ^5.3.2
 
 dev_dependencies:
   flutter_test:

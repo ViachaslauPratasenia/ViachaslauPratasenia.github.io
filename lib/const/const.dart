@@ -10,5 +10,8 @@ class _Config {
   String get CV_URL =>
       'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/pratasenia_cv.pdf';
 
+  String get PROFILE_URL =>
+      'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/profile.json';
+
   const _Config();
 }
