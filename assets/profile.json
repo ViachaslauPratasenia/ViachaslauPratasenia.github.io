@@ -52,7 +52,7 @@
     {
       "title": "Flutter Developer - Aventus IT",
       "company_link": "https://aventusit.eu/",
-      "description": "As a mobile developer for 7VPN, I played a key role within a 3-person dev team. My responsibilities spanned across various platforms, including iOS, MacOS, and Windows. I spearheaded UI design and core logic implementation, ensuring a seamless user experience.\n\nBeyond mobile development, I also contributed to the creation of a personal account website. My technical contributions included setting up CI/CD with Codemagic, integrating deep links, handling notifications, and rolling out social login functionalities. Staying updated with the latest news was made possible due to the news feature I implemented. Regular bug fixing and creating build environments were also under my purview.\n\nThroughout this journey, my tools of choice were XCode, Android Studio, Figma, Firebase, and Google Cloud Platforms.",
+      "description": "As a Developer at 7VPN, I play a key role in a three-person development team. My responsibilities encompass a variety of platforms including iOS, macOS, Windows, and Web.\n\nIn addition to mobile and desktop development, I also create the personal account website. My technical contributions include integrating deep links, working with notifications, deploying social login features, news, creating build environments, and other features. \n\nTools: XCode, Android Studio, Figma, Firebase, Google Cloud Platforms.",
       "from": "SEPT 2022",
       "to": "PRESENT",
       "links": [
@@ -84,7 +84,7 @@
     {
       "title": "Flutter Developer - Symfa",
       "company_link": "https://symfa.com/",
-      "description": "Over the years, I've honed my expertise as a Flutter and React Native developer, navigating through a wide spectrum of applications. I've revamped the UI of a corporate chat application, transitioning its business logic from BLoC to Redux, and ensured seamless publishing for both iOS and Android. In a dating app project, I delved into advanced UI design, user verification systems, state management via BLoC and Cubit, and integrated backend communication using Dio.\n\nMy work in a workout app covered chat implementations and video controller creation, while in another React Native-based chat application, I've resolved complex build errors and publishing issues.\n\nTools like Android Studio, Figma, XCode, and Firebase have been crucial in my journey.",
+      "description": "At Symfa, I served as a crucial contributor to both our dating app and corporate chat service, akin to Slack. My role provided me a dynamic experience, from integrating Redux to adopting null safety and migrating to updated Flutter versions.\n\nBeyond coding, my responsibilities also covered the entire spectrum of app publishing. I communicated actively with Google Play and App Store teams to troubleshoot issues and bugs, ensuring a seamless user experience post-launch.\n\nTools: Xcode, Android Studio, Figma, Firebase.",
       "from": "SEPT 2021",
       "to": "SEPT 2022",
       "links": [
@@ -106,7 +106,7 @@
     {
       "title": "Android/Flutter Developer - Heapix",
       "company_link": "https://heapix.com/",
-      "description": "Throughout my career as an Android and Flutter developer, I've been involved in a broad array of projects, leveraging diverse technologies and tools. I've specialized in UI design, ensuring apps not only look good but also offer impeccable functionality. My expertise encompasses dependency injection using Kodein, multiple architectural patterns like MVVM, MVP, and BLoC, and handling asynchronous data processes with tools like RxJava.\n\nI have hands-on experience in integrating various SDKs, libraries, and APIs, ranging from Twilio chat library to MQTT protocol for real-time communication. I've tapped into the Android's built-in audio capabilities to modify sounds, integrated Google Calendar API, and ensured data storage on devices using Realm and SharedPreferences.\n\nMoreover, I've successfully tackled challenges of reading and writing binary packages, implemented QR code functionalities, and built features using connectivity libraries for real-time updates. My toolset includes Android Studio, Figma, Firebase, and Adobe Illustrator.",
+      "description": "At Heapix, I functioned as an Android/Flutter developer and was involved in a diverse range of projects, including food delivery apps and smart home control systems. My role extended beyond coding, as I initiated applications from the ground up.\n\nIn collaboration with development, design, and management teams, I honed my skills in customer communication and even gathered experience in project management.\n\nTools: Android Studio, Figma, Firebase, Adobe Illustrator.",
       "from": "APR 2019",
       "to": "SEPT 2021",
       "links": [
