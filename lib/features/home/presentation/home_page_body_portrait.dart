@@ -50,8 +50,10 @@ class HomePageBodyPortrait extends StatelessWidget {
             DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
             const SizedBox(height: 24),
             SocialButtons(socialLinks: profile.socialLinks),
-            const SizedBox(height: 48),
-            LanguagesBlock(languages: profile.languages),
+            if (profile.showLanguages) ...[
+              const SizedBox(height: 48),
+              LanguagesBlock(languages: profile.languages),
+            ],
             const SizedBox(height: 48),
             ...profile.work.map((work) => WorkItem(workExperience: work)).toList(),
             const SizedBox(height: 48),

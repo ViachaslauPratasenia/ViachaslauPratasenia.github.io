@@ -4,6 +4,7 @@ class DeveloperProfile {
   final String shortDescription;
   final String fullDescription;
   final List<SocialLink> socialLinks;
+  final bool showLanguages;
   final List<Language> languages;
   final List<WorkExperience> work;
 
@@ -13,6 +14,7 @@ class DeveloperProfile {
     required this.shortDescription,
     required this.fullDescription,
     required this.socialLinks,
+    required this.showLanguages,
     required this.languages,
     required this.work,
   });
@@ -24,6 +26,7 @@ class DeveloperProfile {
       shortDescription: json['short_description'],
       fullDescription: json['fullDescription'],
       socialLinks: (json['social_links'] as List).map((e) => SocialLink.fromJson(e)).toList(),
+      showLanguages: json['show_languages'],
       languages: (json['languages'] as List).map((e) => Language.fromJson(e)).toList(),
       work: (json['work'] as List).map((e) => WorkExperience.fromJson(e)).toList(),
     );

@@ -48,7 +48,8 @@ class HomePageBodyLandscape extends StatelessWidget {
                     style: AppTheme.typography.semiLarge.regular.textBase,
                   ),
                   const SizedBox(height: 56),
-                  if (MediaQuery.sizeOf(context).height > maxHeightForLanguageBlock)
+                  if (MediaQuery.sizeOf(context).height > maxHeightForLanguageBlock &&
+                      profile.showLanguages)
                     LanguagesBlock(languages: profile.languages),
                   const Spacer(),
                 ],
@@ -72,13 +73,14 @@ class HomePageBodyLandscape extends StatelessWidget {
                     profile.fullDescription,
                     style: AppTheme.typography.semiLarge.regular.textBase,
                   ),
-                  if(MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
+                  if (MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
                     const SizedBox(height: 36),
                     DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
                     const SizedBox(height: 16),
                     SocialButtons(socialLinks: profile.socialLinks),
                   ],
-                  if (MediaQuery.sizeOf(context).height <= maxHeightForLanguageBlock) ...[
+                  if (MediaQuery.sizeOf(context).height <= maxHeightForLanguageBlock &&
+                      profile.showLanguages) ...[
                     const SizedBox(height: 56),
                     LanguagesBlock(languages: profile.languages),
                   ],
