@@ -7,17 +7,18 @@ class DeveloperProfile {
   final bool showLanguages;
   final List<Language> languages;
   final List<WorkExperience> work;
+  final List<Project> projects;
 
-  DeveloperProfile({
-    required this.name,
-    required this.jobTitle,
-    required this.shortDescription,
-    required this.fullDescription,
-    required this.socialLinks,
-    required this.showLanguages,
-    required this.languages,
-    required this.work,
-  });
+  DeveloperProfile(
+      {required this.name,
+      required this.jobTitle,
+      required this.shortDescription,
+      required this.fullDescription,
+      required this.socialLinks,
+      required this.showLanguages,
+      required this.languages,
+      required this.work,
+      required this.projects});
 
   factory DeveloperProfile.fromJson(Map<String, dynamic> json) {
     return DeveloperProfile(
@@ -29,6 +30,7 @@ class DeveloperProfile {
       showLanguages: json['show_languages'],
       languages: (json['languages'] as List).map((e) => Language.fromJson(e)).toList(),
       work: (json['work'] as List).map((e) => WorkExperience.fromJson(e)).toList(),
+      projects: (json['projects'] as List).map((e) => Project.fromJson(e)).toList(),
     );
   }
 }
@@ -103,6 +105,32 @@ class WorkLink {
     return WorkLink(
       name: json['name'],
       url: json['url'],
+    );
+  }
+}
+
+class Project {
+  final String title;
+  final String image;
+  final String link;
+  final String description;
+  final List<String> tags;
+
+  Project({
+    required this.title,
+    required this.image,
+    required this.link,
+    required this.description,
+    required this.tags,
+  });
+
+  factory Project.fromJson(Map<String, dynamic> json) {
+    return Project(
+      title: json['title'],
+      image: json['image'],
+      link: json['link'],
+      description: json['description'],
+      tags: List<String>.from(json['tags']),
     );
   }
 }

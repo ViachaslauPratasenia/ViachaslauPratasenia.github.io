@@ -3,28 +3,22 @@ import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/link_item.dart';
+import 'package:personal_website/features/home/presentation/components/orientation_item_container.dart';
 import 'package:personal_website/features/home/presentation/components/skill_element.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:personal_website/theme/typografy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class WorkItem extends StatefulWidget {
+class WorkItem extends StatelessWidget {
   final WorkExperience workExperience;
 
   const WorkItem({super.key, required this.workExperience});
 
   @override
-  State<WorkItem> createState() => _WorkItemState();
-}
-
-class _WorkItemState extends State<WorkItem> {
-  Color containerColor = Colors.transparent;
-
-  @override
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.of(context).orientation;
-    return WorkContainer(
-      onTap: () => launchUrlString(widget.workExperience.companyLink),
+    return OrientationItemContainer(
+      onTap: () => launchUrlString(workExperience.companyLink),
       child: Container(
         padding: orientation == Orientation.landscape
             ? const EdgeInsets.symmetric(horizontal: 32, vertical: 24)
@@ -36,8 +30,8 @@ class _WorkItemState extends State<WorkItem> {
           children: [
             if (orientation == Orientation.landscape) ...[
               WorkPeriod(
-                from: widget.workExperience.from,
-                to: widget.workExperience.to,
+                from: workExperience.from,
+                to: workExperience.to,
               ),
               const SizedBox(width: 32),
             ],
@@ -48,17 +42,17 @@ class _WorkItemState extends State<WorkItem> {
                 children: [
                   if (orientation == Orientation.portrait) ...[
                     Text(
-                      '${widget.workExperience.from} - ${widget.workExperience.to}',
+                      '${workExperience.from} - ${workExperience.to}',
                       style: AppTheme.typography.standard.semibold.textBase,
                     ),
                     const SizedBox(height: 8),
                   ],
                   GestureDetector(
-                    onTap: () => launchUrlString(widget.workExperience.companyLink),
+                    onTap: () => launchUrlString(workExperience.companyLink),
                     child: Row(
                       children: [
                         Text(
-                          widget.workExperience.title,
+                          workExperience.title,
                           style: AppTheme.typography.semiLarge.bold.accent,
                         ),
                         const SizedBox(width: 4),
@@ -72,7 +66,7 @@ class _WorkItemState extends State<WorkItem> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    widget.workExperience.description,
+                    workExperience.description,
                     style: AppTheme.typography.standard.regular.textBase,
                   ),
                   const SizedBox(height: 8),
@@ -81,8 +75,8 @@ class _WorkItemState extends State<WorkItem> {
                     spacing: 8,
                     runSpacing: 12,
                     children: List.generate(
-                      widget.workExperience.links.length,
-                      (index) => LinkItem(link: widget.workExperience.links[index]),
+                      workExperience.links.length,
+                      (index) => LinkItem(link: workExperience.links[index]),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -91,8 +85,8 @@ class _WorkItemState extends State<WorkItem> {
                     spacing: 12,
                     runSpacing: 8,
                     children: List.generate(
-                      widget.workExperience.skills.length,
-                      (index) => SkillElement(skillName: widget.workExperience.skills[index]),
+                      workExperience.skills.length,
+                      (index) => SkillElement(skillName: workExperience.skills[index]),
                     ),
                   ),
                 ],
@@ -124,27 +118,5 @@ class WorkPeriod extends StatelessWidget {
         Text(to, style: textStyle),
       ],
     );
-  }
-}
-
-class WorkContainer extends StatelessWidget {
-  final Widget child;
-  final void Function() onTap;
-
-  const WorkContainer({super.key, required this.child, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    if (OrientationProvider.of(context).orientation == Orientation.landscape) {
-      return InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        hoverColor: AppTheme.colors.accent.withOpacity(0.05),
-        highlightColor: AppTheme.colors.accent.withOpacity(0.1),
-        child: child,
-      );
-    }
-
-    return child;
   }
 }

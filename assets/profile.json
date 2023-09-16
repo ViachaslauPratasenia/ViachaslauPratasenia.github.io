@@ -135,5 +135,41 @@
         "Dart"
       ]
     }
+  ],
+  "projects": [
+    {
+      "title": "Personal Website",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/personal_website.png",
+      "description": "This website was created using Flutter Web and hosted on Github Pages. The source code is available on GitHub.",
+      "link": "https://github.com/ViachaslauPratasenia/ViachaslauPratasenia.github.io",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Web",
+        "GitHub Pages"
+      ]
+    },
+    {
+      "title": "Never Have I Ever",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/never_have_i_ever.png",
+      "description": "Never Have I Ever is a mobile app that allows you to play the popular party game with your friends, more than 10 categories, 2000+ questions. The app was created using Flutter and is available on Google Play.",
+      "link": "https://play.google.com/store/apps/details?id=com.icandev.neverever",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Mobile"
+      ]
+    },
+    {
+      "title": "Workout Tracker App Design",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/workout_tracker.png",
+      "description": "This is a mobile app design for a workout tracker. The design was created using Figma.",
+      "link": "https://www.figma.com/file/nlUegZYGyPiYshRSja5614/Workout-tracker?type=design&node-id=2%3A2&mode=design&t=ldBf5YuhBrCMd7AE-1",
+      "tags": [
+        "Figma",
+        "UI/UX",
+        "Mobile"
+      ]
+    }
   ]
 }

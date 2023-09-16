@@ -8,6 +8,9 @@ class OrientationProvider {
 
   OrientationProvider.of(BuildContext context) : this(context);
 
+  static Orientation orientationOf(BuildContext context) =>
+      OrientationProvider.of(context).orientation;
+
   Orientation get orientation {
     final size = MediaQuery.sizeOf(context);
     return size.width < Const.config.MAX_LANDSCAPE_WIDTH

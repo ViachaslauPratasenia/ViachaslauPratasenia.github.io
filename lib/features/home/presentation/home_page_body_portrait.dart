@@ -3,6 +3,7 @@ import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/home/data/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
+import 'package:personal_website/features/home/presentation/components/project_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/features/home/presentation/components/work_item.dart';
 import 'package:personal_website/theme/theme.dart';
@@ -56,6 +57,8 @@ class HomePageBodyPortrait extends StatelessWidget {
             ],
             const SizedBox(height: 48),
             ...profile.work.map((work) => WorkItem(workExperience: work)).toList(),
+            const SizedBox(height: 48),
+            ...profile.projects.map((project) => ProjectItem(project: project)).toList(),
             const SizedBox(height: 48),
           ],
         ),

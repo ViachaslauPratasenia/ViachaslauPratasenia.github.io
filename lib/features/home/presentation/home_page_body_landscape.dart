@@ -3,6 +3,7 @@ import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/home/data/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
+import 'package:personal_website/features/home/presentation/components/project_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/features/home/presentation/components/work_item.dart';
 import 'package:personal_website/theme/theme.dart';
@@ -92,6 +93,16 @@ class HomePageBodyLandscape extends StatelessWidget {
                     separatorBuilder: (context, index) => const SizedBox(height: 32),
                     itemBuilder: (context, index) => WorkItem(
                       workExperience: profile.work[index],
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: profile.projects.length,
+                    separatorBuilder: (context, index) => const SizedBox(height: 32),
+                    itemBuilder: (context, index) => ProjectItem(
+                      project: profile.projects[index],
                     ),
                   ),
                   const SizedBox(height: 80),
