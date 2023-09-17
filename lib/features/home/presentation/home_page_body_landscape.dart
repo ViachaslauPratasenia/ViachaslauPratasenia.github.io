@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/const.dart';
-import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
@@ -37,21 +37,24 @@ class HomePageBodyLandscape extends StatelessWidget {
                     style: AppTheme.typography.extraMega.bold.accent,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    profile.jobTitle,
-                    textAlign: TextAlign.start,
-                    style: AppTheme.typography.huge.regular.accent,
-                  ),
-                  const SizedBox(height: 24),
+                  if (profile.jobTitle.isNotEmpty) ...[
+                    Text(
+                      profile.jobTitle,
+                      textAlign: TextAlign.start,
+                      style: AppTheme.typography.huge.regular.accent,
+                    ),
+                    const SizedBox(height: 24),
+                  ],
                   Text(
                     profile.shortDescription,
                     textAlign: TextAlign.start,
                     style: AppTheme.typography.semiLarge.regular.textBase,
                   ),
-                  const SizedBox(height: 56),
                   if (MediaQuery.sizeOf(context).height > maxHeightForLanguageBlock &&
-                      profile.showLanguages)
+                      profile.showLanguages) ...[
+                    const SizedBox(height: 56),
                     LanguagesBlock(languages: profile.languages),
+                  ],
                   const Spacer(),
                 ],
               ),

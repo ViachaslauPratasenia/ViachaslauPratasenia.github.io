@@ -1,4 +1,4 @@
-import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 
 class ProfileState {
   final bool isLoading;

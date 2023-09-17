@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_website/features/home/data/developer_profile_mapper.dart';
 import 'package:personal_website/features/home/data/repository/local_profile_repository.dart';
 import 'package:personal_website/features/home/data/repository/remote_profile_repository.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
@@ -19,7 +20,9 @@ class ProfileCubit extends Cubit<ProfileState> {
       var developerProfile = await remoteProfileRepository.getProfile();
       developerProfile ??= await localProfileRepository.loadProfile();
 
-      emit(state.copyWith(developerProfile: developerProfile));
+      if (developerProfile != null) {
+        emit(state.copyWith(developerProfile: DeveloperProfileMapper.map(developerProfile)));
+      }
     } on Exception {
       //todo: send to crashlytics
     } finally {

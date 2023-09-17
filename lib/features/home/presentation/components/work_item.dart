@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/link_item.dart';
 import 'package:personal_website/features/home/presentation/components/orientation_item_container.dart';
 import 'package:personal_website/features/home/presentation/components/skill_element.dart';

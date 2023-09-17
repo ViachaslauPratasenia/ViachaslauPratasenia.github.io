@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
-import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:personal_website/theme/typografy.dart';
 import 'package:url_launcher/url_launcher_string.dart';

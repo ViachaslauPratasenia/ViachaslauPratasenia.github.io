@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/developer_profile.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/data/social_button_element.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
