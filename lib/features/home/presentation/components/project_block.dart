@@ -1,3 +1,4 @@
+import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/core/orientation_provider.dart';
@@ -17,7 +18,7 @@ class ProjectItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.orientationOf(context);
     return OrientationItemContainer(
-      onTap: () => launchUrlString(project.link),
+      onTap: onTap,
       child: Container(
         padding: orientation == Orientation.landscape
             ? const EdgeInsets.symmetric(horizontal: 32, vertical: 24)
@@ -33,7 +34,7 @@ class ProjectItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () => launchUrlString(project.link),
+                    onTap: onTap,
                     child: Row(
                       children: [
                         Text(
@@ -78,6 +79,14 @@ class ProjectItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onTap() {
+    FirebaseAnalyticsWeb().logEvent(name: 'open_project', parameters: {
+      'project_title': project.title,
+      'project_link': project.link,
+    });
+    launchUrlString(project.link);
   }
 }
 

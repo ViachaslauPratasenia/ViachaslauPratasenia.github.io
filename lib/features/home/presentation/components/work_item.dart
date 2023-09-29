@@ -1,3 +1,4 @@
+import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/core/orientation_provider.dart';
@@ -18,7 +19,7 @@ class WorkItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.of(context).orientation;
     return OrientationItemContainer(
-      onTap: () => launchUrlString(workExperience.companyLink),
+      onTap: onTap,
       child: Container(
         padding: orientation == Orientation.landscape
             ? const EdgeInsets.symmetric(horizontal: 32, vertical: 24)
@@ -48,7 +49,7 @@ class WorkItem extends StatelessWidget {
                     const SizedBox(height: 8),
                   ],
                   GestureDetector(
-                    onTap: () => launchUrlString(workExperience.companyLink),
+                    onTap: onTap,
                     child: Row(
                       children: [
                         Text(
@@ -96,6 +97,13 @@ class WorkItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onTap() {
+    FirebaseAnalyticsWeb().logEvent(name: 'open_work', parameters: {
+      'work_title': workExperience.title,
+    });
+    launchUrlString(workExperience.companyLink);
   }
 }
 

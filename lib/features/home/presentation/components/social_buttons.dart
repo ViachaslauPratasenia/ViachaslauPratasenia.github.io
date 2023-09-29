@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
@@ -57,6 +58,9 @@ class _IconState extends State<_Icon> {
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () async {
+        FirebaseAnalyticsWeb().logEvent(name: 'open_social_link', parameters: {
+          'link_name': widget.socialLink.name,
+        });
         if (socialLinkElement != SocialButtonElement.email) {
           launchUrlString(widget.socialLink.url);
           return;

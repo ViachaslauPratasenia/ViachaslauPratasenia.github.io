@@ -1,3 +1,4 @@
+import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/theme/theme.dart';
 import 'package:personal_website/theme/typografy.dart';
@@ -19,7 +20,10 @@ class DownloadButton extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       ),
-      onPressed: () => launchUrlString(url),
+      onPressed: () {
+        FirebaseAnalyticsWeb().logEvent(name: 'download_cv');
+        launchUrlString(url);
+      },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +35,7 @@ class DownloadButton extends StatelessWidget {
           const SizedBox(width: 8),
           Icon(Icons.file_download_outlined, color: AppTheme.colors.accent, size: 24),
         ],
-      )
+      ),
     );
   }
 }

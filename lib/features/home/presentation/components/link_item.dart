@@ -1,3 +1,4 @@
+import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
@@ -14,7 +15,13 @@ class LinkItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(32),
-      onTap: () => launchUrlString(link.url),
+      onTap: () {
+        FirebaseAnalyticsWeb().logEvent(name: 'open_link', parameters: {
+          'link_url': link.url,
+          'link_name': link.name,
+        });
+        launchUrlString(link.url);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Row(
