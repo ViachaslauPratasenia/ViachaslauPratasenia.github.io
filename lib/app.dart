@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:personal_website/core/locator.dart';
+import 'package:personal_website/features/change_theme/domain/use_case/theme_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/presentation/home_page.dart';
-import 'package:personal_website/theme_controller.dart';
+import 'package:personal_website/theme/theme_controller.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -33,13 +34,18 @@ class _AppState extends State<App> {
       builder: (context, child) => MultiBlocProvider(
         providers: [
           BlocProvider<ProfileCubit>(create: (context) => locator.get()),
+          BlocProvider<ThemeCubit>(create: (context) => locator.get()),
         ],
-        child: MaterialApp.router(
-          title: 'Viachaslau Pratasenia',
-          routerConfig: _router,
-          theme: ThemeController.darkTheme,
-          debugShowCheckedModeBanner: false,
-        ),
+        child: BlocBuilder<ThemeCubit, ThemeMode>(builder: (context, themeMode) {
+          return MaterialApp.router(
+            title: 'Viachaslau Pratasenia',
+            routerConfig: _router,
+            theme: ThemeController.lightTheme,
+            darkTheme: ThemeController.darkTheme,
+            themeMode: themeMode,
+            debugShowCheckedModeBanner: false,
+          );
+        }),
       ),
     );
   }

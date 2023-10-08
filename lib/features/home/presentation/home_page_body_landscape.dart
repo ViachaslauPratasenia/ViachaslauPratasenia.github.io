@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/const.dart';
+import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
@@ -29,7 +30,7 @@ class HomePageBodyLandscape extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 56),
+                  const SizedBox(height: 80),
                   Text(
                     profile.name,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -79,7 +80,9 @@ class HomePageBodyLandscape extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: [
-                  const SizedBox(height: 56),
+                  const SizedBox(height: 32),
+                  const Align(alignment: Alignment.centerRight, child: ThemeIcon()),
+                  const SizedBox(height: 16),
                   Text(
                     profile.fullDescription,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
