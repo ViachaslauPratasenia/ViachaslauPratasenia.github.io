@@ -21,7 +21,7 @@ class LinkItem extends StatelessWidget {
         launchUrlString(link.url);
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -37,6 +37,7 @@ class LinkItem extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.normal,
                     color: Theme.of(context).colorScheme.tertiary,
+                    height: 1.1,
                   ),
             ),
           ],

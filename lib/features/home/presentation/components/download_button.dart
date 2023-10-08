@@ -31,6 +31,7 @@ class DownloadButton extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: Theme.of(context).colorScheme.tertiary,
+                  height: 1.1,
                 ),
           ),
           const SizedBox(width: 8),
