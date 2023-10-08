@@ -6,8 +6,6 @@ import 'package:personal_website/features/home/data/local/developer_profile.dart
 import 'package:personal_website/features/home/presentation/components/link_item.dart';
 import 'package:personal_website/features/home/presentation/components/orientation_item_container.dart';
 import 'package:personal_website/features/home/presentation/components/skill_element.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class WorkItem extends StatelessWidget {
@@ -44,7 +42,10 @@ class WorkItem extends StatelessWidget {
                   if (orientation == Orientation.portrait) ...[
                     Text(
                       '${workExperience.from} - ${workExperience.to}',
-                      style: AppTheme.typography.standard.semibold.textBase,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.surface,
+                          ),
                     ),
                     const SizedBox(height: 8),
                   ],
@@ -54,13 +55,16 @@ class WorkItem extends StatelessWidget {
                       children: [
                         Text(
                           workExperience.title,
-                          style: AppTheme.typography.semiLarge.bold.accent,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
                         ),
                         const SizedBox(width: 4),
                         Assets.images.icShare.image(
                           width: 12,
                           height: 12,
-                          color: AppTheme.colors.accent,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ],
                     ),
@@ -68,7 +72,10 @@ class WorkItem extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     workExperience.description,
-                    style: AppTheme.typography.standard.regular.textBase,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   Wrap(
@@ -115,7 +122,10 @@ class WorkPeriod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = AppTheme.typography.small.medium.textBase;
+    final textStyle = Theme.of(context).textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Theme.of(context).colorScheme.surface,
+        );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

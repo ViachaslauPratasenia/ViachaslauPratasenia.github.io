@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 
 class SkillElement extends StatelessWidget {
   final String skillName;
@@ -11,13 +9,16 @@ class SkillElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.colors.primary,
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(32),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Text(
         skillName,
-        style: AppTheme.typography.standard.regular.accent,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.normal,
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
       ),
     );
   }

@@ -6,8 +6,6 @@ import 'package:personal_website/features/home/presentation/components/languages
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/features/home/presentation/components/work_item.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 
 class HomePageBodyLandscape extends StatelessWidget {
   final DeveloperProfile profile;
@@ -34,21 +32,30 @@ class HomePageBodyLandscape extends StatelessWidget {
                   const SizedBox(height: 56),
                   Text(
                     profile.name,
-                    style: AppTheme.typography.extraMega.bold.accent,
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   if (profile.jobTitle.isNotEmpty) ...[
                     Text(
                       profile.jobTitle,
                       textAlign: TextAlign.start,
-                      style: AppTheme.typography.huge.regular.accent,
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.normal,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
                     ),
                     const SizedBox(height: 24),
                   ],
                   Text(
                     profile.shortDescription,
                     textAlign: TextAlign.start,
-                    style: AppTheme.typography.semiLarge.regular.textBase,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.normal,
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
                   ),
                   if (MediaQuery.sizeOf(context).height > maxHeightForLanguageBlock &&
                       profile.showLanguages) ...[
@@ -75,7 +82,10 @@ class HomePageBodyLandscape extends StatelessWidget {
                   const SizedBox(height: 56),
                   Text(
                     profile.fullDescription,
-                    style: AppTheme.typography.semiLarge.regular.textBase,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.normal,
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
                   ),
                   if (MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
                     const SizedBox(height: 36),

@@ -7,8 +7,6 @@ import 'package:personal_website/features/home/domain/use_case/profile_state.dar
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/home_page_body_landscape.dart';
 import 'package:personal_website/features/home/presentation/home_page_body_portrait.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';
@@ -20,12 +18,13 @@ class HomePage extends StatelessWidget {
     final profileBloc = BlocProvider.of<ProfileCubit>(context);
     final orientation = OrientationProvider.of(context).orientation;
     return Scaffold(
-      backgroundColor: AppTheme.colors.background,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: BlocBuilder<ProfileCubit, ProfileState>(
         bloc: profileBloc,
         builder: (context, profileState) {
           if (profileState.isLoading) {
-            return Center(child: CircularProgressIndicator(color: AppTheme.colors.accent));
+            return Center(
+                child: CircularProgressIndicator(color: Theme.of(context).colorScheme.tertiary));
           }
 
           if (profileState.developerProfile == null && !profileState.isLoading) {
@@ -58,12 +57,18 @@ class ErrorBlock extends StatelessWidget {
           children: [
             Text(
               'Oops',
-              style: AppTheme.typography.mega.bold.accent,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               'Something went wrong. But you can still download the resume by clicking the button below. Thank you for your understanding',
-              style: AppTheme.typography.standard.regular.accent,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),

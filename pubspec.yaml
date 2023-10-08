@@ -64,6 +64,7 @@ dependencies:
   dio: ^5.3.2
   firebase_analytics_web: ^0.5.5
   firebase_core: ^2.16.0
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -88,36 +89,3 @@ flutter:
   assets:
     - assets/
     - assets/images/
-
-  fonts:
-    - family: Inter-ExtraLight
-      fonts:
-        - asset: assets/Inter-ExtraLight.ttf
-
-    - family: Inter-Light
-      fonts:
-        - asset: assets/Inter-Light.ttf
-
-    - family: Inter-Regular
-      fonts:
-        - asset: assets/Inter-Regular.ttf
-
-    - family: Inter-Medium
-      fonts:
-        - asset: assets/Inter-Medium.ttf
-
-    - family: Inter-SemiBold
-      fonts:
-        - asset: assets/Inter-SemiBold.ttf
-
-    - family: Inter-Bold
-      fonts:
-        - asset: assets/Inter-Bold.ttf
-
-    - family: Inter-ExtraBold
-      fonts:
-        - asset: assets/Inter-ExtraBold.ttf
-
-    - family: Inter-Black
-      fonts:
-        - asset: assets/Inter-Black.ttf

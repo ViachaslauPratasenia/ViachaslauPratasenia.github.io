@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 
 class LanguagesBlock extends StatelessWidget {
   final List<Language> languages;
@@ -18,11 +16,13 @@ class LanguagesBlock extends StatelessWidget {
       children: [
         Text(
           'Languages',
-          style: AppTheme.typography.bold.accent.copyWith(
-            fontSize: orientation == Orientation.landscape
-                ? AppTheme.typography.huge.fontSize
-                : AppTheme.typography.semiLarge.fontSize,
-          ),
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.tertiary,
+                fontSize: orientation == Orientation.landscape
+                    ? Theme.of(context).textTheme.headlineSmall?.fontSize
+                    : Theme.of(context).textTheme.bodyLarge?.fontSize,
+              ),
         ),
         const SizedBox(height: 16),
         Wrap(
@@ -50,25 +50,26 @@ class _LanguageBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = OrientationProvider.of(context).orientation == Orientation.landscape
-        ? AppTheme.typography.standard.fontSize
-        : AppTheme.typography.small.fontSize;
+    final textTheme = (OrientationProvider.of(context).orientation == Orientation.landscape
+            ? Theme.of(context).textTheme.bodyMedium
+            : Theme.of(context).textTheme.bodySmall)
+        ?.copyWith(
+      fontWeight: FontWeight.normal,
+      color: Theme.of(context).colorScheme.tertiary,
+    );
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.colors.primary,
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(32),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: RichText(
         text: TextSpan(
           text: language,
-          style: AppTheme.typography.regular.accent.copyWith(fontSize: fontSize),
+          style: textTheme,
           children: [
             if (level.isNotEmpty)
-              TextSpan(
-                text: ' $level',
-                style: AppTheme.typography.bold.accent.copyWith(fontSize: fontSize),
-              ),
+              TextSpan(text: ' $level', style: textTheme?.copyWith(fontWeight: FontWeight.bold)),
           ],
         ),
       ),

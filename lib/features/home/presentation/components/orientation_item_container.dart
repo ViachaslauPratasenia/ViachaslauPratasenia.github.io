@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/theme/theme.dart';
 
 class OrientationItemContainer extends StatelessWidget {
   final Widget child;
@@ -14,8 +13,8 @@ class OrientationItemContainer extends StatelessWidget {
       return InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
-        hoverColor: AppTheme.colors.accent.withOpacity(0.05),
-        highlightColor: AppTheme.colors.accent.withOpacity(0.1),
+        hoverColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.05),
+        highlightColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.1),
         child: child,
       );
     }

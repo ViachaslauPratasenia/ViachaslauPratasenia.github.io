@@ -6,8 +6,6 @@ import 'package:personal_website/features/home/presentation/components/languages
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/features/home/presentation/components/work_item.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 
 class HomePageBodyPortrait extends StatelessWidget {
   final DeveloperProfile profile;
@@ -25,27 +23,42 @@ class HomePageBodyPortrait extends StatelessWidget {
             const SizedBox(height: 40),
             Text(
               profile.name,
-              style: AppTheme.typography.huge.bold.accent,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               profile.jobTitle,
-              style: AppTheme.typography.standard.regular.accent,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
             ),
             const SizedBox(height: 24),
             Text(
               profile.shortDescription,
-              style: AppTheme.typography.small.regular.textBase,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
             ),
             const SizedBox(height: 48),
             Text(
               'About',
-              style: AppTheme.typography.semiLarge.bold.accent,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
             ),
             const SizedBox(height: 16),
             Text(
               profile.fullDescription,
-              style: AppTheme.typography.small.regular.textBase,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
             ),
             const SizedBox(height: 24),
             DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),

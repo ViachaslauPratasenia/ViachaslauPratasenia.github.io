@@ -1,7 +1,5 @@
 import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class DownloadButton extends StatelessWidget {
@@ -14,7 +12,7 @@ class DownloadButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppTheme.colors.primary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -30,10 +28,17 @@ class DownloadButton extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTheme.typography.standard.medium.accent,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
           ),
           const SizedBox(width: 8),
-          Icon(Icons.file_download_outlined, color: AppTheme.colors.accent, size: 24),
+          Icon(
+            Icons.file_download_outlined,
+            color: Theme.of(context).colorScheme.tertiary,
+            size: 24,
+          ),
         ],
       ),
     );

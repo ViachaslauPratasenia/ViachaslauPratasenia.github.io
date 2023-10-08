@@ -5,8 +5,6 @@ import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/orientation_item_container.dart';
 import 'package:personal_website/features/home/presentation/components/skill_element.dart';
-import 'package:personal_website/theme/theme.dart';
-import 'package:personal_website/theme/typografy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ProjectItem extends StatelessWidget {
@@ -39,13 +37,16 @@ class ProjectItem extends StatelessWidget {
                       children: [
                         Text(
                           project.title,
-                          style: AppTheme.typography.semiLarge.bold.accent,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
                         ),
                         const SizedBox(width: 4),
                         Assets.images.icShare.image(
                           width: 12,
                           height: 12,
-                          color: AppTheme.colors.accent,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ],
                     ),
@@ -53,7 +54,10 @@ class ProjectItem extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     project.description,
-                    style: AppTheme.typography.standard.regular.textBase,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.normal,
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
                   ),
                   const SizedBox(height: 12),
                   Wrap(
@@ -102,7 +106,7 @@ class _Image extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: AppTheme.colors.accent,
+          color: Theme.of(context).colorScheme.tertiary,
           width: 0.5,
         ),
       ),
