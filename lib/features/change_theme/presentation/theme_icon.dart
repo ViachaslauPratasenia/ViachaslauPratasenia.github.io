@@ -15,7 +15,8 @@ class ThemeIcon extends StatelessWidget {
         final icon =
             themeMode == ThemeMode.dark ? Assets.images.icNight.path : Assets.images.icSun.path;
 
-        return GestureDetector(
+        return InkWell(
+          borderRadius: BorderRadius.circular(8),
           onTap: () => themeCubit.changeTheme(
             themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark,
           ),
