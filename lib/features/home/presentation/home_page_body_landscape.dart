@@ -85,37 +85,13 @@ class HomePageBodyLandscape extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                GestureDetector(
-                  onTap: () => scrollToWidget(aboutKey.currentContext),
-                  child: Text('About',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          )),
-                ),
+                _TabItem(title: 'About', tabKey: aboutKey),
                 const SizedBox(width: 32),
-                GestureDetector(
-                  onTap: () => scrollToWidget(workKey.currentContext),
-                  child: Text('Work',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          )),
-                ),
+                _TabItem(title: 'Work', tabKey: workKey),
                 const SizedBox(width: 32),
-                GestureDetector(
-                  onTap: () => scrollToWidget(projectsKey.currentContext),
-                  child: Text('Projects',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          )),
-                ),
+                _TabItem(title: 'Projects', tabKey: projectsKey),
                 const SizedBox(width: 32),
-                GestureDetector(
-                  onTap: () => scrollToWidget(blogKey.currentContext),
-                  child: Text('Blog',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.tertiary,
-                      )),
-                ),
+                _TabItem(title: 'Blog', tabKey: blogKey),
                 const SizedBox(width: 48),
                 const ThemeIcon(),
               ],
@@ -208,6 +184,27 @@ class HomePageBodyLandscape extends StatelessWidget {
             ),
           )
       ],
+    );
+  }
+}
+
+class _TabItem extends StatelessWidget {
+  final String title;
+  final GlobalKey tabKey;
+
+  const _TabItem({required this.title, required this.tabKey});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      hoverColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      onTap: () => scrollToWidget(tabKey.currentContext),
+      child: Text(title,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: Theme.of(context).colorScheme.tertiary,
+              )),
     );
   }
 
