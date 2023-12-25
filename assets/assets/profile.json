@@ -1,0 +1,190 @@
+{
+  "name": "Viachaslau Pratasenia",
+  "job_title": "Flutter Developer at Aventus IT",
+  "short_description": "Crafting sleek, intuitive Flutter applications for Android, iOS, desktop, and web to enhance user experience.",
+  "full_description": "I am a highly skilled software engineer with 5 years of commercial experience in building top-notch applications for Android, iOS, MacOS, Windows and Web platforms using Flutter.\n\nI have a strong passion for creating robust and user-friendly applications that exceed client’s expectations. Throughout my career, I have gained expertise in various aspects of software development, including design, development, testing, and maintenance.\n\nMy deep understanding of programming languages, frameworks, and tools, coupled with my problem-solving skills, has enabled me to deliver complex projects within tight deadlines.",
+  "social_links": [
+    {
+      "name": "email",
+      "url": "viachaslau.pratasenia@gmail.com"
+    },
+    {
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/in/viachaslaupratasenia/"
+    },
+    {
+      "name": "github",
+      "url": "https://github.com/ViachaslauPratasenia"
+    },
+    {
+      "name": "instagram",
+      "url": "https://www.instagram.com/proslau/"
+    },
+    {
+      "name": "telegram",
+      "url": "https://t.me/proslau"
+    }
+  ],
+  "show_languages": false,
+  "languages": [
+    {
+      "name": "English",
+      "level": "B2"
+    },
+    {
+      "name": "French",
+      "level": "A2"
+    },
+    {
+      "name": "Russian",
+      "level": "C2"
+    },
+    {
+      "name": "Belarusian",
+      "level": "C2"
+    },
+    {
+      "name": "Polish",
+      "level": "A1"
+    }
+  ],
+  "work": [
+    {
+      "title": "Flutter Developer - Aventus IT",
+      "company_link": "https://aventusit.eu/",
+      "description": "As a Developer at 7VPN, I play a key role in a three-person development team. My responsibilities encompass a variety of platforms including iOS, macOS, Windows, and Web.\n\nIn addition to mobile and desktop development, I also create the personal account website. My technical contributions include integrating deep links, working with notifications, deploying social login features, news, creating build environments, and other features. \n\nTools: XCode, Android Studio, Figma, Firebase, Google Cloud Platforms.",
+      "from": "SEPT 2022",
+      "to": "PRESENT",
+      "links": [
+        {
+          "name": "7VPN",
+          "url": "https://7vpn.com/"
+        },
+        {
+          "name": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.sevenvpn"
+        },
+        {
+          "name": "App Store",
+          "url": "https://apps.apple.com/app/7-vpn-fast-and-secure-proxy/id6444400604"
+        },
+        {
+          "name": "Snap Store",
+          "url": "https://snapcraft.io/7vpn"
+        }
+      ],
+      "skills": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Java",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Flutter Developer - Symfa",
+      "company_link": "https://symfa.com/",
+      "description": "At Symfa, I served as a crucial contributor to both our dating app and corporate chat service, akin to Slack. My role provided me a dynamic experience, from integrating Redux to adopting null safety and migrating to updated Flutter versions.\n\nBeyond coding, my responsibilities also covered the entire spectrum of app publishing. I communicated actively with Google Play and App Store teams to troubleshoot issues and bugs, ensuring a seamless user experience post-launch.\n\nTools: Xcode, Android Studio, Figma, Firebase.",
+      "from": "SEPT 2021",
+      "to": "SEPT 2022",
+      "links": [
+        {
+          "name": "Symfa Chat",
+          "url": "https://play.google.com/store/apps/details?id=chat.rocket.ais&hl=en_US"
+        },
+        {
+          "name": "Linea",
+          "url": "https://play.google.com/store/apps/details?id=com.mixort.linealife&hl=en"
+        }
+      ],
+      "skills": [
+        "Flutter",
+        "Dart",
+        "React Native"
+      ]
+    },
+    {
+      "title": "Android/Flutter Developer - Heapix",
+      "company_link": "https://heapix.com/",
+      "description": "At Heapix, I functioned as an Android/Flutter developer and was involved in a diverse range of projects, including food delivery apps and smart home control systems. My role extended beyond coding, as I initiated applications from the ground up.\n\nIn collaboration with development, design, and management teams, I honed my skills in customer communication and even gathered experience in project management.\n\nTools: Android Studio, Figma, Firebase, Adobe Illustrator.",
+      "from": "APR 2019",
+      "to": "SEPT 2021",
+      "links": [
+        {
+          "name": "Timate",
+          "url": "https://timate.me/"
+        },
+        {
+          "name": "Nero Server",
+          "url": "https://play.google.com/store/apps/details?id=com.nero.nerocenter"
+        },
+        {
+          "name": "Somnology",
+          "url": "https://play.google.com/store/apps/details?id=com.somnologymd.SLaaSapp"
+        },
+        {
+          "name": "Beengo",
+          "url": "https://apkpure.com/beengo/com.beengo"
+        }
+      ],
+      "skills": [
+        "Android",
+        "Java",
+        "Kotlin",
+        "Flutter",
+        "Dart"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Personal Website",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/personal_website.png",
+      "description": "This website was created using Flutter Web and hosted on Github Pages. The source code is available on GitHub.",
+      "link": "https://github.com/ViachaslauPratasenia/ViachaslauPratasenia.github.io",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Web",
+        "GitHub Pages"
+      ]
+    },
+    {
+      "title": "Never Have I Ever",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/never_have_i_ever.png",
+      "description": "Never Have I Ever is a mobile app that allows you to play the popular party game with your friends, more than 10 categories, 2000+ questions. The app was created using Flutter and is available on Google Play.",
+      "link": "https://play.google.com/store/apps/details?id=com.icandev.neverever",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Mobile"
+      ]
+    },
+    {
+      "title": "Workout Tracker App Design",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/workout_tracker.png",
+      "description": "This is a mobile app design for a workout tracker. The design was created using Figma.",
+      "link": "https://www.figma.com/file/nlUegZYGyPiYshRSja5614/Workout-tracker?type=design&node-id=2%3A2&mode=design&t=ldBf5YuhBrCMd7AE-1",
+      "tags": [
+        "Figma",
+        "UI/UX",
+        "Mobile"
+      ]
+    }
+  ],
+  "blog_posts": [
+    {
+      "title": "The Easiest Way to Use Environments in Flutter",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/environment_blog_post.png",
+      "description": "In this article we will talk about how you can use environment variables without third-party libraries.",
+      "link": "https://medium.com/@viachaslau.pratasenia/the-easiest-way-to-use-environments-in-flutter-fa7b2cf0ed8d",
+      "date": "December 12, 2023",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Web",
+        "Mobile"
+      ]
+    }
+  ]
+}
