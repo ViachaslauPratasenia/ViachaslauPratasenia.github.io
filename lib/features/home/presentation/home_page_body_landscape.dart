@@ -16,6 +16,12 @@ class HomePageBodyLandscape extends StatelessWidget {
   static const maxHeightForLanguageBlock = 760;
   static const maxHeightForSocialButtons = 520;
 
+  static GlobalKey aboutKey = GlobalKey();
+  static GlobalKey workKey = GlobalKey();
+  static GlobalKey projectsKey = GlobalKey();
+
+  static const double tabSize = 72.0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -30,7 +36,7 @@ class HomePageBodyLandscape extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 92),
                   Text(
                     profile.name,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -69,60 +75,99 @@ class HomePageBodyLandscape extends StatelessWidget {
             ),
           ),
         ),
-        SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              padding: const EdgeInsets.only(right: 56),
-              width: MediaQuery.sizeOf(context).width * 0.55,
-              child: ListView(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: [
-                  const SizedBox(height: 32),
-                  const Align(alignment: Alignment.centerRight, child: ThemeIcon()),
-                  const SizedBox(height: 16),
-                  Text(
-                    profile.fullDescription,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.normal,
-                          color: Theme.of(context).colorScheme.surface,
-                        ),
-                  ),
-                  if (MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
-                    const SizedBox(height: 36),
-                    DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
+        Align(
+          alignment: Alignment.topRight,
+          child: Container(
+            height: tabSize,
+            margin: const EdgeInsets.only(right: 56),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onTap: () => scrollToWidget(aboutKey.currentContext),
+                  child: Text('About',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.tertiary,
+                          )),
+                ),
+                const SizedBox(width: 32),
+                GestureDetector(
+                  onTap: () => scrollToWidget(workKey.currentContext),
+                  child: Text('Work',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.tertiary,
+                          )),
+                ),
+                const SizedBox(width: 32),
+                GestureDetector(
+                  onTap: () => scrollToWidget(projectsKey.currentContext),
+                  child: Text('Projects',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.tertiary,
+                          )),
+                ),
+                const SizedBox(width: 48),
+                const ThemeIcon(),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: tabSize),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                padding: const EdgeInsets.only(right: 56),
+                width: MediaQuery.sizeOf(context).width * 0.55,
+                child: Column(
+                  children: [
                     const SizedBox(height: 16),
-                    SocialButtons(socialLinks: profile.socialLinks),
-                  ],
-                  if (MediaQuery.sizeOf(context).height <= maxHeightForLanguageBlock &&
-                      profile.showLanguages) ...[
-                    const SizedBox(height: 56),
-                    LanguagesBlock(languages: profile.languages),
-                  ],
-                  const SizedBox(height: 80),
-                  ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: profile.work.length,
-                    separatorBuilder: (context, index) => const SizedBox(height: 32),
-                    itemBuilder: (context, index) => WorkItem(
-                      workExperience: profile.work[index],
+                    Text(
+                      key: aboutKey,
+                      profile.fullDescription,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.normal,
+                            color: Theme.of(context).colorScheme.surface,
+                          ),
                     ),
-                  ),
-                  const SizedBox(height: 80),
-                  ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: profile.projects.length,
-                    separatorBuilder: (context, index) => const SizedBox(height: 32),
-                    itemBuilder: (context, index) => ProjectItem(
-                      project: profile.projects[index],
+                    if (MediaQuery.sizeOf(context).height <= maxHeightForSocialButtons) ...[
+                      const SizedBox(height: 36),
+                      DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
+                      const SizedBox(height: 16),
+                      SocialButtons(socialLinks: profile.socialLinks),
+                    ],
+                    if (MediaQuery.sizeOf(context).height <= maxHeightForLanguageBlock &&
+                        profile.showLanguages) ...[
+                      const SizedBox(height: 56),
+                      LanguagesBlock(languages: profile.languages),
+                    ],
+                    const SizedBox(height: 80),
+                    ListView.separated(
+                      key: workKey,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: profile.work.length,
+                      separatorBuilder: (context, index) => const SizedBox(height: 32),
+                      itemBuilder: (context, index) => WorkItem(
+                        workExperience: profile.work[index],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 80),
-                ],
+                    const SizedBox(height: 80),
+                    ListView.separated(
+                      key: projectsKey,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: profile.projects.length,
+                      separatorBuilder: (context, index) => const SizedBox(height: 32),
+                      itemBuilder: (context, index) => ProjectItem(
+                        project: profile.projects[index],
+                      ),
+                    ),
+                    const SizedBox(height: 80),
+                  ],
+                ),
               ),
             ),
           ),
@@ -143,5 +188,11 @@ class HomePageBodyLandscape extends StatelessWidget {
           )
       ],
     );
+  }
+
+  void scrollToWidget(BuildContext? context) {
+    if (context == null) return;
+
+    Scrollable.ensureVisible(context, duration: const Duration(seconds: 1));
   }
 }
