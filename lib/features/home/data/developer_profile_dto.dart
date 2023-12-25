@@ -8,6 +8,7 @@ class DeveloperProfileDto {
   final List<LanguageDto>? languages;
   final List<WorkExperienceDto>? work;
   final List<ProjectDto>? projects;
+  final List<BlogPostDto>? blogPosts;
 
   DeveloperProfileDto({
     this.name,
@@ -19,6 +20,7 @@ class DeveloperProfileDto {
     this.languages,
     this.work,
     this.projects,
+    this.blogPosts,
   });
 
   factory DeveloperProfileDto.fromJson(Map<String, dynamic> json) {
@@ -39,6 +41,9 @@ class DeveloperProfileDto {
           .toList(),
       projects: (json['projects'] as List?)
           ?.map((e) => ProjectDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      blogPosts: (json['blog_posts'] as List?)
+          ?.map((e) => BlogPostDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }
@@ -142,6 +147,35 @@ class ProjectDto {
       link: json['link'] as String?,
       description: json['description'] as String?,
       tags: (json['tags'] as List?)?.map((e) => e as String).toList(),
+    );
+  }
+}
+
+class BlogPostDto {
+  final String? title;
+  final String? image;
+  final String? link;
+  final String? description;
+  final List<String>? tags;
+  final String? date;
+
+  BlogPostDto({
+    this.title,
+    this.image,
+    this.link,
+    this.description,
+    this.tags,
+    this.date,
+  });
+
+  factory BlogPostDto.fromJson(Map<String, dynamic> json) {
+    return BlogPostDto(
+      title: json['title'] as String?,
+      image: json['image'] as String?,
+      link: json['link'] as String?,
+      description: json['description'] as String?,
+      tags: (json['tags'] as List?)?.map((e) => e as String).toList(),
+      date: json['date'] as String?,
     );
   }
 }

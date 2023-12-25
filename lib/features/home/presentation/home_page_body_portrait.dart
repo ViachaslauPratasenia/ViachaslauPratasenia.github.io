@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
+import 'package:personal_website/features/home/presentation/components/blog_post_item.dart';
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
@@ -78,6 +79,8 @@ class HomePageBodyPortrait extends StatelessWidget {
             ...profile.work.map((work) => WorkItem(workExperience: work)).toList(),
             const SizedBox(height: 48),
             ...profile.projects.map((project) => ProjectItem(project: project)).toList(),
+            const SizedBox(height: 48),
+            ...profile.blogPosts.map((blogPost) => BlogPostItem(blogPost: blogPost)).toList(),
             const SizedBox(height: 48),
           ],
         ),

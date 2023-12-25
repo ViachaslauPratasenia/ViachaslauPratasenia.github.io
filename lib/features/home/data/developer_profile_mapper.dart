@@ -48,6 +48,17 @@ class DeveloperProfileMapper {
                   ))
               .toList() ??
           [],
+      blogPosts: dto.blogPosts
+              ?.map((e) => BlogPost(
+                    title: e.title ?? '',
+                    description: e.description ?? '',
+                    image: e.image ?? '',
+                    link: e.link ?? '',
+                    tags: e.tags?.whereType<String>().toList() ?? [],
+                    date: e.date ?? '',
+                  ))
+              .toList() ??
+          [],
     );
   }
 }

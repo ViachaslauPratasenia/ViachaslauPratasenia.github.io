@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
+import 'package:personal_website/features/home/presentation/components/blog_post_item.dart';
 import 'package:personal_website/features/home/presentation/components/download_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
@@ -19,6 +20,7 @@ class HomePageBodyLandscape extends StatelessWidget {
   static GlobalKey aboutKey = GlobalKey();
   static GlobalKey workKey = GlobalKey();
   static GlobalKey projectsKey = GlobalKey();
+  static GlobalKey blogKey = GlobalKey();
 
   static const double tabSize = 72.0;
 
@@ -106,6 +108,14 @@ class HomePageBodyLandscape extends StatelessWidget {
                             color: Theme.of(context).colorScheme.tertiary,
                           )),
                 ),
+                const SizedBox(width: 32),
+                GestureDetector(
+                  onTap: () => scrollToWidget(blogKey.currentContext),
+                  child: Text('Blog',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.tertiary,
+                      )),
+                ),
                 const SizedBox(width: 48),
                 const ThemeIcon(),
               ],
@@ -163,6 +173,17 @@ class HomePageBodyLandscape extends StatelessWidget {
                       separatorBuilder: (context, index) => const SizedBox(height: 32),
                       itemBuilder: (context, index) => ProjectItem(
                         project: profile.projects[index],
+                      ),
+                    ),
+                    const SizedBox(height: 80),
+                    ListView.separated(
+                      key: blogKey,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: profile.blogPosts.length,
+                      separatorBuilder: (context, index) => const SizedBox(height: 32),
+                      itemBuilder: (context, index) => BlogPostItem(
+                        blogPost: profile.blogPosts[index],
                       ),
                     ),
                     const SizedBox(height: 80),

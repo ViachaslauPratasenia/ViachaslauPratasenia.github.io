@@ -171,5 +171,20 @@
         "Mobile"
       ]
     }
+  ],
+  "blog_posts": [
+    {
+      "title": "The Easiest Way to Use Environments in Flutter",
+      "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/environment_blog_post.png",
+      "description": "In this article we will talk about how you can use environment variables without third-party libraries.",
+      "link": "https://medium.com/@viachaslau.pratasenia/the-easiest-way-to-use-environments-in-flutter-fa7b2cf0ed8d",
+      "date": "December 12, 2023",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Web",
+        "Mobile"
+      ]
+    }
   ]
 }

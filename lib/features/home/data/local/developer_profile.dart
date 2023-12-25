@@ -8,6 +8,7 @@ class DeveloperProfile {
   final List<Language> languages;
   final List<WorkExperience> work;
   final List<Project> projects;
+  final List<BlogPost> blogPosts;
 
   DeveloperProfile({
     required this.name,
@@ -19,6 +20,7 @@ class DeveloperProfile {
     required this.languages,
     required this.work,
     required this.projects,
+    required this.blogPosts,
   });
 }
 
@@ -76,5 +78,23 @@ class Project {
     required this.link,
     required this.description,
     required this.tags,
+  });
+}
+
+class BlogPost {
+  final String title;
+  final String image;
+  final String link;
+  final String description;
+  final List<String> tags;
+  final String date;
+
+  BlogPost({
+    required this.title,
+    required this.image,
+    required this.link,
+    required this.description,
+    required this.tags,
+    required this.date,
   });
 }
