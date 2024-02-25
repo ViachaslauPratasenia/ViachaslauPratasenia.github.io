@@ -9,8 +9,7 @@ class _Config {
 
   String get GITHUB_URL => 'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/';
 
-  String get CV_URL =>
-      'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/pratasenia_cv.pdf';
+  String get CV_URL => 'https://pratasenia.dev/resume.pdf';
 
   String get PROFILE_URL =>
       'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/profile.json';
