@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:personal_website/const/assets/assets.gen.dart';
+import 'package:personal_website/core/widgets/link_item.dart';
 import 'package:personal_website/core/widgets/measure_size_widget.dart';
 import 'package:personal_website/core/widgets/painters/dashed_circle_painter.dart';
 import 'package:personal_website/core/widgets/painters/vertical_dashed_line_painter.dart';
@@ -16,16 +16,24 @@ class WorkInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseBlock(
-      child: Column(
-        children: [
-          const SectionHeader(index: '02', title: 'Work Experience'),
-          const SizedBox(height: 32),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: 3,
-            itemBuilder: (context, index) => _WorkItem(addBottomPadding: index != 3 - 1),
-          ),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: constraints.maxWidth * 0.6,
+                child: const SectionHeader(index: '02.', title: 'Work Experience'),
+              ),
+              const SizedBox(height: 32),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context, index) => _WorkItem(addBottomPadding: index != 3 - 1),
+              ),
+            ],
+          );
+        }
       ),
     );
   }
@@ -109,7 +117,10 @@ class _WorkItemState extends State<_WorkItem> {
                     scrollDirection: Axis.horizontal,
                     physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (context, index) => const SizedBox(width: 24),
-                    itemBuilder: (BuildContext context, int index) => const _LinkItem(),
+                    itemBuilder: (BuildContext context, int index) => const LinkItem(
+                      title: 'Flutter',
+                      url: 'https://flutter.dev',
+                    ),
                   ),
                 ),
                 if (widget.addBottomPadding) const SizedBox(height: 32),
@@ -117,32 +128,6 @@ class _WorkItemState extends State<_WorkItem> {
             ),
           ),
         ),
-      ],
-    );
-  }
-}
-
-class _LinkItem extends StatelessWidget {
-  const _LinkItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 4),
-          child: Text(
-            '7VPN',
-            style: context.textTheme.bodyMedium?.copyWith(color: AppColors.primary),
-          ),
-        ),
-        const SizedBox(width: 2),
-        Assets.svg.icExternalLink.svg(
-          width: 12,
-          height: 12,
-          colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
-        ),
-        // Icon(Icons.external)
       ],
     );
   }
