@@ -5,9 +5,10 @@ import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
-import 'package:personal_website/features/home/presentation/components/download_button.dart';
+import 'package:personal_website/features/home/presentation/components/primary_button.dart';
 import 'package:personal_website/features/home/presentation/home_page_body_landscape.dart';
 import 'package:personal_website/features/home/presentation/home_page_body_portrait.dart';
+import 'package:personal_website/theme/app_colors.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';
@@ -19,15 +20,7 @@ class HomePage extends StatelessWidget {
     final profileBloc = BlocProvider.of<ProfileCubit>(context);
     final orientation = OrientationProvider.of(context).orientation;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.background,
-      //   elevation: 0,
-      //   actions: [
-      //     ThemeIcon(),
-      //     const SizedBox(width: 16),
-      //   ],
-      // ),
+      backgroundColor: AppColors.background,
       body: BlocBuilder<ProfileCubit, ProfileState>(
         bloc: profileBloc,
         builder: (context, profileState) {
@@ -81,7 +74,7 @@ class ErrorBlock extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            DownloadButton(title: 'Download Resume', url: Const.config.CV_URL),
+            // DownloadButton(title: 'Download Resume', url: Const.config.CV_URL),
           ],
         ),
       ),

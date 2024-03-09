@@ -3,7 +3,7 @@ import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/blog_post_item.dart';
-import 'package:personal_website/features/home/presentation/components/download_button.dart';
+import 'package:personal_website/features/home/presentation/components/primary_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
@@ -68,7 +68,7 @@ class HomePageBodyPortrait extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 24),
-            DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
+            // DownloadButton(title: 'Download full Resume', url: Const.config.CV_URL),
             const SizedBox(height: 24),
             SocialButtons(socialLinks: profile.socialLinks),
             if (profile.showLanguages) ...[

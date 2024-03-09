@@ -42,7 +42,7 @@ class _AppState extends State<App> {
             routerConfig: _router,
             theme: ThemeController.lightTheme,
             darkTheme: ThemeController.darkTheme,
-            themeMode: themeMode,
+            themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
           );
         }),
