@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/const/const.dart';
 import 'package:personal_website/core/orientation_provider.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/core/widgets/primary_button.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutInfo extends StatelessWidget {
-  const AboutInfo({super.key});
+  final DeveloperProfile developerProfile;
+
+  const AboutInfo({super.key, required this.developerProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +35,24 @@ class AboutInfo extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Viachaslau Pratasenia',
+            developerProfile.name,
             style: nameStyle?.copyWith(color: AppColors.textPrimary),
           ),
           Text(
-            'I build things with Flutter.',
+            developerProfile.subtitle,
             style: nameStyle?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 32),
           Text(
-            'I\'m a Flutter developer dedicated to crafting exceptional digital experiences across multiple platforms. Currently, I\'m focused on developing accessible, user-centric applications for Android, iOS, web, and desktop at AventusIT.',
+            developerProfile.fullDescription,
             style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
           ),
           const SizedBox(height: 24),
-          PrimaryButton(title: 'Check out my resume', onPressed: () {}),
+          PrimaryButton(
+            analyticsName: 'open_cv',
+            title: 'Check out my resume',
+            onPressed: () => launchUrlString(Const.config.CV_URL),
+          ),
         ],
       ),
     );

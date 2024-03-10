@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/core/widgets/primary_button.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
+import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactInfo extends StatelessWidget {
-  const ContactInfo({super.key});
+  final DeveloperProfile developerProfile;
+
+  const ContactInfo({super.key, required this.developerProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +21,6 @@ class ContactInfo extends StatelessWidget {
     final titleStyle = orientation == Orientation.landscape
         ? context.textTheme.displayLarge
         : context.textTheme.headlineMedium;
-
-    final iconsPadding = orientation == Orientation.landscape ? 24.0 : 16.0;
 
     return BaseBlock(
       child: SizedBox(
@@ -37,53 +39,26 @@ class ContactInfo extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              'Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!',
+              developerProfile.contactMeText,
               textAlign: TextAlign.center,
               style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 24),
-            PrimaryButton(title: 'Say Hello', onPressed: () {}),
+            PrimaryButton(
+              title: 'Say Hello',
+              analyticsName: 'send_email',
+              onPressed: () async {
+                final uri = Uri(scheme: 'mailto', path: developerProfile.email);
+                await launchUrl(uri);
+              },
+            ),
             const SizedBox(height: 12),
             Text(
               'or',
               style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 12),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Assets.svg.icLinkedin.svg(
-                  width: 32,
-                  height: 32,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
-                ),
-                SizedBox(width: iconsPadding),
-                Assets.svg.icGithub.svg(
-                  width: 32,
-                  height: 32,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
-                ),
-                SizedBox(width: iconsPadding),
-                Assets.svg.icMedium.svg(
-                  width: 32,
-                  height: 32,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
-                ),
-                SizedBox(width: iconsPadding),
-                Assets.svg.icTelegram.svg(
-                  width: 32,
-                  height: 32,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
-                ),
-                SizedBox(width: iconsPadding),
-                Assets.svg.icInstagram.svg(
-                  width: 32,
-                  height: 32,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
-                ),
-              ],
-            ),
+            SocialButtons(socialLinks: developerProfile.socialLinks),
           ],
         ),
       ),

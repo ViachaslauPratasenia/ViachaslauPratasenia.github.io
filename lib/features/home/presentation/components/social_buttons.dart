@@ -1,10 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/data/social_button_element.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:personal_website/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class SocialButtons extends StatelessWidget {
@@ -20,15 +21,14 @@ class SocialButtons extends StatelessWidget {
         ? const SizedBox(width: 32)
         : const SizedBox(width: 16);
 
-    final iconSize = orientation == Orientation.landscape ? 36.0 : 24.0;
-
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: List.generate(socialLinks.length, (index) {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (index != 0) divider,
-            _Icon(socialLink: socialLinks[index], iconSize: iconSize),
+            _Icon(socialLink: socialLinks[index], iconSize: 32),
           ],
         );
       }),
@@ -60,23 +60,14 @@ class _IconState extends State<_Icon> {
         FirebaseAnalyticsWeb().logEvent(name: 'open_social_link', parameters: {
           'link_name': widget.socialLink.name,
         });
-        if (socialLinkElement != SocialButtonElement.email) {
-          launchUrlString(widget.socialLink.url);
-          return;
-        }
 
-        final uri = Uri(
-          scheme: 'mailto',
-          path: widget.socialLink.url,
-        );
-
-        await launchUrl(uri);
+        launchUrlString(widget.socialLink.url);
       },
-      child: Image.asset(
+      child: SvgPicture.asset(
         socialLinkElement.imagePath,
         width: widget.iconSize,
         height: widget.iconSize,
-        color: Theme.of(context).colorScheme.tertiary,
+        colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
       ),
     );
   }

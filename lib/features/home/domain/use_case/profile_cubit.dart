@@ -17,8 +17,10 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> loadProfile() async {
     try {
-      var developerProfile = await remoteProfileRepository.getProfile();
-      developerProfile ??= await localProfileRepository.loadProfile();
+      // var developerProfile = await remoteProfileRepository.getProfile();
+      // developerProfile ??= await localProfileRepository.loadProfile();
+
+      var developerProfile = await localProfileRepository.loadProfile();
 
       if (developerProfile != null) {
         emit(state.copyWith(developerProfile: DeveloperProfileMapper.map(developerProfile)));

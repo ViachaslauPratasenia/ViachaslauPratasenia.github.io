@@ -1,26 +1,20 @@
 import 'package:personal_website/const/assets/assets.gen.dart';
 
-enum SocialButtonElement {
-  email,
-  github,
-  linkedin,
-  instagram,
-  telegram
-}
+enum SocialButtonElement { linkedin, github, medium, telegram, instagram }
 
 extension SocialButtonElementExt on SocialButtonElement {
   String get imagePath {
     switch (this) {
-      case SocialButtonElement.email:
-        return Assets.images.icEmail.path;
       case SocialButtonElement.github:
-        return Assets.images.icGithub.path;
+        return Assets.svg.icGithub.path;
       case SocialButtonElement.linkedin:
-        return Assets.images.icLinkedin.path;
+        return Assets.svg.icLinkedin.path;
       case SocialButtonElement.instagram:
-        return Assets.images.icInstagram.path;
+        return Assets.svg.icInstagram.path;
       case SocialButtonElement.telegram:
-        return Assets.images.icTelegram.path;
+        return Assets.svg.icTelegram.path;
+      case SocialButtonElement.medium:
+        return Assets.svg.icMedium.path;
     }
   }
 }

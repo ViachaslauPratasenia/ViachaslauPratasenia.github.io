@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/orientation_provider.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/projects/project_item.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
 
 class ProjectInfo extends StatelessWidget {
-  const ProjectInfo({super.key});
+  final DeveloperProfile developerProfile;
+
+  const ProjectInfo({super.key, required this.developerProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,10 @@ class ProjectInfo extends StatelessWidget {
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
+              itemCount: developerProfile.projects.length,
               separatorBuilder: (context, index) => const SizedBox(height: 32),
               itemBuilder: (context, index) => ProjectItem(
+                project: developerProfile.projects[index],
                 reversed: index.isOdd,
                 maxWidth: constraints.maxWidth,
               ),

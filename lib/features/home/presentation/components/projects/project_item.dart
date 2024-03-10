@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/const/assets/assets.gen.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/core/widgets/link_item.dart';
 import 'package:personal_website/core/widgets/measure_size_widget.dart';
+import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 
 class ProjectItem extends StatelessWidget {
   final bool reversed;
   final double maxWidth;
+  final Project project;
 
-  const ProjectItem({super.key, this.reversed = false, required this.maxWidth});
+  const ProjectItem({
+    super.key,
+    required this.project,
+    required this.maxWidth,
+    this.reversed = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +24,18 @@ class ProjectItem extends StatelessWidget {
 
     return orientation == Orientation.landscape
         ? _ProjectItemLandscape(
+            project: project,
             reversed: reversed,
             maxWidth: maxWidth,
           )
-        : const _ProjectItemPortrait();
+        : _ProjectItemPortrait(project: project);
   }
 }
 
 class _ProjectItemPortrait extends StatefulWidget {
-  const _ProjectItemPortrait({super.key});
+  final Project project;
+
+  const _ProjectItemPortrait({required this.project});
 
   @override
   State<_ProjectItemPortrait> createState() => _ProjectItemPortraitState();
@@ -41,7 +50,8 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
       borderRadius: BorderRadius.circular(8),
       child: Stack(
         children: [
-          Assets.images.personalWebsiteImage.image(
+          Image.network(
+            widget.project.image,
             width: double.infinity,
             height: _contentSize.height,
             fit: BoxFit.cover,
@@ -63,14 +73,14 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Personal Website',
+                    widget.project.title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: AppColors.textPrimary,
                         ),
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'This website, crafted with Flutter Web and hosted on GitHub Pages, offers a seamless user experience across devices. Delve into its responsive design and explore the source code on GitHub to uncover the innovation behind its creation.',
+                    widget.project.description,
                     textAlign: TextAlign.start,
                     style: Theme.of(context)
                         .textTheme
@@ -83,19 +93,19 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
                     runSpacing: 8,
                     spacing: 16,
                     children: List.generate(
-                      10,
+                      widget.project.tags.length,
                       (index) => Text(
-                        'Flutter',
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondary,
-                        ),
+                        widget.project.tags[index],
+                        style:
+                            context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
                       ),
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const LinkItem(
-                    title: 'Source Code',
-                    url: '',
+                  LinkItem(
+                    title: widget.project.linkName,
+                    url: widget.project.link,
+                    analyticsName: 'open_project',
                   ),
                 ],
               ),
@@ -108,17 +118,24 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
 }
 
 class _ProjectItemLandscape extends StatelessWidget {
+  final Project project;
+
   final double maxWidth;
   final bool reversed;
 
-  const _ProjectItemLandscape({required this.reversed, required this.maxWidth});
+  const _ProjectItemLandscape({
+    required this.reversed,
+    required this.maxWidth,
+    required this.project,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: reversed ? Alignment.centerRight : Alignment.centerLeft,
       children: [
-        Assets.images.personalWebsiteImage.image(
+        Image.network(
+          project.image,
           width: maxWidth * 0.6,
           fit: BoxFit.cover,
         ),
@@ -140,7 +157,7 @@ class _ProjectItemLandscape extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Personal Website',
+                      project.title,
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge
@@ -154,7 +171,7 @@ class _ProjectItemLandscape extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                       child: Text(
-                        'This website, crafted with Flutter Web and hosted on GitHub Pages, offers a seamless user experience across devices. Delve into its responsive design and explore the source code on GitHub to uncover the innovation behind its creation.',
+                        project.description,
                         textAlign: reversed ? TextAlign.start : TextAlign.end,
                         style: Theme.of(context)
                             .textTheme
@@ -163,15 +180,14 @@ class _ProjectItemLandscape extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    SizedBox(
-                      height: 24,
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(width: 16),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (context, index) => Text(
-                          'Flutter',
+                    Wrap(
+                      direction: Axis.horizontal,
+                      runSpacing: 8,
+                      spacing: 16,
+                      children: List.generate(
+                        project.tags.length,
+                        (index) => Text(
+                          project.tags[index],
                           style: context.textTheme.bodyMedium?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -179,9 +195,10 @@ class _ProjectItemLandscape extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    const LinkItem(
-                      title: 'Source Code',
-                      url: '',
+                    LinkItem(
+                      title: project.linkName,
+                      url: project.link,
+                      analyticsName: 'open_project',
                     ),
                   ],
                 ),

@@ -1,23 +1,25 @@
 class DeveloperProfileDto {
   final String? name;
-  final String? jobTitle;
-  final String? shortDescription;
+  final String? email;
+  final String? subtitle;
   final String? fullDescription;
-  final bool? showLanguages;
+  final String? aboutMe;
+  final String? contactMeText;
+  final List<String> recentTechnologies;
   final List<SocialLinkDto>? socialLinks;
-  final List<LanguageDto>? languages;
   final List<WorkExperienceDto>? work;
   final List<ProjectDto>? projects;
   final List<BlogPostDto>? blogPosts;
 
   DeveloperProfileDto({
     this.name,
-    this.jobTitle,
-    this.shortDescription,
+    this.email,
+    this.subtitle,
     this.fullDescription,
+    this.aboutMe,
+    this.contactMeText,
+    this.recentTechnologies = const [],
     this.socialLinks,
-    this.showLanguages,
-    this.languages,
     this.work,
     this.projects,
     this.blogPosts,
@@ -26,15 +28,15 @@ class DeveloperProfileDto {
   factory DeveloperProfileDto.fromJson(Map<String, dynamic> json) {
     return DeveloperProfileDto(
       name: json['name'] as String?,
-      jobTitle: json['job_title'] as String?,
-      shortDescription: json['short_description'] as String?,
+      email: json['email'] as String?,
+      subtitle: json['subtitle'] as String?,
       fullDescription: json['full_description'] as String?,
+      aboutMe: json['about_me'] as String?,
+      contactMeText: json['contact_me_text'] as String?,
+      recentTechnologies:
+          (json['recent_technologies'] as List?)?.map((e) => e as String).toList() ?? [],
       socialLinks: (json['social_links'] as List?)
           ?.map((e) => SocialLinkDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      showLanguages: json['show_languages'] as bool?,
-      languages: (json['languages'] as List?)
-          ?.map((e) => LanguageDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       work: (json['work'] as List?)
           ?.map((e) => WorkExperienceDto.fromJson(e as Map<String, dynamic>))
@@ -63,50 +65,33 @@ class SocialLinkDto {
   }
 }
 
-class LanguageDto {
-  final String? name;
-  final String? level;
-
-  LanguageDto({this.name, this.level});
-
-  factory LanguageDto.fromJson(Map<String, dynamic> json) {
-    return LanguageDto(
-      name: json['name'] as String?,
-      level: json['level'] as String?,
-    );
-  }
-}
-
 class WorkExperienceDto {
   final String? title;
+  final String? companyName;
   final String? companyLink;
   final String? description;
-  final String? from;
-  final String? to;
+  final String? workPeriod;
   final List<WorkLinkDto>? links;
-  final List<String>? skills;
 
   WorkExperienceDto({
     this.title,
+    this.companyName,
     this.companyLink,
     this.description,
-    this.from,
-    this.to,
+    this.workPeriod,
     this.links,
-    this.skills,
   });
 
   factory WorkExperienceDto.fromJson(Map<String, dynamic> json) {
     return WorkExperienceDto(
       title: json['title'] as String?,
+      companyName: json['company_name'] as String?,
       companyLink: json['company_link'] as String?,
       description: json['description'] as String?,
-      from: json['from'] as String?,
-      to: json['to'] as String?,
+      workPeriod: json['work_period'] as String?,
       links: (json['links'] as List?)
           ?.map((e) => WorkLinkDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      skills: (json['skills'] as List?)?.map((e) => e as String).toList(),
     );
   }
 }
@@ -128,6 +113,7 @@ class WorkLinkDto {
 class ProjectDto {
   final String? title;
   final String? image;
+  final String? linkName;
   final String? link;
   final String? description;
   final List<String>? tags;
@@ -135,6 +121,7 @@ class ProjectDto {
   ProjectDto({
     this.title,
     this.image,
+    this.linkName,
     this.link,
     this.description,
     this.tags,
@@ -144,6 +131,7 @@ class ProjectDto {
     return ProjectDto(
       title: json['title'] as String?,
       image: json['image'] as String?,
+      linkName: json['link_name'] as String?,
       link: json['link'] as String?,
       description: json['description'] as String?,
       tags: (json['tags'] as List?)?.map((e) => e as String).toList(),
@@ -153,7 +141,6 @@ class ProjectDto {
 
 class BlogPostDto {
   final String? title;
-  final String? image;
   final String? link;
   final String? description;
   final List<String>? tags;
@@ -161,7 +148,6 @@ class BlogPostDto {
 
   BlogPostDto({
     this.title,
-    this.image,
     this.link,
     this.description,
     this.tags,
@@ -171,7 +157,6 @@ class BlogPostDto {
   factory BlogPostDto.fromJson(Map<String, dynamic> json) {
     return BlogPostDto(
       title: json['title'] as String?,
-      image: json['image'] as String?,
       link: json['link'] as String?,
       description: json['description'] as String?,
       tags: (json['tags'] as List?)?.map((e) => e as String).toList(),

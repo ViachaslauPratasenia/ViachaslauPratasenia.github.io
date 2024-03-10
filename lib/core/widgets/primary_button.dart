@@ -30,8 +30,8 @@ class PrimaryButton extends StatelessWidget {
       onPressed: () {
         if (analyticsName != null) {
           FirebaseAnalyticsWeb().logEvent(name: analyticsName!);
-          onPressed();
         }
+        onPressed();
       },
       child: Text(
         title,

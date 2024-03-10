@@ -5,36 +5,31 @@ class DeveloperProfileMapper {
   static DeveloperProfile map(DeveloperProfileDto dto) {
     return DeveloperProfile(
       name: dto.name ?? '',
-      jobTitle: dto.jobTitle ?? '',
-      shortDescription: dto.shortDescription ?? '',
+      email: dto.email ?? '',
+      subtitle: dto.subtitle ?? '',
       fullDescription: dto.fullDescription ?? '',
-      showLanguages: dto.showLanguages ?? false,
+      aboutMe: dto.aboutMe ?? '',
+      contactMeText: dto.contactMeText ?? '',
+      recentTechnologies: dto.recentTechnologies,
       socialLinks: dto.socialLinks
               ?.map(
                 (e) => SocialLink(name: e.name ?? '', url: e.url ?? ''),
               )
               .toList() ??
           [],
-      languages: dto.languages
-              ?.map(
-                (e) => Language(name: e.name ?? '', level: e.level ?? ''),
-              )
-              .toList() ??
-          [],
       work: dto.work
               ?.map((e) => WorkExperience(
                     title: e.title ?? '',
+                    companyName: e.companyName ?? '',
                     companyLink: e.companyLink ?? '',
                     description: e.description ?? '',
-                    from: e.from ?? '',
-                    to: e.to ?? '',
+                    workPeriod: e.workPeriod ?? '',
                     links: e.links
                             ?.map(
                               (link) => WorkLink(name: link.name ?? '', url: link.url ?? ''),
                             )
                             .toList() ??
                         [],
-                    skills: e.skills?.whereType<String>().toList() ?? [],
                   ))
               .toList() ??
           [],
@@ -43,6 +38,7 @@ class DeveloperProfileMapper {
                     title: e.title ?? '',
                     description: e.description ?? '',
                     image: e.image ?? '',
+                    linkName: e.linkName ?? '',
                     link: e.link ?? '',
                     tags: e.tags?.whereType<String>().toList() ?? [],
                   ))
@@ -52,7 +48,6 @@ class DeveloperProfileMapper {
               ?.map((e) => BlogPost(
                     title: e.title ?? '',
                     description: e.description ?? '',
-                    image: e.image ?? '',
                     link: e.link ?? '',
                     tags: e.tags?.whereType<String>().toList() ?? [],
                     date: e.date ?? '',

@@ -51,13 +51,15 @@ class HomePage extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height,
-                      child: const Center(child: AboutInfo()),
+                      child: Center(
+                        child: AboutInfo(developerProfile: profileState.developerProfile!),
+                      ),
                     ),
-                    const ProfileInfo(),
-                    const WorkInfo(),
-                    const ProjectInfo(),
-                    const NotesInfo(),
-                    const ContactInfo(),
+                    ProfileInfo(developerProfile: profileState.developerProfile!),
+                    WorkInfo(developerProfile: profileState.developerProfile!),
+                    ProjectInfo(developerProfile: profileState.developerProfile!),
+                    NotesInfo(developerProfile: profileState.developerProfile!),
+                    ContactInfo(developerProfile: profileState.developerProfile!),
                   ],
                 ),
               ),

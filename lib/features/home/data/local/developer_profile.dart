@@ -1,23 +1,25 @@
 class DeveloperProfile {
   final String name;
-  final String jobTitle;
-  final String shortDescription;
+  final String email;
+  final String subtitle;
   final String fullDescription;
-  final bool showLanguages;
+  final String aboutMe;
+  final String contactMeText;
+  final List<String> recentTechnologies;
   final List<SocialLink> socialLinks;
-  final List<Language> languages;
   final List<WorkExperience> work;
   final List<Project> projects;
   final List<BlogPost> blogPosts;
 
   DeveloperProfile({
     required this.name,
-    required this.jobTitle,
-    required this.shortDescription,
+    required this.email,
+    required this.subtitle,
     required this.fullDescription,
+    required this.aboutMe,
+    required this.contactMeText,
+    required this.recentTechnologies,
     required this.socialLinks,
-    required this.showLanguages,
-    required this.languages,
     required this.work,
     required this.projects,
     required this.blogPosts,
@@ -40,21 +42,19 @@ class Language {
 
 class WorkExperience {
   final String title;
+  final String companyName;
   final String companyLink;
   final String description;
-  final String from;
-  final String to;
+  final String workPeriod;
   final List<WorkLink> links;
-  final List<String> skills;
 
   WorkExperience({
     required this.title,
+    required this.companyName,
     required this.companyLink,
     required this.description,
-    required this.from,
-    required this.to,
+    required this.workPeriod,
     required this.links,
-    required this.skills,
   });
 }
 
@@ -68,6 +68,7 @@ class WorkLink {
 class Project {
   final String title;
   final String image;
+  final String linkName;
   final String link;
   final String description;
   final List<String> tags;
@@ -75,6 +76,7 @@ class Project {
   Project({
     required this.title,
     required this.image,
+    required this.linkName,
     required this.link,
     required this.description,
     required this.tags,
@@ -83,7 +85,6 @@ class Project {
 
 class BlogPost {
   final String title;
-  final String image;
   final String link;
   final String description;
   final List<String> tags;
@@ -91,7 +92,6 @@ class BlogPost {
 
   BlogPost({
     required this.title,
-    required this.image,
     required this.link,
     required this.description,
     required this.tags,
