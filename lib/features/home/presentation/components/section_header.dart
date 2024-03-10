@@ -5,12 +5,14 @@ import 'package:personal_website/theme/theme_controller.dart';
 class SectionHeader extends StatelessWidget {
   final String index;
   final String title;
+  final bool showLine;
 
-  const SectionHeader({super.key, required this.index, required this.title});
+  const SectionHeader({super.key, required this.index, required this.title, this.showLine = true});
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -23,20 +25,22 @@ class SectionHeader extends StatelessWidget {
                 style: context.textTheme.bodyMedium?.copyWith(color: AppColors.primary),
               ),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               title,
               style: context.textTheme.titleMedium?.copyWith(color: AppColors.textPrimary),
             ),
           ],
         ),
-        SizedBox(width: 8),
-        Expanded(
-          child: Container(
-            height: 1,
-            color: AppColors.textTertiary,
+        if (showLine) ...[
+          const SizedBox(width: 8),
+          Expanded(
+            child: Container(
+              height: 1,
+              color: AppColors.textTertiary,
+            ),
           ),
-        ),
+        ],
       ],
     );
   }

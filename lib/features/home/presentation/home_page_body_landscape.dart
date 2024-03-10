@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/about/about_info.dart';
+import 'package:personal_website/features/home/presentation/components/contact/contact_info.dart';
 import 'package:personal_website/features/home/presentation/components/notes/notes_info.dart';
 import 'package:personal_website/features/home/presentation/components/profile/profile_info.dart';
 import 'package:personal_website/features/home/presentation/components/projects/project_info.dart';
@@ -10,9 +11,6 @@ class HomePageBodyLandscape extends StatelessWidget {
   final DeveloperProfile profile;
 
   const HomePageBodyLandscape({super.key, required this.profile});
-
-  static const maxHeightForLanguageBlock = 760;
-  static const maxHeightForSocialButtons = 520;
 
   static GlobalKey aboutKey = GlobalKey();
   static GlobalKey workKey = GlobalKey();
@@ -38,6 +36,7 @@ class HomePageBodyLandscape extends StatelessWidget {
               WorkInfo(),
               ProjectInfo(),
               NotesInfo(),
+              ContactInfo(),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/core/widgets/link_item.dart';
 import 'package:personal_website/core/widgets/measure_size_widget.dart';
 import 'package:personal_website/core/widgets/painters/dashed_circle_painter.dart';
@@ -15,26 +16,29 @@ class WorkInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = OrientationProvider.of(context).orientation;
+
     return BaseBlock(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: constraints.maxWidth * 0.6,
-                child: const SectionHeader(index: '02.', title: 'Work Experience'),
-              ),
-              const SizedBox(height: 32),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: 3,
-                itemBuilder: (context, index) => _WorkItem(addBottomPadding: index != 3 - 1),
-              ),
-            ],
-          );
-        }
-      ),
+      child: LayoutBuilder(builder: (context, constraints) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: orientation == Orientation.landscape
+                  ? constraints.maxWidth * 0.6
+                  : constraints.maxWidth,
+              child: const SectionHeader(index: '02.', title: 'Work Experience'),
+            ),
+            const SizedBox(height: 32),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 3,
+              itemBuilder: (context, index) => _WorkItem(addBottomPadding: index != 3 - 1),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
@@ -53,6 +57,17 @@ class _WorkItemState extends State<_WorkItem> {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = OrientationProvider.of(context).orientation;
+    final circleSize = orientation == Orientation.landscape ? 43.0 : 33.0;
+
+    final titleStyle = orientation == Orientation.landscape
+        ? context.textTheme.headlineMedium
+        : context.textTheme.titleLarge;
+
+    final periodStyle = orientation == Orientation.landscape
+        ? context.textTheme.titleMedium
+        : context.textTheme.titleSmall;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -63,17 +78,13 @@ class _WorkItemState extends State<_WorkItem> {
               painter: VerticalDashedLinePainter(color: AppColors.primary),
               size: Size(1, _contentSize.height),
             ),
-            const _WorkCircle(size: 37, color: AppColors.primary),
+            _WorkCircle(size: circleSize, color: AppColors.primary),
           ],
         ),
         const SizedBox(width: 24),
         Expanded(
           child: MeasureSizeWidget(
-            onChange: (size) {
-              setState(() {
-                _contentSize = size;
-              });
-            },
+            onChange: (size) => setState(() => _contentSize = size),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -82,13 +93,11 @@ class _WorkItemState extends State<_WorkItem> {
                     children: [
                       TextSpan(
                         text: 'Flutter Developer ',
-                        style: context.textTheme.headlineMedium
-                            ?.copyWith(color: AppColors.textPrimary),
+                        style: titleStyle?.copyWith(color: AppColors.textPrimary),
                       ),
-                      // add clickable text span
                       TextSpan(
                         text: '@ Aventus IT / 7VPN',
-                        style: context.textTheme.headlineMedium?.copyWith(color: AppColors.primary),
+                        style: titleStyle?.copyWith(color: AppColors.primary),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             // open url
@@ -101,7 +110,7 @@ class _WorkItemState extends State<_WorkItem> {
                 const SizedBox(height: 2),
                 Text(
                   'May 2021 - Present',
-                  style: context.textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
+                  style: periodStyle?.copyWith(color: AppColors.textSecondary),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -109,15 +118,13 @@ class _WorkItemState extends State<_WorkItem> {
                   style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
                 ),
                 const SizedBox(height: 8),
-                SizedBox(
-                  height: 32,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (context, index) => const SizedBox(width: 24),
-                    itemBuilder: (BuildContext context, int index) => const LinkItem(
+                Wrap(
+                  direction: Axis.horizontal,
+                  runSpacing: 8,
+                  spacing: 16,
+                  children: List.generate(
+                    10,
+                    (index) => const LinkItem(
                       title: 'Flutter',
                       url: 'https://flutter.dev',
                     ),

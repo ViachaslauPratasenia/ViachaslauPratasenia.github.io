@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
+import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/profile/tech_item.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
@@ -11,6 +12,8 @@ class ProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = OrientationProvider.of(context).orientation;
+
     return BaseBlock(
       child: Row(
         children: [
@@ -28,7 +31,9 @@ class ProfileInfo extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   SizedBox(
-                    width: constraints.maxWidth * 0.8,
+                    width: orientation == Orientation.landscape
+                        ? constraints.maxWidth * 0.8
+                        : constraints.maxWidth,
                     child: const _TechItems(items: [
                       'Flutter',
                       'asdasd',
@@ -38,23 +43,37 @@ class ProfileInfo extends StatelessWidget {
                       'asdasda',
                     ]),
                   ),
+                  if (orientation == Orientation.portrait) ...[
+                    const SizedBox(height: 32),
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 350),
+                        child: Assets.images.profilePhoto.image(
+                          width: constraints.maxWidth * 0.75,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               );
             }),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            flex: 4,
-            child: LayoutBuilder(builder: (context, constraints) {
-              return Center(
-                child: SizedBox(
-                  height: constraints.maxWidth * 0.75,
-                  width: constraints.maxWidth * 0.75,
-                  child: Assets.images.profilePhoto.image(fit: BoxFit.cover),
-                ),
-              );
-            }),
-          ),
+          if (orientation == Orientation.landscape) ...[
+            const SizedBox(width: 16),
+            Expanded(
+              flex: 4,
+              child: LayoutBuilder(builder: (context, constraints) {
+                return Center(
+                  child: SizedBox(
+                    height: constraints.maxWidth * 0.75,
+                    width: constraints.maxWidth * 0.75,
+                    child: Assets.images.profilePhoto.image(fit: BoxFit.cover),
+                  ),
+                );
+              }),
+            ),
+          ],
         ],
       ),
     );
@@ -70,6 +89,7 @@ class _TechItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

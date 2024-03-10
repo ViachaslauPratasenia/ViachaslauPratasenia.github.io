@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
-import 'package:personal_website/features/home/presentation/home_page_body_landscape.dart';
-import 'package:personal_website/features/home/presentation/home_page_body_portrait.dart';
+import 'package:personal_website/features/home/presentation/components/about/about_info.dart';
+import 'package:personal_website/features/home/presentation/components/contact/contact_info.dart';
+import 'package:personal_website/features/home/presentation/components/notes/notes_info.dart';
+import 'package:personal_website/features/home/presentation/components/profile/profile_info.dart';
+import 'package:personal_website/features/home/presentation/components/projects/project_info.dart';
+import 'package:personal_website/features/home/presentation/components/work/work_info.dart';
 import 'package:personal_website/theme/app_colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,10 +15,17 @@ class HomePage extends StatelessWidget {
 
   const HomePage({super.key});
 
+  static GlobalKey aboutKey = GlobalKey();
+  static GlobalKey workKey = GlobalKey();
+  static GlobalKey projectsKey = GlobalKey();
+  static GlobalKey blogKey = GlobalKey();
+
+  static const double tabSize = 72.0;
+
   @override
   Widget build(BuildContext context) {
     final profileBloc = BlocProvider.of<ProfileCubit>(context);
-    final orientation = OrientationProvider.of(context).orientation;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: BlocBuilder<ProfileCubit, ProfileState>(
@@ -32,9 +42,27 @@ class HomePage extends StatelessWidget {
 
           if (profileState.developerProfile == null) return Container();
 
-          return orientation == Orientation.portrait
-              ? HomePageBodyPortrait(profile: profileState.developerProfile!)
-              : HomePageBodyLandscape(profile: profileState.developerProfile!);
+          return SingleChildScrollView(
+            child: Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 980),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height,
+                      child: const Center(child: AboutInfo()),
+                    ),
+                    const ProfileInfo(),
+                    const WorkInfo(),
+                    const ProjectInfo(),
+                    const NotesInfo(),
+                    const ContactInfo(),
+                  ],
+                ),
+              ),
+            ),
+          );
         },
       ),
     );

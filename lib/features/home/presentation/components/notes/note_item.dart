@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
+import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 
@@ -8,6 +9,8 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = OrientationProvider.of(context).orientation;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -38,19 +41,16 @@ class NoteItem extends StatelessWidget {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non condimentum massa. Aenean diam velit, maximus sed lacus et, euismod commodo sem. Mauris massa ipsum, consectetur in neque sed, rhoncus tincidunt diam.',
             style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
           ),
-          const Spacer(),
-          SizedBox(
-            height: 24,
-            child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(width: 16),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: 4,
-              itemBuilder: (context, index) => Text(
+          if (orientation == Orientation.landscape) const Spacer() else const SizedBox(height: 32),
+          Wrap(
+            direction: Axis.horizontal,
+            runSpacing: 8,
+            spacing: 16,
+            children: List.generate(
+              10,
+              (index) => Text(
                 'Text',
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+                style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
               ),
             ),
           ),
