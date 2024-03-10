@@ -2,7 +2,6 @@ import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class PrimaryButton extends StatelessWidget {
   final void Function() onPressed;

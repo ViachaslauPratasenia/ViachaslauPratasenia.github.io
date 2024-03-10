@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
-import 'package:personal_website/features/home/presentation/components/primary_button.dart';
+import 'package:personal_website/core/widgets/primary_button.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 

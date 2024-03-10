@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_website/const/const.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
-import 'package:personal_website/features/home/presentation/components/primary_button.dart';
 import 'package:personal_website/features/home/presentation/home_page_body_landscape.dart';
 import 'package:personal_website/features/home/presentation/home_page_body_portrait.dart';
 import 'package:personal_website/theme/app_colors.dart';

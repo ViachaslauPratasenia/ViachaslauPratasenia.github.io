@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/change_theme/presentation/theme_icon.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/blog_post_item.dart';
-import 'package:personal_website/features/home/presentation/components/primary_button.dart';
 import 'package:personal_website/features/home/presentation/components/languages_block.dart';
 import 'package:personal_website/features/home/presentation/components/project_block.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';

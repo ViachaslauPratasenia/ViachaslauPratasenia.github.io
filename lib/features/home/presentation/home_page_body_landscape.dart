@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/about/about_info.dart';
+import 'package:personal_website/features/home/presentation/components/notes/notes_info.dart';
 import 'package:personal_website/features/home/presentation/components/profile/profile_info.dart';
 import 'package:personal_website/features/home/presentation/components/projects/project_info.dart';
 import 'package:personal_website/features/home/presentation/components/work/work_info.dart';
@@ -36,6 +37,7 @@ class HomePageBodyLandscape extends StatelessWidget {
               ProfileInfo(),
               WorkInfo(),
               ProjectInfo(),
+              NotesInfo(),
             ],
           ),
         ),
