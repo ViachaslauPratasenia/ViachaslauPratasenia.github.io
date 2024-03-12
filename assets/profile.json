@@ -2,8 +2,8 @@
   "name": "Viachaslau Pratasenia",
   "email": "viachaslau.pratasenia@gmail.com",
   "subtitle": "I build things with Flutter.",
-  "full_description": "I'm a Flutter developer dedicated to crafting exceptional digital experiences across multiple platforms. Currently, I'm focused on developing accessible, user-centric applications for Android, iOS, web, and desktop at AventusIT.",
-  "about_me": "Hello! My name is Viachaslau, and I have carved a niche for myself in the Flutter development landscape, with an enriching career that spans over 5 years. My professional journey commenced with a solid year dedicated to native Android development.\n\nAfter gaining valuable experience in Android development, I transitioned to Flutter. Throughout this journey, I have focused on creating accessible, user-centric applications across Android, iOS, web, and desktop platforms.\n\nMy early work with Android native development has been pivotal, providing me with a robust base that has enhanced my work with Flutter.  My passion lies in solving complex challenges and pushing the boundaries of user-friendly design, striving to develop applications that not only fulfill user needs but also exceed expectations.\n\nHere are a few technologies I’ve been working with recently:",
+  "full_description": "As a Flutter developer at AventusIT, I focus on making easy-to-use apps for Android, iOS, web, and desktop. My goal is to build applications that are straightforward and enjoyable for everyone. By using Flutter, I work on creating innovative and accessible solutions that keep up with the latest technology trends.",
+  "about_me": "I am Viachaslau, a highly skilled Flutter developer with over 5 years of experience in the technology industry. My extensive knowledge and expertise in Flutter development make me the perfect candidate for any project in this field. I have a strong foundation in Android development, which I built upon to create accessible and user-focused apps for Android, iOS, web, and desktop using Flutter.\n\nMy experience developing Android apps has greatly influenced my approach to projects on Flutter. I create functional and intuitive solutions that enhance the user experience. I am passionate about solving complex problems and strive to create user-friendly designs. My goal is to create applications that not only meet but exceed user expectations.\n\nHere are a few technologies I’ve been working with recently:",
   "contact_me_text": "Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!",
   "recent_technologies": [
     "Flutter",
@@ -108,7 +108,7 @@
     {
       "title": "Personal Website",
       "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/personal_website.png",
-      "description": "This website was created using Flutter Web and hosted on Github Pages. The source code is available on GitHub.",
+      "description": "This personal website created with Flutter and hosted on GitHub Pages. It's designed to be clean and user-friendly. You can view the source code on GitHub to see how it was built and maybe even contribute. This site demonstrates how versatile Flutter can be for web projects.",
       "link_name": "Source Code",
       "link": "https://github.com/ViachaslauPratasenia/ViachaslauPratasenia.github.io",
       "tags": [
@@ -133,7 +133,7 @@
     {
       "title": "Workout Tracker App Design",
       "image": "https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/project_images/workout_tracker_2.png",
-      "description": "This is a mobile app design for a workout tracker. The design was created using Figma.",
+      "description": "This workout tracker app design, made in Figma, combines easy navigation with a sleek look to help users track their fitness journey effortlessly. The focus is on simplicity, making sure users can quickly log workouts and see their progress.",
       "link_name": "Figma",
       "link": "https://www.figma.com/file/nlUegZYGyPiYshRSja5614/Workout-tracker?type=design&node-id=2%3A2&mode=design&t=ldBf5YuhBrCMd7AE-1",
       "tags": [
@@ -146,7 +146,7 @@
   "blog_posts": [
     {
       "title": "The Easiest Way to Use Environments in Flutter",
-      "description": "In this article we will talk about how you can use environment variables without third-party libraries.",
+      "description": "In this article, we'll explore how to use environment variables in your projects without needing extra libraries. Environment variables help keep your settings secure and make your code easier to update.",
       "link": "https://medium.com/@viachaslau.pratasenia/the-easiest-way-to-use-environments-in-flutter-fa7b2cf0ed8d",
       "date": "December 12, 2023",
       "tags": [
@@ -158,7 +158,7 @@
     },
     {
       "title": "Styling Flutter Apps Made Easy with Google Fonts",
-      "description": "Learn how to easily beautify your Flutter apps using Google Fonts, adding style and character to your user interfaces with minimal effort.",
+      "description": "Learn how to quickly improve your Flutter apps look with Google Fonts. This article will show you how to pick and use different fonts easily, making your apps more stylish with little effort.",
       "link": "https://medium.com/@viachaslau.pratasenia/styling-flutter-apps-made-easy-with-google-fonts-21b2e4a61a49",
       "date": "December 26, 2023",
       "tags": [

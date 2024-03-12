@@ -41,7 +41,7 @@ class ContactInfo extends StatelessWidget {
             Text(
               developerProfile.contactMeText,
               textAlign: TextAlign.center,
-              style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 24),
             PrimaryButton(
