@@ -13,7 +13,7 @@ class OrientationProvider {
 
   Orientation get orientation {
     final size = MediaQuery.sizeOf(context);
-    return size.width < Const.config.MAX_LANDSCAPE_WIDTH
+    return size.width < Const.config.MIN_LANDSCAPE_WIDTH
         ? Orientation.portrait
         : Orientation.landscape;
   }

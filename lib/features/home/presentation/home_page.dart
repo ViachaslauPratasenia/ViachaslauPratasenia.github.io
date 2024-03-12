@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 import 'package:personal_website/features/home/presentation/components/about/about_info.dart';
@@ -45,7 +46,7 @@ class HomePage extends StatelessWidget {
           return SingleChildScrollView(
             child: Center(
               child: Container(
-                constraints: const BoxConstraints(maxWidth: 980),
+                constraints: BoxConstraints(maxWidth: Const.config.MAX_LANDSCAPE_WIDTH.toDouble()),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

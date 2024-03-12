@@ -5,7 +5,9 @@ abstract class Const {
 }
 
 class _Config {
-  int get MAX_LANDSCAPE_WIDTH => 980;
+  int get MIN_LANDSCAPE_WIDTH => 900;
+
+  int get MAX_LANDSCAPE_WIDTH => 1080;
 
   String get GITHUB_URL => 'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/';
 
