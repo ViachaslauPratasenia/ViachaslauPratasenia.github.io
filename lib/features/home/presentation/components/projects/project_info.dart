@@ -29,7 +29,9 @@ class ProjectInfo extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: developerProfile.projects.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 32),
+              separatorBuilder: (context, index) => SizedBox(
+                height: orientation == Orientation.landscape ? 64 : 32,
+              ),
               itemBuilder: (context, index) => ProjectItem(
                 project: developerProfile.projects[index],
                 reversed: index.isOdd,
