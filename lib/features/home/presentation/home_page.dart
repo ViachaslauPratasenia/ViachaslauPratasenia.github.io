@@ -8,6 +8,7 @@ import 'package:personal_website/features/home/presentation/components/contact/c
 import 'package:personal_website/features/home/presentation/components/notes/notes_info.dart';
 import 'package:personal_website/features/home/presentation/components/profile/profile_info.dart';
 import 'package:personal_website/features/home/presentation/components/projects/project_info.dart';
+import 'package:personal_website/features/home/presentation/components/tab_bar.dart';
 import 'package:personal_website/features/home/presentation/components/work/work_info.dart';
 import 'package:personal_website/theme/app_colors.dart';
 
@@ -17,11 +18,11 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   static GlobalKey aboutKey = GlobalKey();
+  static GlobalKey experienceKey = GlobalKey();
   static GlobalKey workKey = GlobalKey();
-  static GlobalKey projectsKey = GlobalKey();
-  static GlobalKey blogKey = GlobalKey();
+  static GlobalKey contactKey = GlobalKey();
 
-  static const double tabSize = 72.0;
+  static const double tabHeight = 80.0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,29 +46,60 @@ class HomePage extends StatelessWidget {
 
           return SingleChildScrollView(
             child: Center(
-              child: Container(
-                constraints: BoxConstraints(maxWidth: Const.config.MAX_LANDSCAPE_WIDTH.toDouble()),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height,
-                      child: Center(
-                        child: AboutInfo(developerProfile: profileState.developerProfile!),
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ProfileAppBar(
+                    tabHeight: tabHeight,
+                    onAboutMeClicked: () => navigateToBlock(aboutKey),
+                    onExperienceClicked: () => navigateToBlock(experienceKey),
+                    onWorkClicked: () => navigateToBlock(workKey),
+                    onContactClicked: () => navigateToBlock(contactKey),
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: Const.config.MAX_LANDSCAPE_WIDTH.toDouble(),
                     ),
-                    ProfileInfo(developerProfile: profileState.developerProfile!),
-                    WorkInfo(developerProfile: profileState.developerProfile!),
-                    ProjectInfo(developerProfile: profileState.developerProfile!),
-                    NotesInfo(developerProfile: profileState.developerProfile!),
-                    ContactInfo(developerProfile: profileState.developerProfile!),
-                  ],
-                ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height - tabHeight,
+                          child: Center(
+                            child: AboutInfo(developerProfile: profileState.developerProfile!),
+                          ),
+                        ),
+                        ProfileInfo(
+                          key: aboutKey,
+                          developerProfile: profileState.developerProfile!,
+                        ),
+                        WorkInfo(
+                            key: experienceKey, developerProfile: profileState.developerProfile!),
+                        ProjectInfo(
+                          key: workKey,
+                          developerProfile: profileState.developerProfile!,
+                        ),
+                        NotesInfo(developerProfile: profileState.developerProfile!),
+                        ContactInfo(
+                          key: contactKey,
+                          developerProfile: profileState.developerProfile!,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           );
         },
       ),
+    );
+  }
+
+  void navigateToBlock(GlobalKey key) {
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(milliseconds: 800),
+      curve: Curves.easeInOut,
     );
   }
 }
