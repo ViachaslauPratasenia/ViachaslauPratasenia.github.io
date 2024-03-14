@@ -94,6 +94,7 @@ class _TabItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
       child: Column(
         children: [
           Text('0$index', style: context.textTheme.bodyMedium?.copyWith(color: AppColors.primary)),
