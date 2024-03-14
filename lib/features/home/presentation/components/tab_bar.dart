@@ -9,6 +9,8 @@ class ProfileAppBar extends StatelessWidget {
   final void Function()? onWorkClicked;
   final void Function()? onContactClicked;
 
+  final void Function()? onMenuClicked;
+
   final double tabHeight;
 
   const ProfileAppBar({
@@ -18,6 +20,7 @@ class ProfileAppBar extends StatelessWidget {
     this.onExperienceClicked,
     this.onWorkClicked,
     this.onContactClicked,
+    this.onMenuClicked,
   });
 
   @override
@@ -46,7 +49,15 @@ class ProfileAppBar extends StatelessWidget {
                 // const SizedBox(width: 32),
                 // PrimaryButton(title: 'Resume', onPressed: () {}),
               ],
+            )
+          else ...[
+            const Spacer(),
+            IconButton(
+              icon: const Icon(Icons.menu, color: AppColors.primary, size: 32),
+              splashRadius: 24,
+              onPressed: onMenuClicked,
             ),
+          ],
         ],
       ),
     );

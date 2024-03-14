@@ -5,6 +5,7 @@ import 'package:personal_website/features/home/domain/use_case/profile_cubit.dar
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 import 'package:personal_website/features/home/presentation/components/about/about_info.dart';
 import 'package:personal_website/features/home/presentation/components/contact/contact_info.dart';
+import 'package:personal_website/features/home/presentation/components/menu_drawer.dart';
 import 'package:personal_website/features/home/presentation/components/notes/notes_info.dart';
 import 'package:personal_website/features/home/presentation/components/profile/profile_info.dart';
 import 'package:personal_website/features/home/presentation/components/projects/project_info.dart';
@@ -30,6 +31,12 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.background,
+      endDrawer: MenuDrawer(
+        onAboutMeClicked: () => navigateToBlock(aboutKey),
+        onExperienceClicked: () => navigateToBlock(experienceKey),
+        onWorkClicked: () => navigateToBlock(workKey),
+        onContactClicked: () => navigateToBlock(contactKey),
+      ),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         bloc: profileBloc,
         builder: (context, profileState) {
@@ -55,6 +62,7 @@ class HomePage extends StatelessWidget {
                     onExperienceClicked: () => navigateToBlock(experienceKey),
                     onWorkClicked: () => navigateToBlock(workKey),
                     onContactClicked: () => navigateToBlock(contactKey),
+                    onMenuClicked: () => Scaffold.of(context).openEndDrawer(),
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
