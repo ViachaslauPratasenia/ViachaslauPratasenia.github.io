@@ -8,6 +8,7 @@ import 'package:personal_website/core/widgets/painters/vertical_dashed_line_pain
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
+import 'package:personal_website/features/home/presentation/components/visibility_block.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -21,30 +22,33 @@ class WorkInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.of(context).orientation;
 
-    return BaseBlock(
-      child: LayoutBuilder(builder: (context, constraints) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: orientation == Orientation.landscape
-                  ? constraints.maxWidth * 0.6
-                  : constraints.maxWidth,
-              child: const SectionHeader(index: '02.', title: 'Work Experience'),
-            ),
-            const SizedBox(height: 32),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: developerProfile.work.length,
-              itemBuilder: (context, index) => _WorkItem(
-                addBottomPadding: index != developerProfile.work.length - 1,
-                workExperience: developerProfile.work[index],
+    return VisibilityBlock(
+      blockKey: const Key('work-info'),
+      child: BaseBlock(
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: orientation == Orientation.landscape
+                    ? constraints.maxWidth * 0.6
+                    : constraints.maxWidth,
+                child: const SectionHeader(index: '02.', title: 'Work Experience'),
               ),
-            ),
-          ],
-        );
-      }),
+              const SizedBox(height: 32),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: developerProfile.work.length,
+                itemBuilder: (context, index) => _WorkItem(
+                  addBottomPadding: index != developerProfile.work.length - 1,
+                  workExperience: developerProfile.work[index],
+                ),
+              ),
+            ],
+          );
+        }),
+      ),
     );
   }
 }
