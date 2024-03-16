@@ -39,7 +39,7 @@ class _AboutInfoState extends State<AboutInfo> {
     });
   }
 
-  Duration getDelay(int index) => Duration(milliseconds: 250 * index);
+  Duration getDelay(int index) => Duration(milliseconds: 250 + 250 * index);
 
   void initOpacity() {
     Future.delayed(getDelay(0), () => setState(() => myNameIsOpacity = 1));

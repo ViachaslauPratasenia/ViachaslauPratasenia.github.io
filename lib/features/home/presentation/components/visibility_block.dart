@@ -11,7 +11,7 @@ class VisibilityBlock extends StatefulWidget {
     super.key,
     required this.blockKey,
     required this.child,
-    this.visibilityPercent = 15,
+    this.visibilityPercent = 5,
   });
 
   @override

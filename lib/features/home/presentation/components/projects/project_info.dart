@@ -16,7 +16,6 @@ class ProjectInfo extends StatelessWidget {
     final orientation = OrientationProvider.of(context).orientation;
     return VisibilityBlock(
       blockKey: const Key('project-info'),
-      visibilityPercent: 10,
       child: BaseBlock(
         child: LayoutBuilder(builder: (context, constraints) {
           return Column(

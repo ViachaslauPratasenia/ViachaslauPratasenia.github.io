@@ -3,7 +3,7 @@ import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 
-class ProfileAppBar extends StatelessWidget {
+class ProfileAppBar extends StatefulWidget {
   final void Function()? onAboutMeClicked;
   final void Function()? onExperienceClicked;
   final void Function()? onWorkClicked;
@@ -24,41 +24,61 @@ class ProfileAppBar extends StatelessWidget {
   });
 
   @override
+  State<ProfileAppBar> createState() => _ProfileAppBarState();
+}
+
+class _ProfileAppBarState extends State<ProfileAppBar> {
+  double opacity = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 250), () {
+      setState(() {
+        opacity = 1;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.of(context).orientation;
 
-    return Container(
-      height: tabHeight,
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-      color: AppColors.background,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const _Icon(),
-          if (orientation == Orientation.landscape)
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _TabItem(index: '01', title: 'About Me', onTap: onAboutMeClicked),
-                const SizedBox(width: 32),
-                _TabItem(index: '02', title: 'Experience', onTap: onExperienceClicked),
-                const SizedBox(width: 32),
-                _TabItem(index: '03', title: 'Projects', onTap: onWorkClicked),
-                const SizedBox(width: 32),
-                _TabItem(index: '04', title: 'Contact', onTap: onContactClicked),
-                // const SizedBox(width: 32),
-                // PrimaryButton(title: 'Resume', onPressed: () {}),
-              ],
-            )
-          else ...[
-            const Spacer(),
-            IconButton(
-              icon: const Icon(Icons.menu, color: AppColors.primary, size: 32),
-              splashRadius: 24,
-              onPressed: onMenuClicked,
-            ),
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeInOut,
+      opacity: opacity,
+      child: Container(
+        height: widget.tabHeight,
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        color: AppColors.background,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const _Icon(),
+            if (orientation == Orientation.landscape)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _TabItem(index: '01', title: 'About Me', onTap: widget.onAboutMeClicked),
+                  const SizedBox(width: 32),
+                  _TabItem(index: '02', title: 'Experience', onTap: widget.onExperienceClicked),
+                  const SizedBox(width: 32),
+                  _TabItem(index: '03', title: 'Projects', onTap: widget.onWorkClicked),
+                  const SizedBox(width: 32),
+                  _TabItem(index: '04', title: 'Contact', onTap: widget.onContactClicked),
+                  // const SizedBox(width: 32),
+                  // PrimaryButton(title: 'Resume', onPressed: () {}),
+                ],
+              )
+            else
+              IconButton(
+                icon: const Icon(Icons.menu, color: AppColors.primary, size: 32),
+                splashRadius: 24,
+                onPressed: widget.onMenuClicked,
+              ),
           ],
-        ],
+        ),
       ),
     );
   }
