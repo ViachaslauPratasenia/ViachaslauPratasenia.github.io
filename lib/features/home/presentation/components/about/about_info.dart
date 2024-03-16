@@ -18,13 +18,28 @@ class AboutInfo extends StatefulWidget {
 }
 
 class _AboutInfoState extends State<AboutInfo> {
+  Duration defaultDuration = const Duration(milliseconds: 1000);
+
+  double myNameIsOpacity = 0;
+  double nameOpacity = 0;
+  double descriptionOpacity = 0;
+  double buttonOpacity = 0;
+
+  Curve defaultCurve = Curves.easeInOut;
+
   @override
   void initState() {
     super.initState();
-    initOpacity();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final orientation = OrientationProvider.of(context).orientation;
+      if (orientation == Orientation.portrait) {
+        defaultDuration = const Duration(milliseconds: 500);
+      }
+      initOpacity();
+    });
   }
 
-  Duration getDelay(int index) => Duration(milliseconds: 500 + 250 * index);
+  Duration getDelay(int index) => Duration(milliseconds: 250 * index);
 
   void initOpacity() {
     Future.delayed(getDelay(0), () => setState(() => myNameIsOpacity = 1));
@@ -32,14 +47,6 @@ class _AboutInfoState extends State<AboutInfo> {
     Future.delayed(getDelay(2), () => setState(() => descriptionOpacity = 1));
     Future.delayed(getDelay(3), () => setState(() => buttonOpacity = 1));
   }
-
-  double myNameIsOpacity = 0;
-  double nameOpacity = 0;
-  double descriptionOpacity = 0;
-  double buttonOpacity = 0;
-
-  Duration defaultDuration = const Duration(milliseconds: 1000);
-  Curve defaultCurve = Curves.easeInOut;
 
   @override
   Widget build(BuildContext context) {

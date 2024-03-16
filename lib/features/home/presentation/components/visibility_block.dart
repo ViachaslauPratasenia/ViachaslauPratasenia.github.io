@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/orientation_provider.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class VisibilityBlock extends StatefulWidget {
@@ -10,7 +11,7 @@ class VisibilityBlock extends StatefulWidget {
     super.key,
     required this.blockKey,
     required this.child,
-    this.visibilityPercent = 20,
+    this.visibilityPercent = 15,
   });
 
   @override
@@ -22,6 +23,12 @@ class _VisibilityBlockState extends State<VisibilityBlock> {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = OrientationProvider.of(context).orientation;
+
+    if (orientation == Orientation.portrait) {
+      return widget.child;
+    }
+
     return VisibilityDetector(
       key: widget.blockKey,
       onVisibilityChanged: (info) {
@@ -34,7 +41,7 @@ class _VisibilityBlockState extends State<VisibilityBlock> {
         }
       },
       child: AnimatedOpacity(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
         opacity: opacity,
         child: widget.child,
