@@ -114,7 +114,7 @@ class _Icon extends StatelessWidget {
   }
 }
 
-class _TabItem extends StatelessWidget {
+class _TabItem extends StatefulWidget {
   final String index;
   final String title;
 
@@ -123,19 +123,29 @@ class _TabItem extends StatelessWidget {
   const _TabItem({required this.index, required this.title, this.onTap});
 
   @override
+  State<_TabItem> createState() => _TabItemState();
+}
+
+class _TabItemState extends State<_TabItem> {
+  Color textColor = AppColors.textPrimary;
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
+      onHover: (hover) {
+        setState(() => textColor = hover ? AppColors.primary : AppColors.textPrimary);
+      },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: '$index. ',
+              text: '${widget.index}. ',
               style: context.textTheme.bodyLarge?.copyWith(color: AppColors.primary),
             ),
             TextSpan(
-              text: title,
-              style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textPrimary),
+              text: widget.title,
+              style: context.textTheme.bodyLarge?.copyWith(color: textColor),
             ),
           ],
         ),

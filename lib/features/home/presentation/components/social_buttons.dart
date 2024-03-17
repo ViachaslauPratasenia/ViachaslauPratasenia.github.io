@@ -47,6 +47,8 @@ class _Icon extends StatefulWidget {
 }
 
 class _IconState extends State<_Icon> {
+  Color iconColor = AppColors.textPrimary;
+
   @override
   Widget build(BuildContext context) {
     final socialLinkElement = SocialButtonElement.values.firstWhereOrNull(
@@ -56,6 +58,9 @@ class _IconState extends State<_Icon> {
 
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
+      onHover: (hover) {
+        setState(() => iconColor = hover ? AppColors.primary : AppColors.textPrimary);
+      },
       onTap: () async {
         FirebaseAnalyticsWeb().logEvent(name: 'open_social_link', parameters: {
           'link_name': widget.socialLink.name,
@@ -67,7 +72,7 @@ class _IconState extends State<_Icon> {
         socialLinkElement.imagePath,
         width: widget.iconSize,
         height: widget.iconSize,
-        colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
+        colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
       ),
     );
   }

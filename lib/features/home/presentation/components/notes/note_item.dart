@@ -7,10 +7,17 @@ import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class NoteItem extends StatelessWidget {
+class NoteItem extends StatefulWidget {
   final BlogPost note;
 
   const NoteItem({super.key, required this.note});
+
+  @override
+  State<NoteItem> createState() => _NoteItemState();
+}
+
+class _NoteItemState extends State<NoteItem> {
+  Color primaryColor = AppColors.textPrimary;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +25,17 @@ class NoteItem extends StatelessWidget {
 
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
+      onHover: (hover) {
+        setState(() {
+          primaryColor = hover ? AppColors.primary : AppColors.textPrimary;
+        });
+      },
       onTap: () {
         FirebaseAnalyticsWeb().logEvent(name: 'open_blog_post', parameters: {
-          'blog_post_title': note.title,
-          'blog_post_link': note.link,
+          'blog_post_title': widget.note.title,
+          'blog_post_link': widget.note.link,
         });
-        launchUrlString(note.link);
+        launchUrlString(widget.note.link);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -41,29 +53,32 @@ class NoteItem extends StatelessWidget {
                 Assets.svg.icExternalLink.svg(
                   width: 24,
                   height: 24,
-                  colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(primaryColor, BlendMode.srcIn),
                 ),
               ],
             ),
             const SizedBox(height: 24),
             Text(
-              note.title,
-              style: context.textTheme.titleLarge?.copyWith(color: AppColors.textPrimary),
+              widget.note.title,
+              style: context.textTheme.titleLarge?.copyWith(color: primaryColor),
             ),
             const SizedBox(height: 12),
             Text(
-              note.description,
+              widget.note.description,
               style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
-            if (orientation == Orientation.landscape) const Spacer() else const SizedBox(height: 32),
+            if (orientation == Orientation.landscape)
+              const Spacer()
+            else
+              const SizedBox(height: 32),
             Wrap(
               direction: Axis.horizontal,
               runSpacing: 8,
               spacing: 16,
               children: List.generate(
-                note.tags.length,
+                widget.note.tags.length,
                 (index) => Text(
-                  note.tags[index],
+                  widget.note.tags[index],
                   style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
                 ),
               ),
