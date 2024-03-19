@@ -168,6 +168,17 @@
         "Web",
         "Mobile"
       ]
+    },
+    {
+      "title": "Flutter Version Management: A Comprehensive Guide",
+      "description": "This guide covers Flutter Version Management (FVM), a tool for efficiently handling multiple Flutter SDKs. It simplifies SDK installation, version switching and project consistency.",
+      "link": "https://medium.com/@viachaslau.pratasenia/flutter-version-management-a-comprehensive-guide-fe9db1557b0e",
+      "date": "March 19, 2024",
+      "tags": [
+        "Flutter",
+        "FVM",
+        "Versioning"
+      ]
     }
   ]
 }

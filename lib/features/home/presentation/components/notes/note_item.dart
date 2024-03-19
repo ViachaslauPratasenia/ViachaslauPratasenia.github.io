@@ -56,7 +56,7 @@ class _NoteItemState extends State<NoteItem> {
                   Assets.svg.icExternalLink.svg(
                     width: 24,
                     height: 24,
-                    colorFilter: const ColorFilter.mode(AppColors.textPrimary, BlendMode.srcIn),
+                    colorFilter: const ColorFilter.mode(AppColors.textSecondary, BlendMode.srcIn),
                   ),
                 ],
               ),
