@@ -12,7 +12,7 @@ class BaseBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.of(context).orientation;
 
-    final defaultHorizontalPadding = orientation == Orientation.landscape ? 80.0 : 24.0;
+    final defaultHorizontalPadding = orientation == Orientation.landscape ? 48.0 : 24.0;
     final defaultVerticalPadding = orientation == Orientation.landscape ? 96.0 : 48.0;
     return Padding(
       padding: EdgeInsets.symmetric(

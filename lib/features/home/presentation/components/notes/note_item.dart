@@ -69,6 +69,8 @@ class _NoteItemState extends State<NoteItem> {
               Text(
                 widget.note.description,
                 style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
               ),
               if (orientation == Orientation.landscape)
                 const Spacer()

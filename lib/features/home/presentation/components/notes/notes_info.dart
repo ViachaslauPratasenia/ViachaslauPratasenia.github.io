@@ -20,70 +20,74 @@ class NotesInfo extends StatelessWidget {
         ? context.textTheme.displaySmall
         : context.textTheme.titleLarge;
 
-    int crossAxisCount = 2;
-    double childAspectRatio = 1.55;
-
-    if (developerProfile.blogPosts.length % 3 == 0) {
-      crossAxisCount = 3;
-      childAspectRatio = 0.85;
-    }
-
     return VisibilityBlock(
       blockKey: const Key('notes-info'),
-      child: BaseBlock(
-        horizontalPadding: orientation == Orientation.landscape ? 32 : 24,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Other Noteworthy Projects',
-              textAlign: TextAlign.center,
-              style: titleStyle?.copyWith(color: AppColors.textPrimary),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          int crossAxisCount = 2;
+          double childAspectRatio = 1.5;
+
+          if (developerProfile.blogPosts.length % 3 == 0) {
+            crossAxisCount = 3;
+            childAspectRatio = constraints.maxWidth < 1040 ? 0.7 : 0.85;
+          }
+
+          return BaseBlock(
+            horizontalPadding: orientation == Orientation.landscape ? 32 : 24,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Other Noteworthy Projects',
+                  textAlign: TextAlign.center,
+                  style: titleStyle?.copyWith(color: AppColors.textPrimary),
+                ),
+                if (developerProfile.blogPosts.length > 6) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    'view the archive',
+                    style: context.textTheme.bodyLarge?.copyWith(color: AppColors.primary),
+                  ),
+                ],
+                const SizedBox(height: 32),
+                if (orientation == Orientation.landscape)
+                  GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: developerProfile.blogPosts.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: childAspectRatio,
+                    ),
+                    itemBuilder: (context, index) => NoteItem(
+                      note: developerProfile.blogPosts[index],
+                    ),
+                  )
+                else
+                  ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: developerProfile.blogPosts.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (context, index) => const SizedBox(height: 24),
+                    itemBuilder: (context, index) => NoteItem(
+                      note: developerProfile.blogPosts[index],
+                    ),
+                  ),
+                const SizedBox(height: 24),
+                if (developerProfile.blogPosts.length > 6) ...[
+                  const SizedBox(height: 4),
+                  PrimaryButton(
+                    analyticsName: 'notes_show_more',
+                    title: 'Show more',
+                    onPressed: () {},
+                  ),
+                ],
+              ],
             ),
-            if (developerProfile.blogPosts.length > 6) ...[
-              const SizedBox(height: 4),
-              Text(
-                'view the archive',
-                style: context.textTheme.bodyLarge?.copyWith(color: AppColors.primary),
-              ),
-            ],
-            const SizedBox(height: 32),
-            if (orientation == Orientation.landscape)
-              GridView.builder(
-                shrinkWrap: true,
-                itemCount: developerProfile.blogPosts.length,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: childAspectRatio,
-                ),
-                itemBuilder: (context, index) => NoteItem(
-                  note: developerProfile.blogPosts[index],
-                ),
-              )
-            else
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: developerProfile.blogPosts.length,
-                physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) => const SizedBox(height: 24),
-                itemBuilder: (context, index) => NoteItem(
-                  note: developerProfile.blogPosts[index],
-                ),
-              ),
-            const SizedBox(height: 24),
-            if (developerProfile.blogPosts.length > 6) ...[
-              const SizedBox(height: 4),
-              PrimaryButton(
-                analyticsName: 'notes_show_more',
-                title: 'Show more',
-                onPressed: () {},
-              ),
-            ],
-          ],
-        ),
+          );
+        }
       ),
     );
   }
