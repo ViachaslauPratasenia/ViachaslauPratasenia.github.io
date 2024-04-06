@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_colors.dart';
 
 class ThemeController {
@@ -45,4 +47,20 @@ class ThemeController {
 
 extension ThemeControllerExtension on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
+
+  MarkdownStyleSheet get markdownStyleSheet => MarkdownStyleSheet(
+        h1: Theme.of(this).textTheme.displayMedium?.copyWith(color: AppColors.textPrimary),
+        h1Padding: const EdgeInsets.only(bottom: 16),
+        h2: Theme.of(this).textTheme.headlineMedium?.copyWith(color: AppColors.textPrimary),
+        h2Padding: const EdgeInsets.only(top: 24, bottom: 16),
+        p: Theme.of(this).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
+        strong: Theme.of(this).textTheme.bodyLarge?.copyWith(color: AppColors.primary),
+        codeblockDecoration: BoxDecoration(
+          color: AppColors.backgroundSecondary,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        code: Theme.of(this).textTheme.bodyLarge?.copyWith(color: AppColors.textPrimary),
+        codeblockPadding: const EdgeInsets.all(16),
+        listIndent: 16,
+      );
 }

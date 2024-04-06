@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:personal_website/const/const.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/core/widgets/primary_button.dart';
+import 'package:personal_website/features/markdown/note_screen.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -111,6 +113,16 @@ class _AboutInfoState extends State<AboutInfo> {
               analyticsName: 'open_cv',
               title: 'Check out my resume',
               onPressed: () => launchUrlString(Const.config.CV_URL),
+            ),
+          ),
+          const SizedBox(height: 24),
+          AnimatedOpacity(
+            duration: defaultDuration,
+            curve: defaultCurve,
+            opacity: buttonOpacity,
+            child: PrimaryButton(
+              title: 'Bla bla bla',
+              onPressed: () => context.go(NoteScreen.routeName),
             ),
           ),
         ],
