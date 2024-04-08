@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/data/models/project/project.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/core/widgets/link_item.dart';
 import 'package:personal_website/core/widgets/measure_size_widget.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 
-class ProjectItem extends StatelessWidget {
+class ProjectItemWidget extends StatelessWidget {
   final bool reversed;
   final double maxWidth;
-  final Project project;
+  final ProjectItem project;
 
-  const ProjectItem({
+  const ProjectItemWidget({
     super.key,
     required this.project,
     required this.maxWidth,
@@ -33,7 +33,7 @@ class ProjectItem extends StatelessWidget {
 }
 
 class _ProjectItemPortrait extends StatefulWidget {
-  final Project project;
+  final ProjectItem project;
 
   const _ProjectItemPortrait({required this.project});
 
@@ -51,7 +51,7 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
       child: Stack(
         children: [
           Image.network(
-            widget.project.image,
+            widget.project.imageUrl,
             width: double.infinity,
             height: _contentSize.height,
             fit: BoxFit.cover,
@@ -104,7 +104,7 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
                   const SizedBox(height: 12),
                   LinkItem(
                     title: widget.project.linkName,
-                    url: widget.project.link,
+                    url: widget.project.linkUrl,
                     analyticsName: 'open_project',
                   ),
                 ],
@@ -118,7 +118,7 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
 }
 
 class _ProjectItemLandscape extends StatelessWidget {
-  final Project project;
+  final ProjectItem project;
 
   final double maxWidth;
   final bool reversed;
@@ -135,7 +135,7 @@ class _ProjectItemLandscape extends StatelessWidget {
       alignment: reversed ? Alignment.centerRight : Alignment.centerLeft,
       children: [
         Image.network(
-          project.image,
+          project.imageUrl,
           width: maxWidth * 0.6,
           fit: BoxFit.cover,
         ),
@@ -197,7 +197,7 @@ class _ProjectItemLandscape extends StatelessWidget {
                     const SizedBox(height: 12),
                     LinkItem(
                       title: project.linkName,
-                      url: project.link,
+                      url: project.linkUrl,
                       analyticsName: 'open_project',
                     ),
                   ],

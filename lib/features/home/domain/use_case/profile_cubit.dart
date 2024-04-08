@@ -1,28 +1,39 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_website/features/home/data/developer_profile_mapper.dart';
-import 'package:personal_website/features/home/data/repository/local_profile_repository.dart';
-import 'package:personal_website/features/home/data/repository/remote_profile_repository.dart';
+import 'package:personal_website/core/data/models/blog_post/notes.dart';
+import 'package:personal_website/core/data/models/profile/profile.dart';
+import 'package:personal_website/core/data/models/project/project.dart';
+import 'package:personal_website/core/data/models/work/work.dart';
+import 'package:personal_website/core/data/repositories/personal_info_repository.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  final RemoteProfileRepository remoteProfileRepository;
-  final LocalProfileRepository localProfileRepository;
+  final PersonalInfoRepository personalInfoRepository;
 
-  ProfileCubit({
-    required this.remoteProfileRepository,
-    required this.localProfileRepository,
-  }) : super(ProfileState.initial()) {
+  ProfileCubit({required this.personalInfoRepository}) : super(ProfileState.initial()) {
     loadProfile();
   }
 
   Future<void> loadProfile() async {
     try {
-      var developerProfile = await remoteProfileRepository.getProfile();
-      developerProfile ??= await localProfileRepository.loadProfile();
+      await Future.wait([
+        personalInfoRepository.getProfileInfo(),
+        personalInfoRepository.getWorkInfo(),
+        personalInfoRepository.getProjectInfo(),
+        personalInfoRepository.getNotesInfo()
+      ]).then((value) {
+        final profileInfo = value[0] as Profile;
+        final workInfo = value[1] as Work;
+        final projectsInfo = value[2] as Projects;
+        final notesInfo = value[3] as Notes;
 
-      if (developerProfile != null) {
-        emit(state.copyWith(developerProfile: DeveloperProfileMapper.map(developerProfile)));
-      }
+        emit(state.copyWith(
+          isLoading: false,
+          profile: profileInfo,
+          work: workInfo,
+          projects: projectsInfo,
+          notes: notesInfo,
+        ));
+      });
     } on Exception {
       //todo: send to crashlytics
     } finally {

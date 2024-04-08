@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:personal_website/core/locator.dart';
 import 'package:personal_website/features/change_theme/domain/use_case/theme_cubit.dart';
@@ -29,24 +28,21 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (context, child) => MultiBlocProvider(
-        providers: [
-          BlocProvider<ProfileCubit>(create: (context) => locator.get()),
-          BlocProvider<ThemeCubit>(create: (context) => locator.get()),
-        ],
-        child: BlocBuilder<ThemeCubit, ThemeMode>(builder: (context, themeMode) {
-          return MaterialApp.router(
-            title: 'Viachaslau Pratasenia',
-            routerConfig: _router,
-            theme: ThemeController.lightTheme,
-            darkTheme: ThemeController.darkTheme,
-            themeMode: ThemeMode.dark,
-            debugShowCheckedModeBanner: false,
-          );
-        }),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ProfileCubit>(create: (context) => locator.get()),
+        BlocProvider<ThemeCubit>(create: (context) => locator.get()),
+      ],
+      child: BlocBuilder<ThemeCubit, ThemeMode>(builder: (context, themeMode) {
+        return MaterialApp.router(
+          title: 'Viachaslau Pratasenia',
+          routerConfig: _router,
+          theme: ThemeController.lightTheme,
+          darkTheme: ThemeController.darkTheme,
+          themeMode: ThemeMode.dark,
+          debugShowCheckedModeBanner: false,
+        );
+      }),
     );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/data/models/work/work.dart';
 import 'package:personal_website/core/orientation_provider.dart';
+import 'package:personal_website/core/utils/date_time_utils.dart';
 import 'package:personal_website/core/widgets/link_item.dart';
 import 'package:personal_website/core/widgets/measure_size_widget.dart';
 import 'package:personal_website/core/widgets/painters/dashed_circle_painter.dart';
 import 'package:personal_website/core/widgets/painters/vertical_dashed_line_painter.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
 import 'package:personal_website/features/home/presentation/components/visibility_block.dart';
@@ -14,9 +15,9 @@ import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class WorkInfo extends StatelessWidget {
-  final DeveloperProfile developerProfile;
+  final Work work;
 
-  const WorkInfo({super.key, required this.developerProfile});
+  const WorkInfo({super.key, required this.work});
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +40,10 @@ class WorkInfo extends StatelessWidget {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: developerProfile.work.length,
-                itemBuilder: (context, index) => _WorkItem(
-                  addBottomPadding: index != developerProfile.work.length - 1,
-                  workExperience: developerProfile.work[index],
+                itemCount: work.items.length,
+                itemBuilder: (context, index) => _WorkItemWidget(
+                  addBottomPadding: index != work.items.length - 1,
+                  workExperience: work.items[index],
                 ),
               ),
             ],
@@ -53,17 +54,17 @@ class WorkInfo extends StatelessWidget {
   }
 }
 
-class _WorkItem extends StatefulWidget {
+class _WorkItemWidget extends StatefulWidget {
   final bool addBottomPadding;
-  final WorkExperience workExperience;
+  final WorkItem workExperience;
 
-  const _WorkItem({required this.addBottomPadding, required this.workExperience});
+  const _WorkItemWidget({required this.addBottomPadding, required this.workExperience});
 
   @override
-  State<_WorkItem> createState() => _WorkItemState();
+  State<_WorkItemWidget> createState() => _WorkItemWidgetState();
 }
 
-class _WorkItemState extends State<_WorkItem> {
+class _WorkItemWidgetState extends State<_WorkItemWidget> {
   Size _contentSize = Size.zero;
 
   @override
@@ -78,6 +79,8 @@ class _WorkItemState extends State<_WorkItem> {
     final periodStyle = orientation == Orientation.landscape
         ? context.textTheme.titleMedium
         : context.textTheme.titleSmall;
+
+    final description = widget.workExperience.description.replaceAll('\\n', '\n');
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,19 +113,22 @@ class _WorkItemState extends State<_WorkItem> {
                         text: '@ ${widget.workExperience.companyName}',
                         style: titleStyle?.copyWith(color: AppColors.primary),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => launchUrlString(widget.workExperience.companyLink),
+                          ..onTap = () => launchUrlString(widget.workExperience.companyUrl),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  widget.workExperience.workPeriod,
+                  DateTimeUtils.makeWorkPeriod(
+                    start: widget.workExperience.startPeriod ?? DateTime.now(),
+                    end: widget.workExperience.endPeriod,
+                  ),
                   style: periodStyle?.copyWith(color: AppColors.textSecondary),
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  widget.workExperience.description,
+                  description,
                   style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
                 ),
                 const SizedBox(height: 8),

@@ -2,9 +2,9 @@ import 'package:collection/collection.dart';
 import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:personal_website/core/data/models/profile/profile.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
-import 'package:personal_website/features/home/data/social_button_element.dart';
+import 'package:personal_website/features/home/social_button_element.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -52,7 +52,7 @@ class _IconState extends State<_Icon> {
   @override
   Widget build(BuildContext context) {
     final socialLinkElement = SocialButtonElement.values.firstWhereOrNull(
-      (element) => element.name == widget.socialLink.name,
+      (element) => element.name == widget.socialLink.type,
     );
     if (socialLinkElement == null) return Container();
 
@@ -63,7 +63,7 @@ class _IconState extends State<_Icon> {
       },
       onTap: () async {
         FirebaseAnalyticsWeb().logEvent(name: 'open_social_link', parameters: {
-          'link_name': widget.socialLink.name,
+          'link_name': widget.socialLink.type,
         });
 
         launchUrlString(widget.socialLink.url);

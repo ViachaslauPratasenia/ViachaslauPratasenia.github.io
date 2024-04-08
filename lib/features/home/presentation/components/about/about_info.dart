@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/const.dart';
+import 'package:personal_website/core/data/models/profile/profile.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/core/widgets/primary_button.dart';
 import 'package:personal_website/theme/app_colors.dart';
@@ -9,9 +9,9 @@ import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutInfo extends StatefulWidget {
-  final DeveloperProfile developerProfile;
+  final Profile profile;
 
-  const AboutInfo({super.key, required this.developerProfile});
+  const AboutInfo({super.key, required this.profile});
 
   @override
   State<AboutInfo> createState() => _AboutInfoState();
@@ -79,7 +79,7 @@ class _AboutInfoState extends State<AboutInfo> {
             curve: defaultCurve,
             opacity: nameOpacity,
             child: Text(
-              widget.developerProfile.name,
+              '${widget.profile.name} ${widget.profile.surname}',
               style: nameStyle?.copyWith(color: AppColors.textPrimary),
             ),
           ),
@@ -88,7 +88,7 @@ class _AboutInfoState extends State<AboutInfo> {
             curve: defaultCurve,
             opacity: nameOpacity,
             child: Text(
-              widget.developerProfile.subtitle,
+              widget.profile.preview,
               style: nameStyle?.copyWith(color: AppColors.textSecondary),
             ),
           ),
@@ -98,7 +98,7 @@ class _AboutInfoState extends State<AboutInfo> {
             curve: defaultCurve,
             opacity: descriptionOpacity,
             child: Text(
-              widget.developerProfile.fullDescription,
+              widget.profile.shortDescription,
               style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
             ),
           ),

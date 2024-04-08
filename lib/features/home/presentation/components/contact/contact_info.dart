@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/data/models/profile/profile.dart';
 import 'package:personal_website/core/orientation_provider.dart';
 import 'package:personal_website/core/widgets/primary_button.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
 import 'package:personal_website/features/home/presentation/components/social_buttons.dart';
@@ -11,9 +11,9 @@ import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactInfo extends StatelessWidget {
-  final DeveloperProfile developerProfile;
+  final Profile profile;
 
-  const ContactInfo({super.key, required this.developerProfile});
+  const ContactInfo({super.key, required this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class ContactInfo extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                developerProfile.contactMeText,
+                profile.contactMeText,
                 textAlign: TextAlign.center,
                 style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
               ),
@@ -51,7 +51,7 @@ class ContactInfo extends StatelessWidget {
                 title: 'Say Hello',
                 analyticsName: 'send_email',
                 onPressed: () async {
-                  final uri = Uri(scheme: 'mailto', path: developerProfile.email);
+                  final uri = Uri(scheme: 'mailto', path: profile.email);
                   await launchUrl(uri);
                 },
               ),
@@ -61,7 +61,7 @@ class ContactInfo extends StatelessWidget {
                 style: context.textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
               ),
               const SizedBox(height: 12),
-              SocialButtons(socialLinks: developerProfile.socialLinks),
+              SocialButtons(socialLinks: profile.socialLinks),
             ],
           ),
         ),
