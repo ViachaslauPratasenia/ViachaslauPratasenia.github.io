@@ -7,6 +7,28 @@ import 'package:personal_website/core/data/models/work/work.dart';
 class PersonalInfoRepository {
   PersonalInfoRepository();
 
+  Future<Map<String, dynamic>> getPersonalData() async {
+    try {
+      final document = await FirebaseFirestore.instance.collection('personal_data').get();
+
+      final profile = document.docs.firstWhere((element) => element.id == 'profile').data();
+      final work = document.docs.firstWhere((element) => element.id == 'work').data();
+      final projects = document.docs.firstWhere((element) => element.id == 'projects').data();
+      final notes = document.docs.firstWhere((element) => element.id == 'blog_posts').data();
+
+      final personalData = {
+        'profile': Profile.fromJson(profile),
+        'work': Work.fromJson(work),
+        'projects': Projects.fromJson(projects),
+        'notes': Notes.fromJson(notes),
+      };
+
+      return personalData;
+    } catch (e) {
+      return {};
+    }
+  }
+
   Future<Profile> getProfileInfo() async {
     try {
       final document =
@@ -32,7 +54,7 @@ class PersonalInfoRepository {
   Future<Work> getWorkInfo() async {
     try {
       final document =
-      await FirebaseFirestore.instance.collection('personal_data').doc('work').get();
+          await FirebaseFirestore.instance.collection('personal_data').doc('work').get();
 
       return Work.fromJson(document.data() ?? {});
     } catch (e) {
@@ -51,7 +73,7 @@ class PersonalInfoRepository {
   Future<Projects> getProjectInfo() async {
     try {
       final document =
-      await FirebaseFirestore.instance.collection('personal_data').doc('projects').get();
+          await FirebaseFirestore.instance.collection('personal_data').doc('projects').get();
 
       return Projects.fromJson(document.data() ?? {});
     } catch (e) {
@@ -61,7 +83,10 @@ class PersonalInfoRepository {
 
   Future<void> saveProjectInfo(Projects project) async {
     try {
-      await FirebaseFirestore.instance.collection('personal_data').doc('projects').set(project.toJson());
+      await FirebaseFirestore.instance
+          .collection('personal_data')
+          .doc('projects')
+          .set(project.toJson());
     } catch (e) {
       // todo: send to crashlytics
     }
@@ -70,7 +95,7 @@ class PersonalInfoRepository {
   Future<Notes> getNotesInfo() async {
     try {
       final document =
-      await FirebaseFirestore.instance.collection('personal_data').doc('blog_posts').get();
+          await FirebaseFirestore.instance.collection('personal_data').doc('blog_posts').get();
 
       return Notes.fromJson(document.data() ?? {});
     } catch (e) {
@@ -80,7 +105,10 @@ class PersonalInfoRepository {
 
   Future<void> saveNotes(Notes notes) async {
     try {
-      await FirebaseFirestore.instance.collection('personal_data').doc('blog_posts').set(notes.toJson());
+      await FirebaseFirestore.instance
+          .collection('personal_data')
+          .doc('blog_posts')
+          .set(notes.toJson());
     } catch (e) {
       // todo: send to crashlytics
     }

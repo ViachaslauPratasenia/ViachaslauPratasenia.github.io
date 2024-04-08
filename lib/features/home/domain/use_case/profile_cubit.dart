@@ -15,25 +15,20 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> loadProfile() async {
     try {
-      await Future.wait([
-        personalInfoRepository.getProfileInfo(),
-        personalInfoRepository.getWorkInfo(),
-        personalInfoRepository.getProjectInfo(),
-        personalInfoRepository.getNotesInfo()
-      ]).then((value) {
-        final profileInfo = value[0] as Profile;
-        final workInfo = value[1] as Work;
-        final projectsInfo = value[2] as Projects;
-        final notesInfo = value[3] as Notes;
+      final personalData = await personalInfoRepository.getPersonalData();
 
-        emit(state.copyWith(
-          isLoading: false,
-          profile: profileInfo,
-          work: workInfo,
-          projects: projectsInfo,
-          notes: notesInfo,
-        ));
-      });
+      final profile = personalData['profile'] as Profile?;
+      final work = personalData['work'] as Work?;
+      final projects = personalData['projects'] as Projects?;
+      final notes = personalData['notes'] as Notes?;
+
+      emit(state.copyWith(
+        isLoading: false,
+        profile: profile,
+        work: work,
+        projects: projects,
+        notes: notes,
+      ));
     } on Exception {
       //todo: send to crashlytics
     } finally {
