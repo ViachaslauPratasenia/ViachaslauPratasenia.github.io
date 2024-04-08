@@ -1,22 +1,22 @@
 import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
+import 'package:personal_website/core/data/models/blog_post/notes.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class NoteItem extends StatefulWidget {
-  final BlogPost note;
+class NoteItemWidget extends StatefulWidget {
+  final NoteItem note;
 
-  const NoteItem({super.key, required this.note});
+  const NoteItemWidget({super.key, required this.note});
 
   @override
-  State<NoteItem> createState() => _NoteItemState();
+  State<NoteItemWidget> createState() => _NoteItemWidgetState();
 }
 
-class _NoteItemState extends State<NoteItem> {
+class _NoteItemWidgetState extends State<NoteItemWidget> {
   Color primaryColor = AppColors.textPrimary;
   Offset offset = const Offset(0, 0);
 
@@ -35,9 +35,9 @@ class _NoteItemState extends State<NoteItem> {
       onTap: () {
         FirebaseAnalyticsWeb().logEvent(name: 'open_blog_post', parameters: {
           'blog_post_title': widget.note.title,
-          'blog_post_link': widget.note.link,
+          'blog_post_link': widget.note.url,
         });
-        launchUrlString(widget.note.link);
+        launchUrlString(widget.note.url);
       },
       child: _TranslateOnHover(
         child: Container(

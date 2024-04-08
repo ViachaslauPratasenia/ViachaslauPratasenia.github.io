@@ -14,31 +14,32 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Project _$ProjectFromJson(Map<String, dynamic> json) {
-  return _Project.fromJson(json);
+Projects _$ProjectsFromJson(Map<String, dynamic> json) {
+  return _Projects.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Project {
+mixin _$Projects {
   List<ProjectItem> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProjectCopyWith<Project> get copyWith => throw _privateConstructorUsedError;
+  $ProjectsCopyWith<Projects> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectCopyWith<$Res> {
-  factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
-      _$ProjectCopyWithImpl<$Res, Project>;
+abstract class $ProjectsCopyWith<$Res> {
+  factory $ProjectsCopyWith(Projects value, $Res Function(Projects) then) =
+      _$ProjectsCopyWithImpl<$Res, Projects>;
   @useResult
   $Res call({List<ProjectItem> items});
 }
 
 /// @nodoc
-class _$ProjectCopyWithImpl<$Res, $Val extends Project>
-    implements $ProjectCopyWith<$Res> {
-  _$ProjectCopyWithImpl(this._value, this._then);
+class _$ProjectsCopyWithImpl<$Res, $Val extends Projects>
+    implements $ProjectsCopyWith<$Res> {
+  _$ProjectsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -60,21 +61,22 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
 }
 
 /// @nodoc
-abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
-  factory _$$ProjectImplCopyWith(
-          _$ProjectImpl value, $Res Function(_$ProjectImpl) then) =
-      __$$ProjectImplCopyWithImpl<$Res>;
+abstract class _$$ProjectsImplCopyWith<$Res>
+    implements $ProjectsCopyWith<$Res> {
+  factory _$$ProjectsImplCopyWith(
+          _$ProjectsImpl value, $Res Function(_$ProjectsImpl) then) =
+      __$$ProjectsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ProjectItem> items});
 }
 
 /// @nodoc
-class __$$ProjectImplCopyWithImpl<$Res>
-    extends _$ProjectCopyWithImpl<$Res, _$ProjectImpl>
-    implements _$$ProjectImplCopyWith<$Res> {
-  __$$ProjectImplCopyWithImpl(
-      _$ProjectImpl _value, $Res Function(_$ProjectImpl) _then)
+class __$$ProjectsImplCopyWithImpl<$Res>
+    extends _$ProjectsCopyWithImpl<$Res, _$ProjectsImpl>
+    implements _$$ProjectsImplCopyWith<$Res> {
+  __$$ProjectsImplCopyWithImpl(
+      _$ProjectsImpl _value, $Res Function(_$ProjectsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -82,7 +84,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
   $Res call({
     Object? items = null,
   }) {
-    return _then(_$ProjectImpl(
+    return _then(_$ProjectsImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -94,12 +96,12 @@ class __$$ProjectImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$ProjectImpl implements _Project {
-  const _$ProjectImpl({final List<ProjectItem> items = const []})
+class _$ProjectsImpl implements _Projects {
+  const _$ProjectsImpl({final List<ProjectItem> items = const []})
       : _items = items;
 
-  factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProjectImplFromJson(json);
+  factory _$ProjectsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectsImplFromJson(json);
 
   final List<ProjectItem> _items;
   @override
@@ -112,14 +114,14 @@ class _$ProjectImpl implements _Project {
 
   @override
   String toString() {
-    return 'Project(items: $items)';
+    return 'Projects(items: $items)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectImpl &&
+            other is _$ProjectsImpl &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
@@ -131,27 +133,28 @@ class _$ProjectImpl implements _Project {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
-      __$$ProjectImplCopyWithImpl<_$ProjectImpl>(this, _$identity);
+  _$$ProjectsImplCopyWith<_$ProjectsImpl> get copyWith =>
+      __$$ProjectsImplCopyWithImpl<_$ProjectsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProjectImplToJson(
+    return _$$ProjectsImplToJson(
       this,
     );
   }
 }
 
-abstract class _Project implements Project {
-  const factory _Project({final List<ProjectItem> items}) = _$ProjectImpl;
+abstract class _Projects implements Projects {
+  const factory _Projects({final List<ProjectItem> items}) = _$ProjectsImpl;
 
-  factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
+  factory _Projects.fromJson(Map<String, dynamic> json) =
+      _$ProjectsImpl.fromJson;
 
   @override
   List<ProjectItem> get items;
   @override
   @JsonKey(ignore: true)
-  _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
+  _$$ProjectsImplCopyWith<_$ProjectsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

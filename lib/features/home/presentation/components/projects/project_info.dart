@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/data/models/project/project.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
-import 'package:personal_website/features/home/presentation/components/projects/project_item.dart';
+import 'package:personal_website/features/home/presentation/components/projects/project_item_widget.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
 import 'package:personal_website/features/home/presentation/components/visibility_block.dart';
 
 class ProjectInfo extends StatelessWidget {
-  final DeveloperProfile developerProfile;
+  final Projects projects;
 
-  const ProjectInfo({super.key, required this.developerProfile});
+  const ProjectInfo({super.key, required this.projects});
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +31,12 @@ class ProjectInfo extends StatelessWidget {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: developerProfile.projects.length,
+                itemCount: projects.items.length,
                 separatorBuilder: (context, index) => SizedBox(
                   height: orientation == Orientation.landscape ? 64 : 32,
                 ),
-                itemBuilder: (context, index) => ProjectItem(
-                  project: developerProfile.projects[index],
+                itemBuilder: (context, index) => ProjectItemWidget(
+                  project: projects.items[index],
                   reversed: index.isOdd,
                   maxWidth: constraints.maxWidth,
                 ),

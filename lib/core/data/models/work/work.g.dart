@@ -31,8 +31,8 @@ _$WorkItemImpl _$$WorkItemImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? '',
       startPeriod: DateTimeUtils.dateTimeFromTimestamp(
           json['start_period'] as Timestamp?),
-      endPeriod:
-          DateTimeUtils.dateTimeFromTimestamp(json['end_period'] as Timestamp?),
+      endPeriod: DateTimeUtils.dateTimeFromTimestampNullable(
+          json['end_period'] as Timestamp?),
       links: (json['links'] as List<dynamic>?)
               ?.map((e) => WorkLink.fromJson(e as Map<String, dynamic>))
               .toList() ??

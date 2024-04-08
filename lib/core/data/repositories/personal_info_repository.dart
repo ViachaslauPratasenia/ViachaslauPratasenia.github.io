@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:personal_website/core/data/models/blog_post/blog_post.dart';
+import 'package:personal_website/core/data/models/blog_post/notes.dart';
 import 'package:personal_website/core/data/models/profile/profile.dart';
 import 'package:personal_website/core/data/models/project/project.dart';
 import 'package:personal_website/core/data/models/work/work.dart';
@@ -48,18 +48,18 @@ class PersonalInfoRepository {
     }
   }
 
-  Future<Project> getProjectInfo() async {
+  Future<Projects> getProjectInfo() async {
     try {
       final document =
       await FirebaseFirestore.instance.collection('personal_data').doc('projects').get();
 
-      return Project.fromJson(document.data() ?? {});
+      return Projects.fromJson(document.data() ?? {});
     } catch (e) {
-      return const Project();
+      return const Projects();
     }
   }
 
-  Future<void> saveProjectInfo(Project project) async {
+  Future<void> saveProjectInfo(Projects project) async {
     try {
       await FirebaseFirestore.instance.collection('personal_data').doc('projects').set(project.toJson());
     } catch (e) {
@@ -67,20 +67,20 @@ class PersonalInfoRepository {
     }
   }
 
-  Future<BlogPost> getBlogPostsInfo() async {
+  Future<Notes> getNotesInfo() async {
     try {
       final document =
       await FirebaseFirestore.instance.collection('personal_data').doc('blog_posts').get();
 
-      return BlogPost.fromJson(document.data() ?? {});
+      return Notes.fromJson(document.data() ?? {});
     } catch (e) {
-      return const BlogPost();
+      return const Notes();
     }
   }
 
-  Future<void> saveBlogPosts(BlogPost blogPost) async {
+  Future<void> saveNotes(Notes notes) async {
     try {
-      await FirebaseFirestore.instance.collection('personal_data').doc('blog_posts').set(blogPost.toJson());
+      await FirebaseFirestore.instance.collection('personal_data').doc('blog_posts').set(notes.toJson());
     } catch (e) {
       // todo: send to crashlytics
     }

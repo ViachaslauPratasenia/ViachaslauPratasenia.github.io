@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_website/const/const.dart';
+import 'package:personal_website/core/data/models/blog_post/notes.dart';
+import 'package:personal_website/core/data/models/profile/profile.dart';
+import 'package:personal_website/core/data/models/project/project.dart';
+import 'package:personal_website/core/data/models/work/work.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 import 'package:personal_website/features/home/presentation/components/about/about_info.dart';
@@ -45,11 +49,9 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(color: Theme.of(context).colorScheme.tertiary));
           }
 
-          if (profileState.developerProfile == null && !profileState.isLoading) {
+          if (profileState.profile == null && !profileState.isLoading) {
             return const ErrorBlock();
           }
-
-          if (profileState.developerProfile == null) return Container();
 
           return SingleChildScrollView(
             child: Center(
@@ -73,23 +75,26 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height - tabHeight,
                           child: Center(
-                            child: AboutInfo(developerProfile: profileState.developerProfile!),
+                            child: AboutInfo(profile: profileState.profile ?? const Profile()),
                           ),
                         ),
                         ProfileInfo(
                           key: aboutKey,
-                          developerProfile: profileState.developerProfile!,
+                          profile: profileState.profile ?? const Profile(),
+                          work: profileState.work ?? const Work(),
                         ),
                         WorkInfo(
-                            key: experienceKey, developerProfile: profileState.developerProfile!),
+                          key: experienceKey,
+                          work: profileState.work ?? const Work(),
+                        ),
                         ProjectInfo(
                           key: workKey,
-                          developerProfile: profileState.developerProfile!,
+                          projects: profileState.projects ?? const Projects(),
                         ),
-                        NotesInfo(developerProfile: profileState.developerProfile!),
+                        NotesInfo(notes: profileState.notes ?? const Notes()),
                         ContactInfo(
                           key: contactKey,
-                          developerProfile: profileState.developerProfile!,
+                          profile: profileState.profile ?? const Profile(),
                         ),
                       ],
                     ),

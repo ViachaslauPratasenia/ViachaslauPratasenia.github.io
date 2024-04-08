@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'blog_post.dart';
+part of 'notes.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BlogPostImpl _$$BlogPostImplFromJson(Map<String, dynamic> json) =>
-    _$BlogPostImpl(
+_$NotesImpl _$$NotesImplFromJson(Map<String, dynamic> json) => _$NotesImpl(
       items: (json['items'] as List<dynamic>?)
-              ?.map((e) => BlogPostItem.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => NoteItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );
 
-Map<String, dynamic> _$$BlogPostImplToJson(_$BlogPostImpl instance) =>
+Map<String, dynamic> _$$NotesImplToJson(_$NotesImpl instance) =>
     <String, dynamic>{
       'items': instance.items,
     };
 
-_$BlogPostItemImpl _$$BlogPostItemImplFromJson(Map<String, dynamic> json) =>
-    _$BlogPostItemImpl(
+_$NoteItemImpl _$$NoteItemImplFromJson(Map<String, dynamic> json) =>
+    _$NoteItemImpl(
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       url: json['url'] as String? ?? '',
@@ -30,7 +29,7 @@ _$BlogPostItemImpl _$$BlogPostItemImplFromJson(Map<String, dynamic> json) =>
               const [],
     );
 
-Map<String, dynamic> _$$BlogPostItemImplToJson(_$BlogPostItemImpl instance) =>
+Map<String, dynamic> _$$NoteItemImplToJson(_$NoteItemImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,

@@ -6,15 +6,15 @@ part of 'project.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
-    _$ProjectImpl(
+_$ProjectsImpl _$$ProjectsImplFromJson(Map<String, dynamic> json) =>
+    _$ProjectsImpl(
       items: (json['items'] as List<dynamic>?)
               ?.map((e) => ProjectItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );
 
-Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
+Map<String, dynamic> _$$ProjectsImplToJson(_$ProjectsImpl instance) =>
     <String, dynamic>{
       'items': instance.items,
     };

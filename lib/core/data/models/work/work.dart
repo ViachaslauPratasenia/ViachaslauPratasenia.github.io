@@ -28,7 +28,7 @@ class WorkItem with _$WorkItem {
     @Default('') String companyUrl,
     @Default('') String description,
     @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp) DateTime? startPeriod,
-    @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp) DateTime? endPeriod,
+    @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable) DateTime? endPeriod,
     @Default([]) List<WorkLink> links,
   }) = _WorkItem;
 

@@ -4,14 +4,14 @@ part 'project.freezed.dart';
 part 'project.g.dart';
 
 @freezed
-class Project with _$Project {
+class Projects with _$Projects {
   // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory Project({
+  const factory Projects({
     @Default([]) List<ProjectItem> items,
-  }) = _Project;
+  }) = _Projects;
 
-  factory Project.fromJson(Map<String, dynamic> json) => _$ProjectFromJson(json);
+  factory Projects.fromJson(Map<String, dynamic> json) => _$ProjectsFromJson(json);
 }
 
 @freezed

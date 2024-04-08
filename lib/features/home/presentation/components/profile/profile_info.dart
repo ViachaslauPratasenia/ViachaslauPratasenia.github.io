@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/const/assets/assets.gen.dart';
+import 'package:personal_website/core/data/models/profile/profile.dart';
+import 'package:personal_website/core/data/models/work/work.dart';
 import 'package:personal_website/core/orientation_provider.dart';
-import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/features/home/presentation/components/base_block.dart';
 import 'package:personal_website/features/home/presentation/components/profile/tech_item.dart';
 import 'package:personal_website/features/home/presentation/components/section_header.dart';
@@ -10,13 +11,16 @@ import 'package:personal_website/theme/app_colors.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 
 class ProfileInfo extends StatelessWidget {
-  final DeveloperProfile developerProfile;
+  final Profile profile;
+  final Work work;
 
-  const ProfileInfo({super.key, required this.developerProfile});
+  const ProfileInfo({super.key, required this.profile, required this.work});
 
   @override
   Widget build(BuildContext context) {
     final orientation = OrientationProvider.of(context).orientation;
+
+    final fullDescription = profile.fullDescription.replaceAll('\\n', '\n');
 
     return VisibilityBlock(
       blockKey: const Key('profile-info'),
@@ -32,7 +36,7 @@ class ProfileInfo extends StatelessWidget {
                     const SectionHeader(index: '01.', title: 'About me'),
                     const SizedBox(height: 16),
                     Text(
-                      developerProfile.aboutMe,
+                      fullDescription,
                       style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
                     ),
                     const SizedBox(height: 24),
@@ -40,7 +44,7 @@ class ProfileInfo extends StatelessWidget {
                       width: orientation == Orientation.landscape
                           ? constraints.maxWidth * 0.8
                           : constraints.maxWidth,
-                      child: _TechItems(items: developerProfile.recentTechnologies),
+                      child: _TechItems(items: work.latestTechnologies),
                     ),
                     if (orientation == Orientation.portrait) ...[
                       const SizedBox(height: 32),

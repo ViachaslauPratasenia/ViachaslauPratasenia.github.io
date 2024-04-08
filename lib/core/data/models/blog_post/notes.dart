@@ -4,30 +4,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:personal_website/core/utils/date_time_utils.dart';
 
-part 'blog_post.freezed.dart';
+part 'notes.freezed.dart';
 
-part 'blog_post.g.dart';
+part 'notes.g.dart';
 
 @freezed
-class BlogPost with _$BlogPost {
+class Notes with _$Notes {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory BlogPost({
-    @Default([]) List<BlogPostItem> items,
-  }) = _BlogPost;
+  const factory Notes({
+    @Default([]) List<NoteItem> items,
+  }) = _Notes;
 
-  factory BlogPost.fromJson(Map<String, dynamic> json) => _$BlogPostFromJson(json);
+  factory Notes.fromJson(Map<String, dynamic> json) => _$NotesFromJson(json);
 }
 
 @freezed
-class BlogPostItem with _$BlogPostItem {
+class NoteItem with _$NoteItem {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory BlogPostItem({
+  const factory NoteItem({
     @Default('') String title,
     @Default('') String description,
     @Default('') String url,
     @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp) DateTime? date,
     @Default([]) List<String> tags,
-  }) = _BlogPostItem;
+  }) = _NoteItem;
 
-  factory BlogPostItem.fromJson(Map<String, dynamic> json) => _$BlogPostItemFromJson(json);
+  factory NoteItem.fromJson(Map<String, dynamic> json) => _$NoteItemFromJson(json);
 }

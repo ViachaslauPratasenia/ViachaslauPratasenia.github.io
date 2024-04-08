@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'blog_post.dart';
+part of 'notes.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,32 +14,31 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-BlogPost _$BlogPostFromJson(Map<String, dynamic> json) {
-  return _BlogPost.fromJson(json);
+Notes _$NotesFromJson(Map<String, dynamic> json) {
+  return _Notes.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BlogPost {
-  List<BlogPostItem> get items => throw _privateConstructorUsedError;
+mixin _$Notes {
+  List<NoteItem> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BlogPostCopyWith<BlogPost> get copyWith =>
-      throw _privateConstructorUsedError;
+  $NotesCopyWith<Notes> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BlogPostCopyWith<$Res> {
-  factory $BlogPostCopyWith(BlogPost value, $Res Function(BlogPost) then) =
-      _$BlogPostCopyWithImpl<$Res, BlogPost>;
+abstract class $NotesCopyWith<$Res> {
+  factory $NotesCopyWith(Notes value, $Res Function(Notes) then) =
+      _$NotesCopyWithImpl<$Res, Notes>;
   @useResult
-  $Res call({List<BlogPostItem> items});
+  $Res call({List<NoteItem> items});
 }
 
 /// @nodoc
-class _$BlogPostCopyWithImpl<$Res, $Val extends BlogPost>
-    implements $BlogPostCopyWith<$Res> {
-  _$BlogPostCopyWithImpl(this._value, this._then);
+class _$NotesCopyWithImpl<$Res, $Val extends Notes>
+    implements $NotesCopyWith<$Res> {
+  _$NotesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -55,28 +54,27 @@ class _$BlogPostCopyWithImpl<$Res, $Val extends BlogPost>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<BlogPostItem>,
+              as List<NoteItem>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$BlogPostImplCopyWith<$Res>
-    implements $BlogPostCopyWith<$Res> {
-  factory _$$BlogPostImplCopyWith(
-          _$BlogPostImpl value, $Res Function(_$BlogPostImpl) then) =
-      __$$BlogPostImplCopyWithImpl<$Res>;
+abstract class _$$NotesImplCopyWith<$Res> implements $NotesCopyWith<$Res> {
+  factory _$$NotesImplCopyWith(
+          _$NotesImpl value, $Res Function(_$NotesImpl) then) =
+      __$$NotesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<BlogPostItem> items});
+  $Res call({List<NoteItem> items});
 }
 
 /// @nodoc
-class __$$BlogPostImplCopyWithImpl<$Res>
-    extends _$BlogPostCopyWithImpl<$Res, _$BlogPostImpl>
-    implements _$$BlogPostImplCopyWith<$Res> {
-  __$$BlogPostImplCopyWithImpl(
-      _$BlogPostImpl _value, $Res Function(_$BlogPostImpl) _then)
+class __$$NotesImplCopyWithImpl<$Res>
+    extends _$NotesCopyWithImpl<$Res, _$NotesImpl>
+    implements _$$NotesImplCopyWith<$Res> {
+  __$$NotesImplCopyWithImpl(
+      _$NotesImpl _value, $Res Function(_$NotesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -84,11 +82,11 @@ class __$$BlogPostImplCopyWithImpl<$Res>
   $Res call({
     Object? items = null,
   }) {
-    return _then(_$BlogPostImpl(
+    return _then(_$NotesImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<BlogPostItem>,
+              as List<NoteItem>,
     ));
   }
 }
@@ -96,17 +94,16 @@ class __$$BlogPostImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$BlogPostImpl implements _BlogPost {
-  const _$BlogPostImpl({final List<BlogPostItem> items = const []})
-      : _items = items;
+class _$NotesImpl implements _Notes {
+  const _$NotesImpl({final List<NoteItem> items = const []}) : _items = items;
 
-  factory _$BlogPostImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BlogPostImplFromJson(json);
+  factory _$NotesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NotesImplFromJson(json);
 
-  final List<BlogPostItem> _items;
+  final List<NoteItem> _items;
   @override
   @JsonKey()
-  List<BlogPostItem> get items {
+  List<NoteItem> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -114,14 +111,14 @@ class _$BlogPostImpl implements _BlogPost {
 
   @override
   String toString() {
-    return 'BlogPost(items: $items)';
+    return 'Notes(items: $items)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlogPostImpl &&
+            other is _$NotesImpl &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
@@ -133,37 +130,36 @@ class _$BlogPostImpl implements _BlogPost {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlogPostImplCopyWith<_$BlogPostImpl> get copyWith =>
-      __$$BlogPostImplCopyWithImpl<_$BlogPostImpl>(this, _$identity);
+  _$$NotesImplCopyWith<_$NotesImpl> get copyWith =>
+      __$$NotesImplCopyWithImpl<_$NotesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BlogPostImplToJson(
+    return _$$NotesImplToJson(
       this,
     );
   }
 }
 
-abstract class _BlogPost implements BlogPost {
-  const factory _BlogPost({final List<BlogPostItem> items}) = _$BlogPostImpl;
+abstract class _Notes implements Notes {
+  const factory _Notes({final List<NoteItem> items}) = _$NotesImpl;
 
-  factory _BlogPost.fromJson(Map<String, dynamic> json) =
-      _$BlogPostImpl.fromJson;
+  factory _Notes.fromJson(Map<String, dynamic> json) = _$NotesImpl.fromJson;
 
   @override
-  List<BlogPostItem> get items;
+  List<NoteItem> get items;
   @override
   @JsonKey(ignore: true)
-  _$$BlogPostImplCopyWith<_$BlogPostImpl> get copyWith =>
+  _$$NotesImplCopyWith<_$NotesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-BlogPostItem _$BlogPostItemFromJson(Map<String, dynamic> json) {
-  return _BlogPostItem.fromJson(json);
+NoteItem _$NoteItemFromJson(Map<String, dynamic> json) {
+  return _NoteItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BlogPostItem {
+mixin _$NoteItem {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
@@ -173,15 +169,14 @@ mixin _$BlogPostItem {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BlogPostItemCopyWith<BlogPostItem> get copyWith =>
+  $NoteItemCopyWith<NoteItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BlogPostItemCopyWith<$Res> {
-  factory $BlogPostItemCopyWith(
-          BlogPostItem value, $Res Function(BlogPostItem) then) =
-      _$BlogPostItemCopyWithImpl<$Res, BlogPostItem>;
+abstract class $NoteItemCopyWith<$Res> {
+  factory $NoteItemCopyWith(NoteItem value, $Res Function(NoteItem) then) =
+      _$NoteItemCopyWithImpl<$Res, NoteItem>;
   @useResult
   $Res call(
       {String title,
@@ -192,9 +187,9 @@ abstract class $BlogPostItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BlogPostItemCopyWithImpl<$Res, $Val extends BlogPostItem>
-    implements $BlogPostItemCopyWith<$Res> {
-  _$BlogPostItemCopyWithImpl(this._value, this._then);
+class _$NoteItemCopyWithImpl<$Res, $Val extends NoteItem>
+    implements $NoteItemCopyWith<$Res> {
+  _$NoteItemCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -236,11 +231,11 @@ class _$BlogPostItemCopyWithImpl<$Res, $Val extends BlogPostItem>
 }
 
 /// @nodoc
-abstract class _$$BlogPostItemImplCopyWith<$Res>
-    implements $BlogPostItemCopyWith<$Res> {
-  factory _$$BlogPostItemImplCopyWith(
-          _$BlogPostItemImpl value, $Res Function(_$BlogPostItemImpl) then) =
-      __$$BlogPostItemImplCopyWithImpl<$Res>;
+abstract class _$$NoteItemImplCopyWith<$Res>
+    implements $NoteItemCopyWith<$Res> {
+  factory _$$NoteItemImplCopyWith(
+          _$NoteItemImpl value, $Res Function(_$NoteItemImpl) then) =
+      __$$NoteItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -252,11 +247,11 @@ abstract class _$$BlogPostItemImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BlogPostItemImplCopyWithImpl<$Res>
-    extends _$BlogPostItemCopyWithImpl<$Res, _$BlogPostItemImpl>
-    implements _$$BlogPostItemImplCopyWith<$Res> {
-  __$$BlogPostItemImplCopyWithImpl(
-      _$BlogPostItemImpl _value, $Res Function(_$BlogPostItemImpl) _then)
+class __$$NoteItemImplCopyWithImpl<$Res>
+    extends _$NoteItemCopyWithImpl<$Res, _$NoteItemImpl>
+    implements _$$NoteItemImplCopyWith<$Res> {
+  __$$NoteItemImplCopyWithImpl(
+      _$NoteItemImpl _value, $Res Function(_$NoteItemImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -268,7 +263,7 @@ class __$$BlogPostItemImplCopyWithImpl<$Res>
     Object? date = freezed,
     Object? tags = null,
   }) {
-    return _then(_$BlogPostItemImpl(
+    return _then(_$NoteItemImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -296,8 +291,8 @@ class __$$BlogPostItemImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$BlogPostItemImpl implements _BlogPostItem {
-  const _$BlogPostItemImpl(
+class _$NoteItemImpl implements _NoteItem {
+  const _$NoteItemImpl(
       {this.title = '',
       this.description = '',
       this.url = '',
@@ -305,8 +300,8 @@ class _$BlogPostItemImpl implements _BlogPostItem {
       final List<String> tags = const []})
       : _tags = tags;
 
-  factory _$BlogPostItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BlogPostItemImplFromJson(json);
+  factory _$NoteItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NoteItemImplFromJson(json);
 
   @override
   @JsonKey()
@@ -331,14 +326,14 @@ class _$BlogPostItemImpl implements _BlogPostItem {
 
   @override
   String toString() {
-    return 'BlogPostItem(title: $title, description: $description, url: $url, date: $date, tags: $tags)';
+    return 'NoteItem(title: $title, description: $description, url: $url, date: $date, tags: $tags)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlogPostItemImpl &&
+            other is _$NoteItemImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -355,28 +350,28 @@ class _$BlogPostItemImpl implements _BlogPostItem {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlogPostItemImplCopyWith<_$BlogPostItemImpl> get copyWith =>
-      __$$BlogPostItemImplCopyWithImpl<_$BlogPostItemImpl>(this, _$identity);
+  _$$NoteItemImplCopyWith<_$NoteItemImpl> get copyWith =>
+      __$$NoteItemImplCopyWithImpl<_$NoteItemImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BlogPostItemImplToJson(
+    return _$$NoteItemImplToJson(
       this,
     );
   }
 }
 
-abstract class _BlogPostItem implements BlogPostItem {
-  const factory _BlogPostItem(
+abstract class _NoteItem implements NoteItem {
+  const factory _NoteItem(
       {final String title,
       final String description,
       final String url,
       @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
       final DateTime? date,
-      final List<String> tags}) = _$BlogPostItemImpl;
+      final List<String> tags}) = _$NoteItemImpl;
 
-  factory _BlogPostItem.fromJson(Map<String, dynamic> json) =
-      _$BlogPostItemImpl.fromJson;
+  factory _NoteItem.fromJson(Map<String, dynamic> json) =
+      _$NoteItemImpl.fromJson;
 
   @override
   String get title;
@@ -391,6 +386,6 @@ abstract class _BlogPostItem implements BlogPostItem {
   List<String> get tags;
   @override
   @JsonKey(ignore: true)
-  _$$BlogPostItemImplCopyWith<_$BlogPostItemImpl> get copyWith =>
+  _$$NoteItemImplCopyWith<_$NoteItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

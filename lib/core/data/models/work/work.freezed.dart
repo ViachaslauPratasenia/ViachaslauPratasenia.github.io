@@ -198,7 +198,7 @@ mixin _$WorkItem {
   String get description => throw _privateConstructorUsedError;
   @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
   DateTime? get startPeriod => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
+  @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
   DateTime? get endPeriod => throw _privateConstructorUsedError;
   List<WorkLink> get links => throw _privateConstructorUsedError;
 
@@ -220,7 +220,7 @@ abstract class $WorkItemCopyWith<$Res> {
       String description,
       @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
       DateTime? startPeriod,
-      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
+      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
       DateTime? endPeriod,
       List<WorkLink> links});
 }
@@ -294,7 +294,7 @@ abstract class _$$WorkItemImplCopyWith<$Res>
       String description,
       @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
       DateTime? startPeriod,
-      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
+      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
       DateTime? endPeriod,
       List<WorkLink> links});
 }
@@ -361,7 +361,8 @@ class _$WorkItemImpl implements _WorkItem {
       this.companyUrl = '',
       this.description = '',
       @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp) this.startPeriod,
-      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp) this.endPeriod,
+      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
+      this.endPeriod,
       final List<WorkLink> links = const []})
       : _links = links;
 
@@ -384,7 +385,7 @@ class _$WorkItemImpl implements _WorkItem {
   @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
   final DateTime? startPeriod;
   @override
-  @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
+  @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
   final DateTime? endPeriod;
   final List<WorkLink> _links;
   @override
@@ -453,7 +454,7 @@ abstract class _WorkItem implements WorkItem {
       final String description,
       @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
       final DateTime? startPeriod,
-      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
+      @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
       final DateTime? endPeriod,
       final List<WorkLink> links}) = _$WorkItemImpl;
 
@@ -472,7 +473,7 @@ abstract class _WorkItem implements WorkItem {
   @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
   DateTime? get startPeriod;
   @override
-  @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestamp)
+  @JsonKey(fromJson: DateTimeUtils.dateTimeFromTimestampNullable)
   DateTime? get endPeriod;
   @override
   List<WorkLink> get links;
