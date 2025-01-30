@@ -18,16 +18,12 @@ jobs:
       - run: flutter pub get
       - run: flutter pub run build_runner build -d  
       - run: flutter build web --web-renderer canvaskit --release  
-      - name: Clean Git
-        run: |
-          git config --global --unset user.name
-          git config --global --unset user.email
       - run: |
           cd build/web
           git init
           git config --global user.email "viachaslau.pratasenia@gmail.com"
           git config --global user.name "viachaslau_pratasenia"
-          git remote add origin https://${{ secrets.COMMIT_TOKEN }}@github.com/ViachaslauPratasenia/ViachaslauPratasenia.github.io.git
+          git remote add origin https://viachaslau_pratasenia:${{ secrets.COMMIT_TOKEN }}@github.com/ViachaslauPratasenia/ViachaslauPratasenia.github.io.git
           git checkout -b gh-pages
           echo "pratasenia.dev" > CNAME
           git add --all
