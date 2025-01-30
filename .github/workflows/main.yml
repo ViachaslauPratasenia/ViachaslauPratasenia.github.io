@@ -23,6 +23,6 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PAT }}
+          personal_token: ${{ secrets.GH_PAGES_V1 }}
           publish_dir: ./build/web
           cname: pratasenia.dev
