@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:personal_website/core/locator.dart';
+import 'package:personal_website/features/admin/auth/domain/use_cases/admin_auth_cubit.dart';
+import 'package:personal_website/features/admin/auth/presentation/admin_auth_screen.dart';
 import 'package:personal_website/features/change_theme/domain/use_case/theme_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/presentation/home_page.dart';
@@ -23,6 +25,10 @@ class _AppState extends State<App> {
         path: HomePage.routeName,
         builder: (context, state) => const HomePage(),
       ),
+      GoRoute(
+        path: AdminAuthScreen.routeName,
+        builder: (context, state) => const AdminAuthScreen(),
+      ),
     ],
   );
 
@@ -32,6 +38,7 @@ class _AppState extends State<App> {
       providers: [
         BlocProvider<ProfileCubit>(create: (context) => locator.get()),
         BlocProvider<ThemeCubit>(create: (context) => locator.get()),
+        BlocProvider<AdminAuthCubit>(create: (context) => locator.get()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(builder: (context, themeMode) {
         return MaterialApp.router(

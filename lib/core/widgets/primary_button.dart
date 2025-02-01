@@ -7,35 +7,40 @@ class PrimaryButton extends StatelessWidget {
   final void Function() onPressed;
   final String title;
   final String? analyticsName;
+  final double? width;
 
   const PrimaryButton({
     super.key,
     required this.title,
     required this.onPressed,
     this.analyticsName,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.background,
-        foregroundColor: AppColors.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: const BorderSide(color: AppColors.primary),
+    return SizedBox(
+      width: width,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.background,
+          foregroundColor: AppColors.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(color: AppColors.primary),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-      ),
-      onPressed: () {
-        if (analyticsName != null) {
-          FirebaseAnalyticsWeb().logEvent(name: analyticsName!);
-        }
-        onPressed();
-      },
-      child: Text(
-        title,
-        style: context.textTheme.titleMedium?.copyWith(color: AppColors.primary, height: 1),
+        onPressed: () {
+          if (analyticsName != null) {
+            FirebaseAnalyticsWeb().logEvent(name: analyticsName!);
+          }
+          onPressed();
+        },
+        child: Text(
+          title,
+          style: context.textTheme.titleMedium?.copyWith(color: AppColors.primary, height: 1),
+        ),
       ),
     );
   }

@@ -128,4 +128,15 @@ class PersonalInfoRepository {
       // todo: send to crashlytics
     }
   }
+
+  Future<void> setNewName() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(FirebaseKeys.personalData)
+          .doc(FirebaseKeys.profile)
+          .update({'name': 'Teeeest'});
+    } catch (e) {
+      print('asdas');
+    }
+  }
 }

@@ -36,4 +36,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(state.copyWith(isLoading: false));
     }
   }
+
+  Future<void> setNewName() async {
+    await personalInfoRepository.setNewName();
+  }
 }

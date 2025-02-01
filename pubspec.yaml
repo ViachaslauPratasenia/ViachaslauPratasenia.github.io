@@ -68,6 +68,7 @@ dependencies:
   firebase_analytics_web: ^0.5.7
   firebase_core: ^2.16.0
   cloud_firestore: ^4.16.0
+  firebase_auth: ^4.4.0
 
   visibility_detector: ^0.4.0+2
 
