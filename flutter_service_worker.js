@@ -13,8 +13,8 @@ const RESOURCES = {"canvaskit/skwasm.js": "ac0f73826b925320a1e9b0d3fd7da61c",
 "canvaskit/chromium/canvaskit.wasm": "ea5ab288728f7200f398f60089048b48",
 "canvaskit/chromium/canvaskit.js": "b7ba6d908089f706772b2007c37e6da4",
 "canvaskit/chromium/canvaskit.js.symbols": "e115ddcfad5f5b98a90e389433606502",
-"index.html": "6c3d74ecbf81f4b9b9358d4d8aa57f79",
-"/": "6c3d74ecbf81f4b9b9358d4d8aa57f79",
+"index.html": "097ee4ad1bcd3bb9728878f04e3461c2",
+"/": "097ee4ad1bcd3bb9728878f04e3461c2",
 "assets/NOTICES": "2b27879f7f4e7da95049908333feea3b",
 "assets/assets/profile.json": "1e7772833dcb4ad18fe1fe1a5c899f32",
 "assets/assets/images/ic_telegram.png": "4305c302184d07fbbb4be6bcdf9fa9b8",
@@ -51,8 +51,8 @@ const RESOURCES = {"canvaskit/skwasm.js": "ac0f73826b925320a1e9b0d3fd7da61c",
 "icons/favicon-16x16.png": "9a468560c73e8c1b8b9d4bb15968b3dc",
 "icons/android-chrome-192x192.png": "3571533b45ce784305755bc7436cd268",
 "manifest.json": "30f76aa6df71a42a4f8f8319e828f5d6",
-"resume.pdf": "a9d75d553f5da7e6c66acd5f6381bef6",
-"flutter_bootstrap.js": "cd8024d0b858c4cdde7f32925470ea1e"};
+"resume.pdf": "bf5b2bfb196a12444595c3ac7a0b9b07",
+"flutter_bootstrap.js": "77d5224647ca07103868780cff574255"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
