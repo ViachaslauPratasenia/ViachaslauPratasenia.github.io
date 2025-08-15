@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: MediaQuery.sizeOf(context).height - tabHeight,
+                          height: MediaQuery.sizeOf(context).height * 1.1 - tabHeight,
                           child: Center(
                             child: AboutInfo(developerProfile: profileState.developerProfile!),
                           ),
