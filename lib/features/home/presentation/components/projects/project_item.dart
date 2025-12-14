@@ -55,7 +55,7 @@ class _ProjectItemPortraitState extends State<_ProjectItemPortrait> {
             width: double.infinity,
             height: _contentSize.height,
             fit: BoxFit.cover,
-            color: AppColors.backgroundSecondary.withOpacity(0.85),
+            color: AppColors.backgroundSecondary.withValues(alpha: 0.85),
             colorBlendMode: BlendMode.srcOver,
           ),
           MeasureSizeWidget(

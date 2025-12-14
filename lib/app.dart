@@ -9,7 +9,7 @@ import 'package:personal_website/features/home/presentation/home_page.dart';
 import 'package:personal_website/theme/theme_controller.dart';
 
 class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   State<App> createState() => _AppState();

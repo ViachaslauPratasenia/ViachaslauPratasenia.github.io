@@ -23,7 +23,7 @@ class ThemeColorsProvider {
         primary: const Color(0xff457B9D),
         secondary: const Color(0xffA8DADC),
         tertiary: const Color(0xffF1FAEE),
-        surface: const Color(0xffF1FAEE).withOpacity(0.65),
+        surface: const Color(0xffF1FAEE).withValues(alpha: 0.65),
         background: const Color(0xff10172A),
         error: const Color(0xffE63946),
       );

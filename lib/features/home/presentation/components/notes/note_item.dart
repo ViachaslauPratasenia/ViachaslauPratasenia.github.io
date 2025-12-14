@@ -25,7 +25,7 @@ class _NoteItemState extends State<NoteItem> {
     final orientation = OrientationProvider.of(context).orientation;
 
     return InkWell(
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       onHover: (hover) {
         setState(() {
           primaryColor = hover ? AppColors.primary : AppColors.textPrimary;
