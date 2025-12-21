@@ -11,6 +11,15 @@ class DeveloperProfileMapper {
       aboutMe: dto.aboutMe ?? '',
       contactMeText: dto.contactMeText ?? '',
       recentTechnologies: dto.recentTechnologies,
+      services: dto.services
+              ?.map((e) => Service(
+                    title: e.title ?? '',
+                    description: e.description ?? '',
+                    icon: e.icon ?? '',
+                    technologies: e.technologies?.whereType<String>().toList() ?? [],
+                  ))
+              .toList() ??
+          [],
       socialLinks: dto.socialLinks
               ?.map(
                 (e) => SocialLink(name: e.name ?? '', url: e.url ?? ''),
