@@ -6,6 +6,7 @@ class DeveloperProfileDto {
   final String? aboutMe;
   final String? contactMeText;
   final List<String> recentTechnologies;
+  final List<ServiceDto>? services;
   final List<SocialLinkDto>? socialLinks;
   final List<WorkExperienceDto>? work;
   final List<ProjectDto>? projects;
@@ -19,6 +20,7 @@ class DeveloperProfileDto {
     this.aboutMe,
     this.contactMeText,
     this.recentTechnologies = const [],
+    this.services,
     this.socialLinks,
     this.work,
     this.projects,
@@ -35,6 +37,9 @@ class DeveloperProfileDto {
       contactMeText: json['contact_me_text'] as String?,
       recentTechnologies:
           (json['recent_technologies'] as List?)?.map((e) => e as String).toList() ?? [],
+      services: (json['services'] as List?)
+          ?.map((e) => ServiceDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
       socialLinks: (json['social_links'] as List?)
           ?.map((e) => SocialLinkDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -161,6 +166,29 @@ class BlogPostDto {
       description: json['description'] as String?,
       tags: (json['tags'] as List?)?.map((e) => e as String).toList(),
       date: json['date'] as String?,
+    );
+  }
+}
+
+class ServiceDto {
+  final String? title;
+  final String? description;
+  final String? icon;
+  final List<String>? technologies;
+
+  ServiceDto({
+    this.title,
+    this.description,
+    this.icon,
+    this.technologies,
+  });
+
+  factory ServiceDto.fromJson(Map<String, dynamic> json) {
+    return ServiceDto(
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      icon: json['icon'] as String?,
+      technologies: (json['technologies'] as List?)?.map((e) => e as String).toList(),
     );
   }
 }

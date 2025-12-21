@@ -13,8 +13,8 @@ class OrientationItemContainer extends StatelessWidget {
       return InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
-        hoverColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.05),
-        highlightColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.1),
+        hoverColor: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.05),
+        highlightColor: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.1),
         child: child,
       );
     }

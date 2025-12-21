@@ -29,7 +29,7 @@ class LinkItem extends StatelessWidget {
 
         launchUrlString(url);
       },
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

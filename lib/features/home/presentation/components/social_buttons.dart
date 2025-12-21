@@ -57,7 +57,7 @@ class _IconState extends State<_Icon> {
     if (socialLinkElement == null) return Container();
 
     return InkWell(
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       onHover: (hover) {
         setState(() => iconColor = hover ? AppColors.primary : AppColors.textPrimary);
       },

@@ -21,11 +21,10 @@ class ThemeController {
   static ThemeData darkTheme = ThemeData(
     textTheme: defaultTextTheme,
     colorScheme: ColorScheme.dark(
-      background: ThemeColorsProvider.darkColors().background,
+      surface: ThemeColorsProvider.darkColors().background,
       primary: ThemeColorsProvider.darkColors().primary,
       secondary: ThemeColorsProvider.darkColors().secondary,
       tertiary: ThemeColorsProvider.darkColors().tertiary,
-      surface: ThemeColorsProvider.darkColors().surface,
       error: ThemeColorsProvider.darkColors().error,
     ),
   );
@@ -33,11 +32,10 @@ class ThemeController {
   static ThemeData lightTheme = ThemeData(
     textTheme: defaultTextTheme,
     colorScheme: ColorScheme.dark(
-      background: ThemeColorsProvider.lightColors().background,
+      surface: ThemeColorsProvider.lightColors().background,
       primary: ThemeColorsProvider.lightColors().primary,
       secondary: ThemeColorsProvider.lightColors().secondary,
       tertiary: ThemeColorsProvider.lightColors().tertiary,
-      surface: ThemeColorsProvider.lightColors().surface,
       error: ThemeColorsProvider.lightColors().error,
     ),
   );

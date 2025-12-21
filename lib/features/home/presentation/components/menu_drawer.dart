@@ -4,15 +4,19 @@ import 'package:personal_website/theme/theme_controller.dart';
 
 class MenuDrawer extends StatelessWidget {
   final void Function()? onAboutMeClicked;
+  final void Function()? onServicesClicked;
   final void Function()? onExperienceClicked;
   final void Function()? onWorkClicked;
+  final void Function()? onArticlesClicked;
   final void Function()? onContactClicked;
 
   const MenuDrawer({
     super.key,
     this.onAboutMeClicked,
+    this.onServicesClicked,
     this.onExperienceClicked,
     this.onWorkClicked,
+    this.onArticlesClicked,
     this.onContactClicked,
   });
 
@@ -30,33 +34,51 @@ class MenuDrawer extends StatelessWidget {
                 const Spacer(),
                 _TabItem(
                   index: '1',
-                  title: 'About Me',
+                  title: 'About',
                   onTap: () {
                     Navigator.of(context).pop();
                     onAboutMeClicked?.call();
                   },
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 32),
                 _TabItem(
                   index: '2',
+                  title: 'Services',
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    onServicesClicked?.call();
+                  },
+                ),
+                const SizedBox(height: 32),
+                _TabItem(
+                  index: '3',
                   title: 'Experience',
                   onTap: () {
                     Navigator.of(context).pop();
                     onExperienceClicked?.call();
                   },
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 32),
                 _TabItem(
-                  index: '3',
+                  index: '4',
                   title: 'Projects',
                   onTap: () {
                     Navigator.of(context).pop();
                     onWorkClicked?.call();
                   },
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 32),
                 _TabItem(
-                  index: '4',
+                  index: '5',
+                  title: 'Articles',
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    onArticlesClicked?.call();
+                  },
+                ),
+                const SizedBox(height: 32),
+                _TabItem(
+                  index: '6',
                   title: 'Contact',
                   onTap: () {
                     Navigator.of(context).pop();
@@ -94,7 +116,7 @@ class _TabItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       child: Column(
         children: [
           Text('0$index', style: context.textTheme.bodyMedium?.copyWith(color: AppColors.primary)),

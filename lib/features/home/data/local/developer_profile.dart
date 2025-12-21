@@ -6,6 +6,7 @@ class DeveloperProfile {
   final String aboutMe;
   final String contactMeText;
   final List<String> recentTechnologies;
+  final List<Service> services;
   final List<SocialLink> socialLinks;
   final List<WorkExperience> work;
   final List<Project> projects;
@@ -19,6 +20,7 @@ class DeveloperProfile {
     required this.aboutMe,
     required this.contactMeText,
     required this.recentTechnologies,
+    required this.services,
     required this.socialLinks,
     required this.work,
     required this.projects,
@@ -96,5 +98,19 @@ class BlogPost {
     required this.description,
     required this.tags,
     required this.date,
+  });
+}
+
+class Service {
+  final String title;
+  final String description;
+  final String icon;
+  final List<String> technologies;
+
+  Service({
+    required this.title,
+    required this.description,
+    required this.icon,
+    required this.technologies,
   });
 }
