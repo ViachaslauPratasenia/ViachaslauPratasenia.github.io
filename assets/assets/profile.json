@@ -13,6 +13,72 @@
     "Stripe",
     "RevenueCat"
   ],
+  "services": [
+    {
+      "title": "Mobile Applications",
+      "description": "Building cross-platform mobile apps for Android and iOS using Flutter. From MVP to enterprise-level applications with clean architecture and modern design.",
+      "icon": "phone_android",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "REST APIs"
+      ]
+    },
+    {
+      "title": "Web Development",
+      "description": "Creating responsive and performant web applications using Flutter for web. Single codebase for web, mobile, and desktop platforms.",
+      "icon": "language",
+      "technologies": [
+        "Flutter Web",
+        "JavaScript",
+        "Responsive Design"
+      ]
+    },
+    {
+      "title": "CRM Systems",
+      "description": "Developing custom CRM solutions tailored to your business needs. Integration with existing tools and automation of business processes.",
+      "icon": "business",
+      "technologies": [
+        "n8n",
+        "REST APIs",
+        "Database Design",
+        "Automation"
+      ]
+    },
+    {
+      "title": "E-commerce Solutions",
+      "description": "Building complete e-commerce platforms with payment integration, inventory management, and user-friendly interfaces.",
+      "icon": "shopping_cart",
+      "technologies": [
+        "Stripe",
+        "RevenueCat",
+        "Payment Gateways",
+        "Flutter"
+      ]
+    },
+    {
+      "title": "Desktop Applications",
+      "description": "Creating desktop applications for Windows, macOS, and Linux with native performance and modern UI/UX.",
+      "icon": "desktop_windows",
+      "technologies": [
+        "Flutter Desktop",
+        "Cross-platform",
+        "Native Features"
+      ]
+    },
+    {
+      "title": "UI/UX Design",
+      "description": "Designing beautiful and intuitive user interfaces with focus on user experience. Prototyping and creating design systems.",
+      "icon": "brush",
+      "technologies": [
+        "Figma",
+        "Design Systems",
+        "Prototyping",
+        "Accessibility"
+      ]
+    }
+  ],
   "social_links": [
     {
       "name": "linkedin",
