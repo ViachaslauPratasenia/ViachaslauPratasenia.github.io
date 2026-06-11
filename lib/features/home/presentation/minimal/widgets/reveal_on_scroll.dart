@@ -18,6 +18,7 @@ class RevealOnScroll extends StatefulWidget {
 
 class _RevealOnScrollState extends State<RevealOnScroll> {
   bool _shown = false;
+  final Key _detectorKey = UniqueKey();
 
   void _onVisible(VisibilityInfo info) {
     if (!_shown && info.visibleFraction > 0.1 && mounted) {
@@ -28,7 +29,7 @@ class _RevealOnScrollState extends State<RevealOnScroll> {
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: ValueKey('reveal-${identityHashCode(widget.child)}'),
+      key: _detectorKey,
       onVisibilityChanged: _onVisible,
       child: AnimatedSlide(
         offset: _shown ? Offset.zero : const Offset(0, 0.06),
