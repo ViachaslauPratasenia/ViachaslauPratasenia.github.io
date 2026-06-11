@@ -11,11 +11,9 @@ class MinimalHero extends StatelessWidget {
 
   const MinimalHero({super.key, required this.profile, this.onDownloadCv});
 
-  /// Short hero headline from the design mockup. Hardcoded for now (the profile
-  /// model has no dedicated short-headline field; `subtitle` is the kicker and
-  /// `fullDescription`/`aboutMe` belong to the About section).
-  static const _headline =
-      'I build things with Flutter and lead teams to create amazing products.';
+  /// Role kicker shown above the headline (mockup `.av`). Static label — the
+  /// profile model has no dedicated role field; `subtitle` is the headline.
+  static const _role = 'Flutter Developer · Mobile Team Lead';
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +36,11 @@ class MinimalHero extends StatelessWidget {
                 children: [
                   Container(width: 28, height: 1, color: colors.fg),
                   const SizedBox(width: 12),
-                  MonoLabel(profile.subtitle, color: colors.muted, size: 11),
+                  MonoLabel(_role, color: colors.muted, size: 11),
                 ],
               ),
               const SizedBox(height: 40),
-              Text(_headline, style: MinimalTypography.h1(colors.fg, size: h1Size)),
+              Text(profile.subtitle, style: MinimalTypography.h1(colors.fg, size: h1Size)),
               const SizedBox(height: 44),
               Wrap(
                 spacing: 40,

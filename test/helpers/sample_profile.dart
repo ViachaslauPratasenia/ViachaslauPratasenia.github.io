@@ -3,7 +3,7 @@ import 'package:personal_website/features/home/data/local/developer_profile.dart
 DeveloperProfile sampleProfile() => DeveloperProfile(
       name: 'Viachaslau Pratasenia',
       email: 'viachaslau.pratasenia@gmail.com',
-      subtitle: 'Flutter Developer · Mobile Team Lead',
+      subtitle: 'I build things with Flutter and lead teams to create amazing products.',
       fullDescription:
           'I build things with Flutter and lead teams to create amazing products.',
       aboutMe:
