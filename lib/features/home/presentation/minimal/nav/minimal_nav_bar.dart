@@ -70,7 +70,7 @@ class MinimalNavBar extends StatelessWidget {
                                 ),
                               ),
                             ),
-                        const SizedBox(width: 24),
+                        if (!narrow) const SizedBox(width: 24),
                         _toggle(context),
                       ],
                     ),
@@ -105,6 +105,8 @@ class MinimalNavBar extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: colors.muted, width: 1.5),
                 gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                   colors: [colors.muted, colors.muted, Colors.transparent, Colors.transparent],
                   stops: const [0, 0.5, 0.5, 1],
                 ),
