@@ -21,6 +21,6 @@ abstract class MinimalTheme {
     );
   }
 
-  static ThemeData light = _build(MinimalColors.light, Brightness.light);
-  static ThemeData dark = _build(MinimalColors.dark, Brightness.dark);
+  static final ThemeData light = _build(MinimalColors.light, Brightness.light);
+  static final ThemeData dark = _build(MinimalColors.dark, Brightness.dark);
 }
