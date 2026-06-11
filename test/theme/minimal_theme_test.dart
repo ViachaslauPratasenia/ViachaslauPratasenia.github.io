@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:personal_website/theme/minimal/minimal_colors.dart';
 import 'package:personal_website/theme/minimal/minimal_theme.dart';
