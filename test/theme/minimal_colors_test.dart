@@ -30,4 +30,31 @@ void main() {
       expect(c.opacity, closeTo(0.5, 0.01));
     });
   });
+
+  group('MinimalColors palettes', () {
+    test('light bg is lighter than dark bg', () {
+      final light = MinimalColors.light;
+      final dark = MinimalColors.dark;
+      expect(light.bg.computeLuminance(), greaterThan(dark.bg.computeLuminance()));
+    });
+
+    test('light fg is darker than light bg (readable)', () {
+      final light = MinimalColors.light;
+      expect(light.fg.computeLuminance(), lessThan(light.bg.computeLuminance()));
+    });
+
+    test('navbg is semi-transparent bg', () {
+      expect(MinimalColors.light.navbg.opacity, closeTo(0.8, 0.05));
+    });
+
+    test('lerp returns a MinimalColors', () {
+      final mixed = MinimalColors.light.lerp(MinimalColors.dark, 0.5);
+      expect(mixed, isA<MinimalColors>());
+    });
+
+    test('dot token is red-ish in both themes', () {
+      expect(MinimalColors.light.dot.red, greaterThan(MinimalColors.light.dot.blue));
+      expect(MinimalColors.dark.dot.red, greaterThan(MinimalColors.dark.dot.blue));
+    });
+  });
 }
