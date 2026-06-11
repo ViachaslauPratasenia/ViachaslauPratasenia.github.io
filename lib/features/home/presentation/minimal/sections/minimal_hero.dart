@@ -32,8 +32,7 @@ class MinimalHero extends StatelessWidget {
                 children: [
                   Container(width: 28, height: 1, color: colors.fg),
                   const SizedBox(width: 12),
-                  Text(profile.subtitle,
-                      style: MinimalTypography.monoLabel(colors.muted, size: 11)),
+                  MonoLabel(profile.subtitle, color: colors.muted, size: 11),
                 ],
               ),
               const SizedBox(height: 40),

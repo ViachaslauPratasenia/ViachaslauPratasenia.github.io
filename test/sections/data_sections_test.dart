@@ -13,13 +13,21 @@ Widget _host(Widget child) => MaterialApp(
       home: Scaffold(body: SingleChildScrollView(child: child)),
     );
 
+bool _richTextContains(WidgetTester tester, String needle) {
+  for (final w in tester.widgetList<RichText>(find.byType(RichText))) {
+    final span = w.text;
+    if (span is TextSpan && (span.toPlainText()).contains(needle)) return true;
+  }
+  return false;
+}
+
 void main() {
   setUp(() => VisibilityDetectorController.instance.updateInterval = Duration.zero);
   final p = sampleProfile();
 
   testWidgets('Hero shows subtitle and headline', (tester) async {
     await tester.pumpWidget(_host(MinimalHero(profile: p)));
-    expect(find.textContaining('Mobile Team Lead'), findsWidgets);
+    expect(find.textContaining('MOBILE TEAM LEAD'), findsWidgets);
     expect(find.textContaining('build things with Flutter'), findsOneWidget);
   });
 
@@ -30,8 +38,8 @@ void main() {
 
   testWidgets('Skills shows a recent technology and a service', (tester) async {
     await tester.pumpWidget(_host(MinimalSkills(profile: p)));
-    expect(find.textContaining('Flutter'), findsWidgets);
-    expect(find.textContaining('Mobile Apps'), findsWidgets);
+    expect(_richTextContains(tester, 'Flutter'), isTrue);
+    expect(_richTextContains(tester, 'Mobile Apps'), isTrue);
   });
 
   testWidgets('Contact shows social link names', (tester) async {

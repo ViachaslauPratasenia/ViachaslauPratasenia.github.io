@@ -43,9 +43,17 @@ class MinimalSkills extends StatelessWidget {
         children: [
           MonoLabel(title, color: colors.faint, size: 10.5),
           const SizedBox(height: 12),
-          Text(
-            items.join('  ·  '),
-            style: MinimalTypography.heading(colors.fg, size: 16),
+          Text.rich(
+            TextSpan(
+              style: MinimalTypography.heading(colors.fg, size: 16),
+              children: [
+                for (var i = 0; i < items.length; i++) ...[
+                  TextSpan(text: items[i]),
+                  if (i < items.length - 1)
+                    TextSpan(text: '  ·  ', style: TextStyle(color: colors.faint)),
+                ],
+              ],
+            ),
           ),
         ],
       ),
