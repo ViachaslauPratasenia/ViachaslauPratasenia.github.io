@@ -12,18 +12,27 @@ class MinimalAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.minimal;
-    final paragraphs = profile.fullDescription.split('\n').where((s) => s.trim().isNotEmpty);
+    final aboutParas = profile.aboutMe
+        .split('\n')
+        .map((s) => s.trim())
+        .where((s) => s.isNotEmpty)
+        .toList();
+    final lede = aboutParas.isNotEmpty ? aboutParas.first : '';
+    final rest = aboutParas.skip(1).toList();
+
     return MinimalSection(
       label: 'About',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(profile.aboutMe, style: MinimalTypography.lede(colors.fg)),
+          Text(lede, style: MinimalTypography.lede(colors.fg)),
           const SizedBox(height: 28),
-          for (final para in paragraphs) ...[
-            Text(para.trim(), style: MinimalTypography.prose(colors.muted)),
+          for (final para in rest) ...[
+            Text(para, style: MinimalTypography.prose(colors.muted)),
             const SizedBox(height: 16),
           ],
+          if (profile.fullDescription.trim().isNotEmpty)
+            Text(profile.fullDescription.trim(), style: MinimalTypography.prose(colors.muted)),
         ],
       ),
     );

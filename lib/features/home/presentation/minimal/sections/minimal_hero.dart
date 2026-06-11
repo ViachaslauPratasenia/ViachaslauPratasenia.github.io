@@ -11,12 +11,18 @@ class MinimalHero extends StatelessWidget {
 
   const MinimalHero({super.key, required this.profile, this.onDownloadCv});
 
+  /// Short hero headline from the design mockup. Hardcoded for now (the profile
+  /// model has no dedicated short-headline field; `subtitle` is the kicker and
+  /// `fullDescription`/`aboutMe` belong to the About section).
+  static const _headline =
+      'I build things with Flutter and lead teams to create amazing products.';
+
   @override
   Widget build(BuildContext context) {
     final colors = context.minimal;
     final width = MediaQuery.sizeOf(context).width;
     final narrow = width < 640;
-    final h1Size = width.clamp(360, 1000) / 1000 * 22 + 38; // ~38..60
+    final h1Size = width.clamp(360, 1000) / 1000 * 22 + 38; // ~46..60
 
     return Center(
       child: ConstrainedBox(
@@ -36,7 +42,7 @@ class MinimalHero extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 40),
-              Text(profile.fullDescription, style: MinimalTypography.h1(colors.fg, size: h1Size)),
+              Text(_headline, style: MinimalTypography.h1(colors.fg, size: h1Size)),
               const SizedBox(height: 44),
               Wrap(
                 spacing: 40,
