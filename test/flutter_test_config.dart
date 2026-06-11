@@ -18,6 +18,7 @@ import 'package:flutter_test/flutter_test.dart';
 Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  // Path is relative to the project root, which is the CWD `flutter test` uses.
   final fontBytes = File('test/fixtures/test_font.ttf').readAsBytesSync();
 
   // google_fonts resolves an asset by matching the requested API filename
