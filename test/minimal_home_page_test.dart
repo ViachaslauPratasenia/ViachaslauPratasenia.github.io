@@ -41,6 +41,12 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
+  testWidgets('shows error fallback when profile is null and not loading', (tester) async {
+    final nullState = ProfileState.initial().copyWith(isLoading: false);
+    await tester.pumpWidget(host(nullState, ThemeCubit()));
+    expect(find.text('Something went wrong.'), findsOneWidget);
+  });
+
   testWidgets('renders sections when profile loaded', (tester) async {
     tester.view.physicalSize = const Size(1200, 2400);
     tester.view.devicePixelRatio = 1.0;
