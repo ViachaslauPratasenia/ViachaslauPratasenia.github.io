@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:personal_website/core/locator.dart';
 import 'package:personal_website/features/change_theme/domain/use_case/theme_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
-import 'package:personal_website/features/home/presentation/home_page.dart';
-import 'package:personal_website/theme/theme_controller.dart';
+import 'package:personal_website/features/home/presentation/minimal/minimal_home_page.dart';
+import 'package:personal_website/theme/minimal/minimal_theme.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -18,11 +18,11 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   late final _router = GoRouter(
     navigatorKey: GlobalKey(),
-    initialLocation: HomePage.routeName,
+    initialLocation: MinimalHomePage.routeName,
     routes: [
       GoRoute(
-        path: HomePage.routeName,
-        builder: (context, state) => const HomePage(),
+        path: MinimalHomePage.routeName,
+        builder: (context, state) => const MinimalHomePage(),
       ),
     ],
   );
@@ -40,9 +40,9 @@ class _AppState extends State<App> {
           return MaterialApp.router(
             title: 'Viachaslau Pratasenia',
             routerConfig: _router,
-            theme: ThemeController.lightTheme,
-            darkTheme: ThemeController.darkTheme,
-            themeMode: ThemeMode.dark,
+            theme: MinimalTheme.light,
+            darkTheme: MinimalTheme.dark,
+            themeMode: themeMode,
             debugShowCheckedModeBanner: false,
           );
         }),
