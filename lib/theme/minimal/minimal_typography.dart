@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 /// Typography for the minimal design.
 /// Sans = Inter, Mono = JetBrains Mono.
 abstract class MinimalTypography {
-  static TextStyle sans(Color color) => GoogleFonts.inter(color: color);
   static TextStyle mono(Color color) => GoogleFonts.jetBrainsMono(color: color);
 
   /// Hero headline. Caller passes a responsive [size] (clamp 38..60).

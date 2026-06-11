@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:personal_website/const/const.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
 import 'package:personal_website/theme/minimal/minimal_colors.dart';
 import 'package:personal_website/theme/minimal/minimal_typography.dart';
@@ -55,7 +57,7 @@ class MinimalHero extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
-                  onTap: onDownloadCv,
+                  onTap: onDownloadCv ?? () => launchUrlString(Const.config.CV_URL),
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border(bottom: BorderSide(color: colors.fg)),
