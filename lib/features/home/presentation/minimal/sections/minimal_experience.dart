@@ -51,7 +51,7 @@ class MinimalExperience extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 6),
-        MonoLabel(job.companyName, color: colors.muted, size: 11),
+        _company(context, job),
         const SizedBox(height: 12),
         Text(job.description, style: MinimalTypography.prose(colors.muted).copyWith(fontSize: 14.5)),
         if (job.links.isNotEmpty) ...[
@@ -63,6 +63,25 @@ class MinimalExperience extends StatelessWidget {
           ),
         ],
       ],
+    );
+  }
+
+  /// Company name as a mono label. Clickable (opens [WorkExperience.companyLink])
+  /// when a link is present; otherwise a plain label.
+  Widget _company(BuildContext context, WorkExperience job) {
+    final colors = context.minimal;
+    if (job.companyLink.isEmpty) {
+      return MonoLabel(job.companyName, color: colors.muted, size: 11);
+    }
+    return HoverBuilder(
+      builder: (context, hovering) => GestureDetector(
+        onTap: () => launchUrlString(job.companyLink),
+        child: MonoLabel(
+          job.companyName,
+          color: hovering ? colors.fg : colors.muted,
+          size: 11,
+        ),
+      ),
     );
   }
 

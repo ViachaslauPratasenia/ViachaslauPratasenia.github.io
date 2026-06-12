@@ -24,6 +24,18 @@ void main() {
     expect(find.textContaining('2022'), findsOneWidget);
   });
 
+  testWidgets('Experience company name is tappable when a link exists',
+      (tester) async {
+    // Fixture work[0] has a non-empty companyLink, so the company label must be
+    // wrapped in a GestureDetector (clickable).
+    await tester.pumpWidget(_host(MinimalExperience(profile: p)));
+    final companyText = find.textContaining('AVENTUS IT');
+    expect(
+      find.ancestor(of: companyText, matching: find.byType(GestureDetector)),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('Projects shows project title and tags', (tester) async {
     await tester.pumpWidget(_host(MinimalProjects(profile: p)));
     expect(find.text('Personal Website'), findsOneWidget);
