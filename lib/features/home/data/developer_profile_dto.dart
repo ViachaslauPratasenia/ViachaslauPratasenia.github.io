@@ -9,7 +9,6 @@ class DeveloperProfileDto {
   final String? heroRole;
   final List<HeroMetaDto>? heroMeta;
   final SkillsDto? skills;
-  final List<ServiceDto>? services;
   final List<SocialLinkDto>? socialLinks;
   final List<WorkExperienceDto>? work;
   final List<ProjectDto>? projects;
@@ -26,7 +25,6 @@ class DeveloperProfileDto {
     this.heroRole,
     this.heroMeta,
     this.skills,
-    this.services,
     this.socialLinks,
     this.work,
     this.projects,
@@ -50,9 +48,6 @@ class DeveloperProfileDto {
       skills: json['skills'] == null
           ? null
           : SkillsDto.fromJson(json['skills'] as Map<String, dynamic>),
-      services: (json['services'] as List?)
-          ?.map((e) => ServiceDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
       socialLinks: (json['social_links'] as List?)
           ?.map((e) => SocialLinkDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -81,11 +76,18 @@ class SkillsDto {
   final List<String> recently;
   final List<String> platforms;
   final List<String> tooling;
-  SkillsDto({this.recently = const [], this.platforms = const [], this.tooling = const []});
+  final List<String> services;
+  SkillsDto({
+    this.recently = const [],
+    this.platforms = const [],
+    this.tooling = const [],
+    this.services = const [],
+  });
   factory SkillsDto.fromJson(Map<String, dynamic> json) => SkillsDto(
         recently: (json['recently'] as List?)?.map((e) => e as String).toList() ?? const [],
         platforms: (json['platforms'] as List?)?.map((e) => e as String).toList() ?? const [],
         tooling: (json['tooling'] as List?)?.map((e) => e as String).toList() ?? const [],
+        services: (json['services'] as List?)?.map((e) => e as String).toList() ?? const [],
       );
 }
 
@@ -199,29 +201,6 @@ class BlogPostDto {
       description: json['description'] as String?,
       tags: (json['tags'] as List?)?.map((e) => e as String).toList(),
       date: json['date'] as String?,
-    );
-  }
-}
-
-class ServiceDto {
-  final String? title;
-  final String? description;
-  final String? icon;
-  final List<String>? technologies;
-
-  ServiceDto({
-    this.title,
-    this.description,
-    this.icon,
-    this.technologies,
-  });
-
-  factory ServiceDto.fromJson(Map<String, dynamic> json) {
-    return ServiceDto(
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      icon: json['icon'] as String?,
-      technologies: (json['technologies'] as List?)?.map((e) => e as String).toList(),
     );
   }
 }

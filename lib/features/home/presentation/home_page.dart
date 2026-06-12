@@ -9,7 +9,6 @@ import 'package:personal_website/features/home/presentation/components/about/mod
 import 'package:personal_website/features/home/presentation/components/contact/modern_contact_info.dart';
 import 'package:personal_website/features/home/presentation/components/menu_drawer.dart';
 import 'package:personal_website/features/home/presentation/components/notes/modern_notes_info.dart';
-import 'package:personal_website/features/home/presentation/components/services/services_info.dart';
 import 'package:personal_website/features/home/presentation/components/profile/modern_profile_info.dart';
 import 'package:personal_website/features/home/presentation/components/projects/modern_project_info.dart';
 import 'package:personal_website/features/home/presentation/components/modern_tab_bar.dart';
@@ -92,10 +91,6 @@ class HomePage extends StatelessWidget {
                             ),
                             ModernProfileInfo(
                               key: aboutKey,
-                              developerProfile: profileState.developerProfile!,
-                            ),
-                            ServicesInfo(
-                              key: servicesKey,
                               developerProfile: profileState.developerProfile!,
                             ),
                             ModernWorkInfo(

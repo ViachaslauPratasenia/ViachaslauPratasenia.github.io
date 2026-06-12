@@ -21,11 +21,8 @@ DeveloperProfile sampleProfile() => DeveloperProfile(
         recently: const ['Flutter', 'Dart', 'JavaScript', 'n8n', 'Stripe', 'RevenueCat'],
         platforms: const ['iOS', 'Android', 'Web', 'Windows', 'macOS', 'Linux'],
         tooling: const ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'],
+        services: const ['Mobile Apps', 'Web Dev'],
       ),
-      services: [
-        Service(title: 'Mobile Apps', description: 'd', icon: 'phone', technologies: const ['Flutter']),
-        Service(title: 'Web Dev', description: 'd', icon: 'web', technologies: const ['Flutter Web']),
-      ],
       socialLinks: [
         SocialLink(name: 'GitHub', url: 'https://github.com/ViachaslauPratasenia'),
         SocialLink(name: 'LinkedIn', url: 'https://www.linkedin.com/in/viachaslaupratasenia/'),

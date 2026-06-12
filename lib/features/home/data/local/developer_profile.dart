@@ -12,7 +12,6 @@ class DeveloperProfile {
   final String heroRole;
   final List<HeroMeta> heroMeta;
   final Skills skills;
-  final List<Service> services;
   final List<SocialLink> socialLinks;
   final List<WorkExperience> work;
   final List<Project> projects;
@@ -29,7 +28,6 @@ class DeveloperProfile {
     required this.heroRole,
     required this.heroMeta,
     required this.skills,
-    required this.services,
     required this.socialLinks,
     required this.work,
     required this.projects,
@@ -47,7 +45,13 @@ class Skills {
   final List<String> recently;
   final List<String> platforms;
   final List<String> tooling;
-  Skills({this.recently = const [], this.platforms = const [], this.tooling = const []});
+  final List<String> services;
+  Skills({
+    this.recently = const [],
+    this.platforms = const [],
+    this.tooling = const [],
+    this.services = const [],
+  });
 }
 
 class SocialLink {
@@ -120,19 +124,5 @@ class BlogPost {
     required this.description,
     required this.tags,
     required this.date,
-  });
-}
-
-class Service {
-  final String title;
-  final String description;
-  final String icon;
-  final List<String> technologies;
-
-  Service({
-    required this.title,
-    required this.description,
-    required this.icon,
-    required this.technologies,
   });
 }

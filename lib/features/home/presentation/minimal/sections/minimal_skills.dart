@@ -12,7 +12,6 @@ class MinimalSkills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final services = profile.services.map((s) => s.title).toList();
     return MinimalSection(
       label: 'Skills & Services',
       child: Column(
@@ -20,7 +19,7 @@ class MinimalSkills extends StatelessWidget {
         children: [
           _group(context, 'Recently', profile.skills.recently),
           _group(context, 'Platforms', profile.skills.platforms),
-          _group(context, 'Services', services),
+          _group(context, 'Services', profile.skills.services),
           _group(context, 'Tooling', profile.skills.tooling, last: true),
         ],
       ),

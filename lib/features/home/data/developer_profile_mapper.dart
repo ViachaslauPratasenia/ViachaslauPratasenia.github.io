@@ -33,16 +33,8 @@ class DeveloperProfileMapper {
         tooling: dto.skills?.tooling.isNotEmpty == true
             ? dto.skills!.tooling
             : const ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'],
+        services: dto.skills?.services.isNotEmpty == true ? dto.skills!.services : const [],
       ),
-      services: dto.services
-              ?.map((e) => Service(
-                    title: e.title ?? '',
-                    description: e.description ?? '',
-                    icon: e.icon ?? '',
-                    technologies: e.technologies?.whereType<String>().toList() ?? [],
-                  ))
-              .toList() ??
-          [],
       socialLinks: dto.socialLinks
               ?.map(
                 (e) => SocialLink(name: e.name ?? '', url: e.url ?? ''),
