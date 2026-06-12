@@ -76,10 +76,21 @@ class MinimalExperience extends StatelessWidget {
     return HoverBuilder(
       builder: (context, hovering) => GestureDetector(
         onTap: () => launchUrlString(job.companyLink),
-        child: MonoLabel(
-          job.companyName,
-          color: hovering ? colors.fg : colors.muted,
-          size: 11,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: hovering ? colors.fg : colors.hair),
+              ),
+            ),
+            padding: const EdgeInsets.only(bottom: 2),
+            child: MonoLabel(
+              job.companyName,
+              color: hovering ? colors.fg : colors.muted,
+              size: 11,
+            ),
+          ),
         ),
       ),
     );
