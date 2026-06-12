@@ -2,9 +2,14 @@
   "name": "Viachaslau Pratasenia",
   "email": "viachaslau.pratasenia@gmail.com",
   "subtitle": "I build things with Flutter and lead teams to create amazing products.",
-  "full_description": "As a Flutter Developer and Mobile Team Lead at Aventus IT, I focus on making easy-to-use apps for Android, iOS, web, and desktop while guiding the team to ship them well. My goal is to build applications that are straightforward and enjoyable for everyone, using Flutter to create innovative and accessible solutions that keep up with the latest technology trends.",
-  "about_me": "I am Viachaslau, a highly skilled Flutter developer and Mobile Team Lead with over 7 years of experience in the technology industry. My extensive knowledge and expertise in Flutter development make me a strong fit for any project in this field. I have a solid foundation in Android development, which I built upon to create accessible and user-focused apps for Android, iOS, web, and desktop using Flutter.\n\nToday I lead a mobile development team, guiding and mentoring developers while ensuring project success and team growth. My experience developing Android apps has greatly influenced my approach to Flutter projects: I create functional, intuitive solutions that enhance the user experience while fostering a collaborative environment focused on both technical excellence and people.",
-  "contact_me_text": "Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!",
+  "about_me": {
+    "title": "A highly skilled Flutter developer and Mobile Team Lead with over 7 years in the technology industry.",
+    "text": "My extensive knowledge and expertise in Flutter development make me a strong fit for any project in this field. I have a solid foundation in Android development, which I built upon to create accessible and user-focused apps for Android, iOS, web, and desktop using Flutter.\n\nToday I lead a mobile development team, guiding and mentoring developers while ensuring project success and team growth. My experience developing Android apps has greatly influenced my approach to Flutter projects: I create functional, intuitive solutions that enhance the user experience while fostering a collaborative environment focused on both technical excellence and people.\n\nAt Aventus IT, I focus on making easy-to-use apps for Android, iOS, web, and desktop while guiding the team to ship them well. My goal is to build applications that are straightforward and enjoyable for everyone, using Flutter to create innovative and accessible solutions that keep up with the latest technology trends."
+  },
+  "contact_me": {
+    "title": "Although I'm not currently looking, my inbox is always open — say hello.",
+    "text": "Whether you have a question or just want to say hi, I'll try my best to get back to you!"
+  },
   "recent_technologies": [
     "Flutter",
     "Dart",

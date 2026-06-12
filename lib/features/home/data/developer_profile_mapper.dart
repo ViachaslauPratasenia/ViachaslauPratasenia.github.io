@@ -7,9 +7,8 @@ class DeveloperProfileMapper {
       name: dto.name ?? '',
       email: dto.email ?? '',
       subtitle: dto.subtitle ?? '',
-      fullDescription: dto.fullDescription ?? '',
-      aboutMe: dto.aboutMe ?? '',
-      contactMeText: dto.contactMeText ?? '',
+      aboutMe: TitleText(title: dto.aboutMe?.title ?? '', text: dto.aboutMe?.text ?? ''),
+      contactMe: TitleText(title: dto.contactMe?.title ?? '', text: dto.contactMe?.text ?? ''),
       recentTechnologies: dto.recentTechnologies,
       heroRole: dto.heroRole ?? 'Flutter Developer · Mobile Team Lead',
       heroMeta: (dto.heroMeta != null && dto.heroMeta!.isNotEmpty)

@@ -2,9 +2,8 @@ class DeveloperProfile {
   final String name;
   final String email;
   final String subtitle;
-  final String fullDescription;
-  final String aboutMe;
-  final String contactMeText;
+  final TitleText aboutMe;
+  final TitleText contactMe;
 
   /// Legacy field, duplicated by [Skills.recently]. Still consumed by the old
   /// `modern_*` widgets. TODO: remove once those widgets migrate to `skills`.
@@ -21,9 +20,8 @@ class DeveloperProfile {
     required this.name,
     required this.email,
     required this.subtitle,
-    required this.fullDescription,
     required this.aboutMe,
-    required this.contactMeText,
+    required this.contactMe,
     required this.recentTechnologies,
     required this.heroRole,
     required this.heroMeta,
@@ -33,6 +31,12 @@ class DeveloperProfile {
     required this.projects,
     required this.blogPosts,
   });
+}
+
+class TitleText {
+  final String title;
+  final String text;
+  TitleText({this.title = '', this.text = ''});
 }
 
 class HeroMeta {

@@ -100,7 +100,7 @@ class ModernContactInfo extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            developerProfile.contactMeText,
+                            developerProfile.contactMe.text,
                             textAlign: TextAlign.center,
                             style: context.textTheme.bodyLarge?.copyWith(
                               color: AppColors.textSecondary,

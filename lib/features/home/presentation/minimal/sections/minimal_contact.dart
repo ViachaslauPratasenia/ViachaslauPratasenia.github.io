@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
@@ -21,7 +22,9 @@ class MinimalContact extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(profile.contactMeText, style: MinimalTypography.heading(colors.fg, size: 32)),
+              _heading(context),
+              const SizedBox(height: 18),
+              Text(profile.contactMe.text, style: MinimalTypography.prose(colors.muted)),
               const SizedBox(height: 30),
               Wrap(
                 spacing: 26,
@@ -36,6 +39,42 @@ class MinimalContact extends StatelessWidget {
         _footer(context),
       ],
     );
+  }
+
+  Widget _heading(BuildContext context) {
+    final colors = context.minimal;
+    final base = MinimalTypography.heading(colors.fg, size: 32);
+    final title = profile.contactMe.title;
+    const link = 'say hello';
+
+    final spans = <InlineSpan>[];
+    final idx = title.indexOf(link);
+    if (idx < 0) {
+      // No link marker found — render the title verbatim.
+      spans.add(TextSpan(text: title));
+    } else {
+      final before = title.substring(0, idx);
+      var after = title.substring(idx + link.length);
+      if (before.isNotEmpty) spans.add(TextSpan(text: before));
+      spans.add(
+        TextSpan(
+          text: link,
+          style: base.copyWith(decoration: TextDecoration.underline, color: colors.fg),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () => launchUrlString('mailto:${profile.email}'),
+        ),
+      );
+      // Render a trailing "." in the accent/dot color.
+      if (after.endsWith('.')) {
+        final head = after.substring(0, after.length - 1);
+        if (head.isNotEmpty) spans.add(TextSpan(text: head));
+        spans.add(TextSpan(text: '.', style: base.copyWith(color: colors.dot)));
+      } else if (after.isNotEmpty) {
+        spans.add(TextSpan(text: after));
+      }
+    }
+
+    return Text.rich(TextSpan(style: base, children: spans));
   }
 
   Widget _social(BuildContext context, SocialLink link) {

@@ -115,7 +115,7 @@ class ModernAboutInfo extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 600),
                 child: Text(
-                  developerProfile.fullDescription,
+                  developerProfile.aboutMe.text,
                   style: descriptionStyle,
                 ),
               ),

@@ -58,4 +58,9 @@ void main() {
     expect(find.text('GitHub'), findsOneWidget);
     expect(find.text('LinkedIn'), findsOneWidget);
   });
+
+  testWidgets('Contact renders a clickable "say hello" in the heading', (tester) async {
+    await tester.pumpWidget(_host(MinimalContact(profile: p)));
+    expect(_richTextContains(tester, 'say hello'), isTrue);
+  });
 }

@@ -4,12 +4,15 @@ DeveloperProfile sampleProfile() => DeveloperProfile(
       name: 'Viachaslau Pratasenia',
       email: 'viachaslau.pratasenia@gmail.com',
       subtitle: 'I build things with Flutter and lead teams to create amazing products.',
-      fullDescription:
-          'I build things with Flutter and lead teams to create amazing products.',
-      aboutMe:
-          'A highly skilled Flutter developer and Mobile Team Lead with over 7 years in the technology industry.',
-      contactMeText:
-          'Whether you have a question or just want to say hi, I will try my best to get back to you!',
+      aboutMe: TitleText(
+        title:
+            'A highly skilled Flutter developer and Mobile Team Lead with over 7 years in the technology industry.',
+        text: 'Some body paragraph.\n\nAnother paragraph.',
+      ),
+      contactMe: TitleText(
+        title: 'Although I am not currently looking, my inbox is always open — say hello.',
+        text: 'Whether you have a question or just want to say hi, I will try my best to get back to you!',
+      ),
       recentTechnologies: const ['Flutter', 'Dart', 'JavaScript', 'n8n', 'Stripe', 'RevenueCat'],
       heroRole: 'Flutter Developer · Mobile Team Lead',
       heroMeta: [

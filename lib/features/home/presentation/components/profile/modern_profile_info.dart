@@ -38,7 +38,7 @@ class ModernProfileInfo extends StatelessWidget {
                     FadeInSlideAnimation(
                       delay: const Duration(milliseconds: 200),
                       child: Text(
-                        developerProfile.aboutMe,
+                        developerProfile.aboutMe.title,
                         style: context.textTheme.bodyLarge?.copyWith(
                           color: AppColors.textSecondary,
                           height: 1.8,

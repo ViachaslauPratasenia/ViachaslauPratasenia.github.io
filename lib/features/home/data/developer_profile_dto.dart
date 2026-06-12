@@ -2,9 +2,8 @@ class DeveloperProfileDto {
   final String? name;
   final String? email;
   final String? subtitle;
-  final String? fullDescription;
-  final String? aboutMe;
-  final String? contactMeText;
+  final TitleTextDto? aboutMe;
+  final TitleTextDto? contactMe;
   final List<String> recentTechnologies;
   final String? heroRole;
   final List<HeroMetaDto>? heroMeta;
@@ -18,9 +17,8 @@ class DeveloperProfileDto {
     this.name,
     this.email,
     this.subtitle,
-    this.fullDescription,
     this.aboutMe,
-    this.contactMeText,
+    this.contactMe,
     this.recentTechnologies = const [],
     this.heroRole,
     this.heroMeta,
@@ -36,9 +34,12 @@ class DeveloperProfileDto {
       name: json['name'] as String?,
       email: json['email'] as String?,
       subtitle: json['subtitle'] as String?,
-      fullDescription: json['full_description'] as String?,
-      aboutMe: json['about_me'] as String?,
-      contactMeText: json['contact_me_text'] as String?,
+      aboutMe: json['about_me'] is Map<String, dynamic>
+          ? TitleTextDto.fromJson(json['about_me'] as Map<String, dynamic>)
+          : null,
+      contactMe: json['contact_me'] is Map<String, dynamic>
+          ? TitleTextDto.fromJson(json['contact_me'] as Map<String, dynamic>)
+          : null,
       recentTechnologies:
           (json['recent_technologies'] as List?)?.map((e) => e as String).toList() ?? [],
       heroRole: json['hero_role'] as String?,
@@ -62,6 +63,14 @@ class DeveloperProfileDto {
           .toList(),
     );
   }
+}
+
+class TitleTextDto {
+  final String? title;
+  final String? text;
+  TitleTextDto({this.title, this.text});
+  factory TitleTextDto.fromJson(Map<String, dynamic> json) =>
+      TitleTextDto(title: json['title'] as String?, text: json['text'] as String?);
 }
 
 class HeroMetaDto {

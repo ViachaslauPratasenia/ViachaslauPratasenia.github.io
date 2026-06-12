@@ -42,7 +42,7 @@ class ContactInfo extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                developerProfile.contactMeText,
+                developerProfile.contactMe.text,
                 textAlign: TextAlign.center,
                 style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
               ),

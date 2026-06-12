@@ -32,7 +32,7 @@ class ProfileInfo extends StatelessWidget {
                     const SectionHeader(index: '01.', title: 'About me'),
                     const SizedBox(height: 16),
                     Text(
-                      developerProfile.aboutMe,
+                      developerProfile.aboutMe.title,
                       style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
                     ),
                     const SizedBox(height: 24),

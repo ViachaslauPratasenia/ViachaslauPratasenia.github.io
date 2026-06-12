@@ -98,7 +98,7 @@ class _AboutInfoState extends State<AboutInfo> {
             curve: defaultCurve,
             opacity: descriptionOpacity,
             child: Text(
-              widget.developerProfile.fullDescription,
+              widget.developerProfile.aboutMe.text,
               style: context.textTheme.bodyLarge?.copyWith(color: AppColors.textTertiary),
             ),
           ),
