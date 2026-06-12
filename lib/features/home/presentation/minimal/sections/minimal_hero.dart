@@ -89,10 +89,10 @@ class MinimalHero extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                MonoLabel('Download CV', color: colors.fg, size: 12),
+                MonoLabel('Download CV', color: colors.fg, size: 12, weight: FontWeight.w500),
                 // Gap widens on hover so the arrow eases sideways.
                 AnimatedContainer(duration: dur, curve: curve, width: hovering ? 16 : 9),
-                Text('↓', style: MinimalTypography.mono(colors.fg)),
+                Text('↓', style: MinimalTypography.monoLink(colors.fg)),
               ],
             ),
           ),
