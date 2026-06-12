@@ -31,6 +31,17 @@ void main() {
     expect(find.textContaining('build things with Flutter'), findsOneWidget);
   });
 
+  testWidgets('Hero fills the full viewport height', (tester) async {
+    tester.view.physicalSize = const Size(1200, 1000);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(_host(MinimalHero(profile: p)));
+    // The hero's own SizedBox should match the screen height (1000 logical px).
+    final heroSize = tester.getSize(find.byType(MinimalHero));
+    expect(heroSize.height, 1000);
+  });
+
   testWidgets('About shows lede from aboutMe', (tester) async {
     await tester.pumpWidget(_host(MinimalAbout(profile: p)));
     expect(find.textContaining('highly skilled Flutter developer'), findsOneWidget);
