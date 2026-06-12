@@ -10,10 +10,6 @@ class MinimalSkills extends StatelessWidget {
 
   const MinimalSkills({super.key, required this.profile});
 
-  // Static lists per spec (not in profile model).
-  static const _platforms = ['iOS', 'Android', 'Web', 'Windows', 'macOS', 'Linux'];
-  static const _tooling = ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'];
-
   @override
   Widget build(BuildContext context) {
     final services = profile.services.map((s) => s.title).toList();
@@ -22,10 +18,10 @@ class MinimalSkills extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _group(context, 'Recently', profile.recentTechnologies),
-          _group(context, 'Platforms', _platforms),
+          _group(context, 'Recently', profile.skills.recently),
+          _group(context, 'Platforms', profile.skills.platforms),
           _group(context, 'Services', services),
-          _group(context, 'Tooling', _tooling, last: true),
+          _group(context, 'Tooling', profile.skills.tooling, last: true),
         ],
       ),
     );

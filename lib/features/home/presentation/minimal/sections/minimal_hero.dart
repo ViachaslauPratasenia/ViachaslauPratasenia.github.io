@@ -13,10 +13,6 @@ class MinimalHero extends StatelessWidget {
 
   const MinimalHero({super.key, required this.profile, this.onDownloadCv});
 
-  /// Role kicker shown above the headline (mockup `.av`). Static label — the
-  /// profile model has no dedicated role field; `subtitle` is the headline.
-  static const _role = 'Flutter Developer · Mobile Team Lead';
-
   /// Height reserved for the fixed nav overlay, so hero content sits below it.
   static const _navHeight = 72.0;
 
@@ -47,7 +43,7 @@ class MinimalHero extends StatelessWidget {
                   children: [
                     Container(width: 28, height: 1, color: colors.fg),
                     const SizedBox(width: 12),
-                    MonoLabel(_role, color: colors.muted, size: 11),
+                    MonoLabel(profile.heroRole, color: colors.muted, size: 11),
                   ],
                 ),
                 const SizedBox(height: 40),
@@ -58,9 +54,7 @@ class MinimalHero extends StatelessWidget {
                   spacing: 40,
                   runSpacing: 12,
                   children: [
-                    _meta(context, '7+', 'years'),
-                    _meta(context, 'Flutter', '/ Dart'),
-                    _meta(context, 'iOS · Android · Web · Desktop', ''),
+                    for (final m in profile.heroMeta) _meta(context, m.value, m.label),
                   ],
                 ),
                 const SizedBox(height: 34),

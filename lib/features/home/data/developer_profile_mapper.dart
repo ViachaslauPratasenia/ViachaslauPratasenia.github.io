@@ -11,6 +11,25 @@ class DeveloperProfileMapper {
       aboutMe: dto.aboutMe ?? '',
       contactMeText: dto.contactMeText ?? '',
       recentTechnologies: dto.recentTechnologies,
+      heroRole: dto.heroRole ?? 'Flutter Developer · Mobile Team Lead',
+      heroMeta: (dto.heroMeta != null && dto.heroMeta!.isNotEmpty)
+          ? dto.heroMeta!
+              .map((e) => HeroMeta(value: e.value ?? '', label: e.label ?? ''))
+              .toList()
+          : [
+              HeroMeta(value: '7+', label: 'years'),
+              HeroMeta(value: 'Flutter', label: '/ Dart'),
+              HeroMeta(value: 'iOS · Android · Web · Desktop', label: ''),
+            ],
+      skills: Skills(
+        recently: dto.skills?.recently.isNotEmpty == true
+            ? dto.skills!.recently
+            : dto.recentTechnologies,
+        platforms: dto.skills?.platforms ??
+            const ['iOS', 'Android', 'Web', 'Windows', 'macOS', 'Linux'],
+        tooling: dto.skills?.tooling ??
+            const ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'],
+      ),
       services: dto.services
               ?.map((e) => Service(
                     title: e.title ?? '',

@@ -11,6 +11,17 @@ DeveloperProfile sampleProfile() => DeveloperProfile(
       contactMeText:
           'Whether you have a question or just want to say hi, I will try my best to get back to you!',
       recentTechnologies: const ['Flutter', 'Dart', 'JavaScript', 'n8n', 'Stripe', 'RevenueCat'],
+      heroRole: 'Flutter Developer · Mobile Team Lead',
+      heroMeta: [
+        HeroMeta(value: '7+', label: 'years'),
+        HeroMeta(value: 'Flutter', label: '/ Dart'),
+        HeroMeta(value: 'iOS · Android · Web · Desktop', label: ''),
+      ],
+      skills: Skills(
+        recently: const ['Flutter', 'Dart', 'JavaScript', 'n8n', 'Stripe', 'RevenueCat'],
+        platforms: const ['iOS', 'Android', 'Web', 'Windows', 'macOS', 'Linux'],
+        tooling: const ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'],
+      ),
       services: [
         Service(title: 'Mobile Apps', description: 'd', icon: 'phone', technologies: const ['Flutter']),
         Service(title: 'Web Dev', description: 'd', icon: 'web', technologies: const ['Flutter Web']),

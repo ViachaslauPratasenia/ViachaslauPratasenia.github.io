@@ -6,6 +6,9 @@ class DeveloperProfileDto {
   final String? aboutMe;
   final String? contactMeText;
   final List<String> recentTechnologies;
+  final String? heroRole;
+  final List<HeroMetaDto>? heroMeta;
+  final SkillsDto? skills;
   final List<ServiceDto>? services;
   final List<SocialLinkDto>? socialLinks;
   final List<WorkExperienceDto>? work;
@@ -20,6 +23,9 @@ class DeveloperProfileDto {
     this.aboutMe,
     this.contactMeText,
     this.recentTechnologies = const [],
+    this.heroRole,
+    this.heroMeta,
+    this.skills,
     this.services,
     this.socialLinks,
     this.work,
@@ -37,6 +43,13 @@ class DeveloperProfileDto {
       contactMeText: json['contact_me_text'] as String?,
       recentTechnologies:
           (json['recent_technologies'] as List?)?.map((e) => e as String).toList() ?? [],
+      heroRole: json['hero_role'] as String?,
+      heroMeta: (json['hero_meta'] as List?)
+          ?.map((e) => HeroMetaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      skills: json['skills'] == null
+          ? null
+          : SkillsDto.fromJson(json['skills'] as Map<String, dynamic>),
       services: (json['services'] as List?)
           ?.map((e) => ServiceDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -54,6 +67,26 @@ class DeveloperProfileDto {
           .toList(),
     );
   }
+}
+
+class HeroMetaDto {
+  final String? value;
+  final String? label;
+  HeroMetaDto({this.value, this.label});
+  factory HeroMetaDto.fromJson(Map<String, dynamic> json) =>
+      HeroMetaDto(value: json['value'] as String?, label: json['label'] as String?);
+}
+
+class SkillsDto {
+  final List<String> recently;
+  final List<String> platforms;
+  final List<String> tooling;
+  SkillsDto({this.recently = const [], this.platforms = const [], this.tooling = const []});
+  factory SkillsDto.fromJson(Map<String, dynamic> json) => SkillsDto(
+        recently: (json['recently'] as List?)?.map((e) => e as String).toList() ?? const [],
+        platforms: (json['platforms'] as List?)?.map((e) => e as String).toList() ?? const [],
+        tooling: (json['tooling'] as List?)?.map((e) => e as String).toList() ?? const [],
+      );
 }
 
 class SocialLinkDto {

@@ -6,6 +6,9 @@ class DeveloperProfile {
   final String aboutMe;
   final String contactMeText;
   final List<String> recentTechnologies;
+  final String heroRole;
+  final List<HeroMeta> heroMeta;
+  final Skills skills;
   final List<Service> services;
   final List<SocialLink> socialLinks;
   final List<WorkExperience> work;
@@ -20,12 +23,28 @@ class DeveloperProfile {
     required this.aboutMe,
     required this.contactMeText,
     required this.recentTechnologies,
+    required this.heroRole,
+    required this.heroMeta,
+    required this.skills,
     required this.services,
     required this.socialLinks,
     required this.work,
     required this.projects,
     required this.blogPosts,
   });
+}
+
+class HeroMeta {
+  final String value;
+  final String label;
+  HeroMeta({required this.value, required this.label});
+}
+
+class Skills {
+  final List<String> recently;
+  final List<String> platforms;
+  final List<String> tooling;
+  Skills({this.recently = const [], this.platforms = const [], this.tooling = const []});
 }
 
 class SocialLink {

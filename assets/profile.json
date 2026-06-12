@@ -13,6 +13,24 @@
     "Stripe",
     "RevenueCat"
   ],
+  "hero_role": "Flutter Developer · Mobile Team Lead",
+  "hero_meta": [
+    { "value": "7+", "label": "years" },
+    { "value": "Flutter", "label": "/ Dart" },
+    { "value": "iOS · Android · Web · Desktop", "label": "" }
+  ],
+  "skills": {
+    "recently": [
+      "Flutter",
+      "Dart",
+      "JavaScript",
+      "n8n as Backend",
+      "Stripe",
+      "RevenueCat"
+    ],
+    "platforms": ["iOS", "Android", "Web", "Windows", "macOS", "Linux"],
+    "tooling": ["Xcode", "Android Studio", "Figma", "Firebase", "GCP"]
+  },
   "services": [
     {
       "title": "Mobile Applications",
