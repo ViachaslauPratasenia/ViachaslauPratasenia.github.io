@@ -25,10 +25,14 @@ class DeveloperProfileMapper {
         recently: dto.skills?.recently.isNotEmpty == true
             ? dto.skills!.recently
             : dto.recentTechnologies,
-        platforms: dto.skills?.platforms ??
-            const ['iOS', 'Android', 'Web', 'Windows', 'macOS', 'Linux'],
-        tooling: dto.skills?.tooling ??
-            const ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'],
+        // Fall back to the defaults whenever the list is absent OR empty, so a
+        // partial `skills` object (key present, sub-list missing) still renders.
+        platforms: dto.skills?.platforms.isNotEmpty == true
+            ? dto.skills!.platforms
+            : const ['iOS', 'Android', 'Web', 'Windows', 'macOS', 'Linux'],
+        tooling: dto.skills?.tooling.isNotEmpty == true
+            ? dto.skills!.tooling
+            : const ['Xcode', 'Android Studio', 'Figma', 'Firebase', 'GCP'],
       ),
       services: dto.services
               ?.map((e) => Service(

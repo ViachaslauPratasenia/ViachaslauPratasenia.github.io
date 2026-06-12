@@ -5,6 +5,9 @@ class DeveloperProfile {
   final String fullDescription;
   final String aboutMe;
   final String contactMeText;
+
+  /// Legacy field, duplicated by [Skills.recently]. Still consumed by the old
+  /// `modern_*` widgets. TODO: remove once those widgets migrate to `skills`.
   final List<String> recentTechnologies;
   final String heroRole;
   final List<HeroMeta> heroMeta;
