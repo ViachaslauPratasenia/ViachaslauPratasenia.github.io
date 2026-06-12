@@ -12,13 +12,16 @@ class ThemeIcon extends StatelessWidget {
     return BlocBuilder<ThemeCubit, ThemeMode>(
       bloc: themeCubit,
       builder: (context, themeMode) {
-        final icon =
-            themeMode == ThemeMode.dark ? Assets.images.icNight.path : Assets.images.icSun.path;
+        final isDark = themeMode == ThemeMode.dark;
+
+        // The button shows the TARGET theme (what a tap switches to):
+        // dark active -> sun + "Light", light active -> moon + "Dark".
+        final icon = isDark ? Assets.images.icSun.path : Assets.images.icNight.path;
 
         return InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: () => themeCubit.changeTheme(
-            themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark,
+            isDark ? ThemeMode.light : ThemeMode.dark,
           ),
           child: Container(
             height: 36,
@@ -40,7 +43,7 @@ class ThemeIcon extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  themeMode == ThemeMode.dark ? 'Dark' : 'Light',
+                  isDark ? 'Light' : 'Dark',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.normal,
                         color: Theme.of(context).colorScheme.surface,
