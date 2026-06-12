@@ -20,7 +20,6 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   static GlobalKey aboutKey = GlobalKey();
-  static GlobalKey servicesKey = GlobalKey();
   static GlobalKey experienceKey = GlobalKey();
   static GlobalKey workKey = GlobalKey();
   static GlobalKey articlesKey = GlobalKey();
@@ -38,7 +37,6 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           endDrawer: MenuDrawer(
             onAboutMeClicked: () => navigateToBlock(aboutKey),
-            onServicesClicked: () => navigateToBlock(servicesKey),
             onExperienceClicked: () => navigateToBlock(experienceKey),
             onWorkClicked: () => navigateToBlock(workKey),
             onArticlesClicked: () => navigateToBlock(articlesKey),
@@ -67,7 +65,6 @@ class HomePage extends StatelessWidget {
                       ModernProfileAppBar(
                         tabHeight: tabHeight,
                         onAboutMeClicked: () => navigateToBlock(aboutKey),
-                        onServicesClicked: () => navigateToBlock(servicesKey),
                         onExperienceClicked: () => navigateToBlock(experienceKey),
                         onWorkClicked: () => navigateToBlock(workKey),
                         onArticlesClicked: () => navigateToBlock(articlesKey),
