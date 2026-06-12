@@ -9,7 +9,7 @@ class RevealOnScroll extends StatefulWidget {
   const RevealOnScroll({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 1000),
+    this.duration = const Duration(milliseconds: 350),
   });
 
   @override
