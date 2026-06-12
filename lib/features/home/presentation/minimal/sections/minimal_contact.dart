@@ -55,19 +55,23 @@ class MinimalContact extends StatelessWidget {
       final before = title.substring(0, idx);
       var after = title.substring(idx + link.length);
       if (before.isNotEmpty) spans.add(TextSpan(text: before));
-      // Inline clickable "say hello" — a WidgetSpan keeps this widget stateless
-      // and avoids the recognizer-disposal concern of a TapGestureRecognizer.
+      // Inline clickable "say hello" — a WidgetSpan keeps this widget stateless.
+      // The underline is always the accent (dot) color; on hover the text turns
+      // accent too.
       spans.add(
         WidgetSpan(
           alignment: PlaceholderAlignment.baseline,
           baseline: TextBaseline.alphabetic,
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
+          child: HoverBuilder(
+            builder: (context, hovering) => GestureDetector(
               onTap: () => launchUrlString('mailto:${profile.email}'),
               child: Text(
                 link,
-                style: base.copyWith(decoration: TextDecoration.underline, color: colors.fg),
+                style: base.copyWith(
+                  color: hovering ? colors.dot : colors.fg,
+                  decoration: TextDecoration.underline,
+                  decorationColor: colors.dot,
+                ),
               ),
             ),
           ),
