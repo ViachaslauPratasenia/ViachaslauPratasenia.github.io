@@ -68,8 +68,8 @@ class MinimalHero extends StatelessWidget {
     );
   }
 
-  /// "Download CV ↓" — on hover the gap widens, the arrow eases downward
-  /// (a subtle "download" cue), and the whole control dims slightly.
+  /// "Download CV ↓" — on hover the gap widens so the arrow eases sideways,
+  /// and the whole control dims slightly.
   Widget _downloadCv(BuildContext context) {
     final colors = context.minimal;
     const dur = Duration(milliseconds: 280);
@@ -90,15 +90,9 @@ class MinimalHero extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 MonoLabel('Download CV', color: colors.fg, size: 12),
-                // Gap grows on hover.
-                AnimatedContainer(duration: dur, curve: curve, width: hovering ? 14 : 9),
-                // Arrow eases downward on hover.
-                AnimatedSlide(
-                  offset: hovering ? const Offset(0, 0.28) : Offset.zero,
-                  duration: dur,
-                  curve: curve,
-                  child: Text('↓', style: MinimalTypography.mono(colors.fg)),
-                ),
+                // Gap widens on hover so the arrow eases sideways.
+                AnimatedContainer(duration: dur, curve: curve, width: hovering ? 16 : 9),
+                Text('↓', style: MinimalTypography.mono(colors.fg)),
               ],
             ),
           ),
