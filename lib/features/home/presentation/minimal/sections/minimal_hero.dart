@@ -5,6 +5,7 @@ import 'package:personal_website/features/home/data/local/developer_profile.dart
 import 'package:personal_website/theme/minimal/minimal_colors.dart';
 import 'package:personal_website/theme/minimal/minimal_typography.dart';
 import 'package:personal_website/features/home/presentation/minimal/widgets/mono_label.dart';
+import 'package:personal_website/features/home/presentation/minimal/widgets/hover_builder.dart';
 
 /// Hero: av kicker, headline, meta row, CV link. Not wrapped in MinimalSection.
 class MinimalHero extends StatelessWidget {
@@ -58,26 +59,45 @@ class MinimalHero extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 34),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: onDownloadCv ??
-                        () => launchUrlString(Const.config.CV_URL),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: colors.fg)),
-                      ),
-                      padding: const EdgeInsets.only(bottom: 5),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          MonoLabel('Download CV', color: colors.fg, size: 12),
-                          const SizedBox(width: 9),
-                          Text('↓', style: MinimalTypography.mono(colors.fg)),
-                        ],
-                      ),
-                    ),
-                  ),
+                _downloadCv(context),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// "Download CV ↓" — on hover the gap widens, the arrow eases downward
+  /// (a subtle "download" cue), and the whole control dims slightly.
+  Widget _downloadCv(BuildContext context) {
+    final colors = context.minimal;
+    const dur = Duration(milliseconds: 280);
+    const curve = Curves.easeOutCubic;
+    return HoverBuilder(
+      builder: (context, hovering) => GestureDetector(
+        onTap: onDownloadCv ?? () => launchUrlString(Const.config.CV_URL),
+        child: AnimatedOpacity(
+          opacity: hovering ? 0.6 : 1.0,
+          duration: dur,
+          curve: curve,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: colors.fg)),
+            ),
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                MonoLabel('Download CV', color: colors.fg, size: 12),
+                // Gap grows on hover.
+                AnimatedContainer(duration: dur, curve: curve, width: hovering ? 14 : 9),
+                // Arrow eases downward on hover.
+                AnimatedSlide(
+                  offset: hovering ? const Offset(0, 0.28) : Offset.zero,
+                  duration: dur,
+                  curve: curve,
+                  child: Text('↓', style: MinimalTypography.mono(colors.fg)),
                 ),
               ],
             ),
