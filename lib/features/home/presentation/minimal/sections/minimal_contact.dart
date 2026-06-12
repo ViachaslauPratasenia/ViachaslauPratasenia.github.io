@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:personal_website/features/home/data/local/developer_profile.dart';
@@ -56,12 +55,22 @@ class MinimalContact extends StatelessWidget {
       final before = title.substring(0, idx);
       var after = title.substring(idx + link.length);
       if (before.isNotEmpty) spans.add(TextSpan(text: before));
+      // Inline clickable "say hello" — a WidgetSpan keeps this widget stateless
+      // and avoids the recognizer-disposal concern of a TapGestureRecognizer.
       spans.add(
-        TextSpan(
-          text: link,
-          style: base.copyWith(decoration: TextDecoration.underline, color: colors.fg),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () => launchUrlString('mailto:${profile.email}'),
+        WidgetSpan(
+          alignment: PlaceholderAlignment.baseline,
+          baseline: TextBaseline.alphabetic,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => launchUrlString('mailto:${profile.email}'),
+              child: Text(
+                link,
+                style: base.copyWith(decoration: TextDecoration.underline, color: colors.fg),
+              ),
+            ),
+          ),
         ),
       );
       // Render a trailing "." in the accent/dot color.
