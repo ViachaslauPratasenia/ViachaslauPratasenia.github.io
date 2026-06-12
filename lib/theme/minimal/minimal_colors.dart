@@ -65,14 +65,14 @@ class MinimalColors extends ThemeExtension<MinimalColors> {
   );
 
   static final MinimalColors dark = MinimalColors(
-    bg: oklchToColor(0.16, 0.004, 90),
-    fg: oklchToColor(0.94, 0.003, 90),
-    muted: oklchToColor(0.64, 0.006, 90),
-    faint: oklchToColor(0.46, 0.005, 90),
-    hair: oklchToColor(0.28, 0.004, 90),
-    accent: oklchToColor(0.80, 0.02, 90),
+    bg: oklchToColor(0.22, 0.012, 250),
+    fg: oklchToColor(0.94, 0.003, 250),
+    muted: oklchToColor(0.72, 0.008, 250),
+    faint: oklchToColor(0.60, 0.008, 250),
+    hair: oklchToColor(0.32, 0.010, 250),
+    accent: oklchToColor(0.80, 0.02, 250),
     dot: oklchToColor(0.68, 0.19, 28),
-    navbg: oklchToColor(0.16, 0.004, 90, 0.8),
+    navbg: oklchToColor(0.22, 0.012, 250, 0.8),
   );
 
   @override
