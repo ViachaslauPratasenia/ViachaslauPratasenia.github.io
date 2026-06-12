@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+enum ProfileSource { remote, local }
+
 abstract class Const {
   static const config = _Config();
 }
@@ -15,6 +17,14 @@ class _Config {
 
   String get PROFILE_URL =>
       'https://raw.githubusercontent.com/ViachaslauPratasenia/files/main/profile.json';
+
+  /// Profile data source, set at build time via:
+  ///   --dart-define=PROFILE_SOURCE=local   (use bundled assets/profile.json)
+  ///   --dart-define=PROFILE_SOURCE=remote  (default: load from GitHub, asset fallback)
+  ProfileSource get PROFILE_SOURCE =>
+      const String.fromEnvironment('PROFILE_SOURCE', defaultValue: 'remote') == 'local'
+          ? ProfileSource.local
+          : ProfileSource.remote;
 
   const _Config();
 }
