@@ -89,6 +89,7 @@ class MinimalExperience extends StatelessWidget {
               job.companyName,
               color: hovering ? colors.fg : colors.muted,
               size: 11,
+              weight: FontWeight.w500,
             ),
           ),
         ),
@@ -106,7 +107,7 @@ class MinimalExperience extends StatelessWidget {
             border: Border(bottom: BorderSide(color: hovering ? colors.fg : colors.hair)),
           ),
           padding: const EdgeInsets.only(bottom: 2),
-          child: Text(link.name, style: MinimalTypography.mono(colors.fg).copyWith(fontSize: 11)),
+          child: Text(link.name, style: MinimalTypography.monoLink(colors.fg).copyWith(fontSize: 11)),
         ),
       ),
     );

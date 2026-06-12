@@ -6,6 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class MinimalTypography {
   static TextStyle mono(Color color) => GoogleFonts.jetBrainsMono(color: color);
 
+  /// Mono style for clickable links — medium weight to set them apart from
+  /// plain mono labels/indicators.
+  static TextStyle monoLink(Color color) =>
+      GoogleFonts.jetBrainsMono(color: color, fontWeight: FontWeight.w500);
+
   /// Hero headline. Caller passes a responsive [size] (clamp 38..60).
   static TextStyle h1(Color color, {double size = 48}) => GoogleFonts.inter(
         color: color,
@@ -16,13 +21,14 @@ abstract class MinimalTypography {
       );
 
   /// Mono uppercase tracked label (.lbl / .av / .co).
-  static TextStyle monoLabel(Color color, {double size = 11}) =>
+  static TextStyle monoLabel(Color color,
+          {double size = 11, FontWeight weight = FontWeight.w400}) =>
       GoogleFonts.jetBrainsMono(
         color: color,
         fontSize: size,
         height: 1.4,
         letterSpacing: size * 0.14,
-        fontWeight: FontWeight.w400,
+        fontWeight: weight,
       );
 
   /// Lede paragraph (.lede), clamp 20..26.

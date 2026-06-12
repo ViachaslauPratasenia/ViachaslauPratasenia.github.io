@@ -8,6 +8,7 @@ class MonoLabel extends StatelessWidget {
   final Color? color;
   final double size;
   final bool showDot;
+  final FontWeight weight;
 
   const MonoLabel(
     this.text, {
@@ -15,12 +16,13 @@ class MonoLabel extends StatelessWidget {
     this.color,
     this.size = 11,
     this.showDot = false,
+    this.weight = FontWeight.w400,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.minimal;
-    final style = MinimalTypography.monoLabel(color ?? colors.muted, size: size);
+    final style = MinimalTypography.monoLabel(color ?? colors.muted, size: size, weight: weight);
     if (!showDot) return Text(text.toUpperCase(), style: style);
     return Row(
       mainAxisSize: MainAxisSize.min,

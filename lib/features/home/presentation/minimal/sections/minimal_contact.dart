@@ -102,7 +102,7 @@ class MinimalContact extends StatelessWidget {
             ),
           ),
           padding: const EdgeInsets.only(bottom: 2),
-          child: Text(link.name, style: MinimalTypography.mono(colors.fg).copyWith(fontSize: 12)),
+          child: Text(link.name, style: MinimalTypography.monoLink(colors.fg).copyWith(fontSize: 12)),
         ),
       ),
     );
