@@ -118,21 +118,31 @@ class MinimalContact extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 780),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(narrow ? 24 : 32, 34, narrow ? 24 : 32, 60),
-            child: Wrap(
-              spacing: 16,
-              runSpacing: 10,
-              alignment: WrapAlignment.spaceBetween,
-              children: [
-                Text('© 2026 Viachaslau Pratasenia',
-                    style: MinimalTypography.mono(colors.faint).copyWith(fontSize: 11)),
-                Text('Flutter Developer / Mobile Team Lead',
-                    style: MinimalTypography.mono(colors.faint).copyWith(fontSize: 11)),
-              ],
-            ),
+            padding: EdgeInsets.fromLTRB(narrow ? 24 : 32, 34, narrow ? 24 : 32, 34),
+            child: _footerContent(context, narrow),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _footerContent(BuildContext context, bool narrow) {
+    final colors = context.minimal;
+    final style = MinimalTypography.mono(colors.faint).copyWith(fontSize: 11);
+    final copyright = Text('© 2026 Viachaslau Pratasenia', style: style);
+    final role = Text('Flutter Developer / Mobile Team Lead', style: style);
+
+    // Wide: copyright pinned left, role pinned right (CSS space-between).
+    // Narrow: stacked, left-aligned.
+    if (narrow) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [copyright, const SizedBox(height: 10), role],
+      );
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [copyright, role],
     );
   }
 }
