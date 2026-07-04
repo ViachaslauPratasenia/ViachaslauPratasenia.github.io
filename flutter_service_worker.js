@@ -3,7 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"favicon.ico": "8a507900b0509efd2fb3d7c4d150dc4e",
+const RESOURCES = {"sitemap.xml": "610a593b0973d5635283fcccd249219d",
+"favicon.ico": "8a507900b0509efd2fb3d7c4d150dc4e",
 "flutter.js": "888483df48293866f9f41d3d9274a779",
 "favicon.svg": "815687ed349abf845173160f46df2e26",
 "assets/FontManifest.json": "7673897944b2809534ccbb195416952a",
@@ -44,7 +45,7 @@ const RESOURCES = {"favicon.ico": "8a507900b0509efd2fb3d7c4d150dc4e",
 "icons/favicon-16x16.png": "07805f31225562c7139712ea93f396ef",
 "icons/android-chrome-192x192.png": "3180a4c15625ff251966733abd000b37",
 "icons/apple-icon-180x180.png": "ff7075ac0f08be80beea0010b9005ab4",
-"flutter_bootstrap.js": "8b906518d91218fdb6a2cad2858b7acf",
+"flutter_bootstrap.js": "7631d9db247c38455a7ceeb23fb70d53",
 "resume.pdf": "d66a7c7a44f2d45f89521a33b1d9c990",
 "canvaskit/skwasm.wasm": "264db41426307cfc7fa44b95a7772109",
 "canvaskit/skwasm.js.symbols": "0088242d10d7e7d6d2649d1fe1bda7c1",
@@ -58,11 +59,13 @@ const RESOURCES = {"favicon.ico": "8a507900b0509efd2fb3d7c4d150dc4e",
 "canvaskit/canvaskit.wasm": "07b9f5853202304d3b0749d9306573cc",
 "canvaskit/skwasm.js": "1ef3ea3a0fec4569e5d531da25f34095",
 "canvaskit/skwasm_heavy.wasm": "8034ad26ba2485dab2fd49bdd786837b",
-"index.html": "d0e3dbd154369642383f85b4d5ef8b9e",
-"/": "d0e3dbd154369642383f85b4d5ef8b9e",
+"robots.txt": "93c42754d6564bcc4e28c46790a4dc1d",
+"index.html": "38cc486f7a18c16e5009953c19263d25",
+"/": "38cc486f7a18c16e5009953c19263d25",
 "main.dart.js": "5acb8eaa123eafb565e17162ef62a32a",
-"manifest.json": "a59ed6b88f996c3beb2b93285fe3c344",
-"version.json": "03acefc4795e8573b194262cd3a4419f"};
+"manifest.json": "969e6f8dcfbe5cc337758e656c1250ba",
+"version.json": "03acefc4795e8573b194262cd3a4419f",
+"og-image.png": "cd4b7cc38b08ceb9de289a7552776596"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
