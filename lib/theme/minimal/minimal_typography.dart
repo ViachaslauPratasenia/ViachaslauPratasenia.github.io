@@ -2,9 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// Typography for the minimal design.
-/// Sans = Inter, Mono = JetBrains Mono.
+/// Display = Space Grotesk, Sans = Inter, Mono = JetBrains Mono.
 abstract class MinimalTypography {
   static TextStyle mono(Color color) => GoogleFonts.jetBrainsMono(color: color);
+
+  /// Hero display headline. Caller passes a responsive [size] (clamp 40..92).
+  static TextStyle display(Color color, {double size = 72}) =>
+      GoogleFonts.spaceGrotesk(
+        color: color,
+        fontSize: size,
+        height: 1.06,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -size * 0.03,
+      );
+
+  /// Large section title (left column of a section), clamp 26..40.
+  static TextStyle sectionTitle(Color color, {double size = 32}) =>
+      GoogleFonts.spaceGrotesk(
+        color: color,
+        fontSize: size,
+        height: 1.1,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -size * 0.02,
+      );
 
   /// Mono style for clickable links — medium weight to set them apart from
   /// plain mono labels/indicators.

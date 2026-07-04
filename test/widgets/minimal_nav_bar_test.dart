@@ -17,6 +17,8 @@ void main() {
           isDark: false,
           onToggleTheme: () => toggled = true,
           onItemTap: (_) {},
+          activeIndex: ValueNotifier(-1),
+          progress: ValueNotifier(0),
         ),
       ),
     ));
@@ -40,6 +42,8 @@ void main() {
           isDark: false,
           onToggleTheme: () {},
           onItemTap: (i) => tapped = i,
+          activeIndex: ValueNotifier(-1),
+          progress: ValueNotifier(0),
         ),
       ),
     ));

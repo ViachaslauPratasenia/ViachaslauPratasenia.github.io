@@ -39,6 +39,40 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
     _contactKey,
   ];
 
+  final _scrollController = ScrollController();
+  final _progress = ValueNotifier<double>(0);
+  final _activeIndex = ValueNotifier<int>(-1);
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _progress.dispose();
+    _activeIndex.dispose();
+    super.dispose();
+  }
+
+  /// Updates the reading-progress bar and the active nav section. The active
+  /// section is the last nav target whose top has scrolled past the nav.
+  void _onScroll() {
+    final max = _scrollController.position.maxScrollExtent;
+    _progress.value = max <= 0 ? 0 : _scrollController.offset / max;
+
+    var active = -1;
+    for (var i = 0; i < _navTargets.length; i++) {
+      final ctx = _navTargets[i].currentContext;
+      final box = ctx?.findRenderObject() as RenderBox?;
+      if (box == null || !box.attached) continue;
+      if (box.localToGlobal(Offset.zero).dy <= 160) active = i;
+    }
+    _activeIndex.value = active;
+  }
+
   void _scrollTo(int index) {
     final ctx = _navTargets[index].currentContext;
     if (ctx == null) return;
@@ -71,6 +105,8 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
                   .read<ThemeCubit>()
                   .changeTheme(isDark ? ThemeMode.light : ThemeMode.dark),
               onItemTap: _scrollTo,
+              activeIndex: _activeIndex,
+              progress: _progress,
             ),
           ),
         ],
@@ -91,6 +127,7 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
     }
     return _Content(
       profile: profile,
+      scrollController: _scrollController,
       aboutKey: _aboutKey,
       workKey: _workKey,
       projectsKey: _projectsKey,
@@ -102,10 +139,12 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
 
 class _Content extends StatelessWidget {
   final DeveloperProfile profile;
+  final ScrollController scrollController;
   final GlobalKey aboutKey, workKey, projectsKey, writingKey, contactKey;
 
   const _Content({
     required this.profile,
+    required this.scrollController,
     required this.aboutKey,
     required this.workKey,
     required this.projectsKey,
@@ -116,6 +155,7 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: scrollController,
       child: Column(
         children: [
           MinimalHero(profile: profile),

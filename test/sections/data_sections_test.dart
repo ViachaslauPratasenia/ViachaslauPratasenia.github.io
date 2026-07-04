@@ -22,6 +22,13 @@ bool _richTextContains(WidgetTester tester, String needle) {
   return false;
 }
 
+/// All visible text joined with spaces — the hero headline is rendered as one
+/// Text widget per wrapped line, so cross-line phrases need a joined view.
+String _allText(WidgetTester tester) => tester
+    .widgetList<RichText>(find.byType(RichText))
+    .map((w) => w.text.toPlainText())
+    .join(' ');
+
 void main() {
   setUp(() => VisibilityDetectorController.instance.updateInterval = Duration.zero);
   final p = sampleProfile();
@@ -29,7 +36,7 @@ void main() {
   testWidgets('Hero shows subtitle and headline', (tester) async {
     await tester.pumpWidget(_host(MinimalHero(profile: p)));
     expect(find.textContaining('MOBILE TEAM LEAD'), findsWidgets);
-    expect(find.textContaining('build things with Flutter'), findsOneWidget);
+    expect(_allText(tester), contains('build things with Flutter'));
   });
 
   testWidgets('Hero fills the full viewport height', (tester) async {
@@ -48,9 +55,9 @@ void main() {
     expect(find.textContaining('highly skilled Flutter developer'), findsOneWidget);
   });
 
-  testWidgets('Skills shows a recent technology and a service', (tester) async {
+  testWidgets('Skills shows a platform and a service', (tester) async {
     await tester.pumpWidget(_host(MinimalSkills(profile: p)));
-    expect(_richTextContains(tester, 'Flutter'), isTrue);
+    expect(_richTextContains(tester, 'iOS'), isTrue);
     expect(_richTextContains(tester, 'Mobile Apps'), isTrue);
   });
 

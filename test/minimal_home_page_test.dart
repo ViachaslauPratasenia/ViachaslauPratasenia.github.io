@@ -54,9 +54,13 @@ void main() {
 
     await tester.pumpWidget(host(loadedState(), ThemeCubit()));
     await tester.pump();
-    // Headline appears in both Hero and About sections by design (Tasks 8-9),
-    // so the rendering is correct and the finder must allow multiple matches.
-    expect(find.textContaining('build things with Flutter'), findsWidgets);
+    // The hero headline is rendered one Text per wrapped line, so cross-line
+    // phrases are checked against all visible text joined together.
+    final allText = tester
+        .widgetList<RichText>(find.byType(RichText))
+        .map((w) => w.text.toPlainText())
+        .join(' ');
+    expect(allText, contains('build things with Flutter'));
     expect(find.text('ABOUT'), findsWidgets);
   });
 
