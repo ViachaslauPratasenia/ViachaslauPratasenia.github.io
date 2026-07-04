@@ -1,18 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// Typography for the minimal design.
-/// Sans = Inter, Mono = JetBrains Mono.
+/// Display = Space Grotesk, Sans = Inter, Mono = JetBrains Mono.
+///
+/// The families are declared in pubspec.yaml (bundled TTFs), so the engine
+/// loads them before the first frame — no flash of fallback type.
 abstract class MinimalTypography {
-  static TextStyle mono(Color color) => GoogleFonts.jetBrainsMono(color: color);
+  static const _sans = 'Inter';
+  static const _monoFamily = 'JetBrains Mono';
+  static const _display = 'Space Grotesk';
+
+  static TextStyle mono(Color color) =>
+      TextStyle(fontFamily: _monoFamily, color: color);
 
   /// Mono style for clickable links — medium weight to set them apart from
   /// plain mono labels/indicators.
-  static TextStyle monoLink(Color color) =>
-      GoogleFonts.jetBrainsMono(color: color, fontWeight: FontWeight.w500);
+  static TextStyle monoLink(Color color) => TextStyle(
+        fontFamily: _monoFamily,
+        color: color,
+        fontWeight: FontWeight.w500,
+      );
+
+  /// Hero display headline. Caller passes a responsive [size] (clamp 40..92).
+  static TextStyle display(Color color, {double size = 72}) => TextStyle(
+        fontFamily: _display,
+        color: color,
+        fontSize: size,
+        height: 1.06,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -size * 0.03,
+      );
+
+  /// Large section title (left column of a section), clamp 26..40.
+  static TextStyle sectionTitle(Color color, {double size = 32}) => TextStyle(
+        fontFamily: _display,
+        color: color,
+        fontSize: size,
+        height: 1.1,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -size * 0.02,
+      );
 
   /// Hero headline. Caller passes a responsive [size] (clamp 38..60).
-  static TextStyle h1(Color color, {double size = 48}) => GoogleFonts.inter(
+  static TextStyle h1(Color color, {double size = 48}) => TextStyle(
+        fontFamily: _sans,
         color: color,
         fontSize: size,
         height: 1.18,
@@ -23,7 +54,8 @@ abstract class MinimalTypography {
   /// Mono uppercase tracked label (.lbl / .av / .co).
   static TextStyle monoLabel(Color color,
           {double size = 11, FontWeight weight = FontWeight.w400}) =>
-      GoogleFonts.jetBrainsMono(
+      TextStyle(
+        fontFamily: _monoFamily,
         color: color,
         fontSize: size,
         height: 1.4,
@@ -32,7 +64,8 @@ abstract class MinimalTypography {
       );
 
   /// Lede paragraph (.lede), clamp 20..26.
-  static TextStyle lede(Color color, {double size = 23}) => GoogleFonts.inter(
+  static TextStyle lede(Color color, {double size = 23}) => TextStyle(
+        fontFamily: _sans,
         color: color,
         fontSize: size,
         height: 1.4,
@@ -41,7 +74,8 @@ abstract class MinimalTypography {
       );
 
   /// Body prose (.prose p).
-  static TextStyle prose(Color color) => GoogleFonts.inter(
+  static TextStyle prose(Color color) => TextStyle(
+        fontFamily: _sans,
         color: color,
         fontSize: 15.5,
         height: 1.75,
@@ -49,7 +83,8 @@ abstract class MinimalTypography {
       );
 
   /// Section / item heading (h3).
-  static TextStyle heading(Color color, {double size = 18}) => GoogleFonts.inter(
+  static TextStyle heading(Color color, {double size = 18}) => TextStyle(
+        fontFamily: _sans,
         color: color,
         fontSize: size,
         height: 1.2,

@@ -5,6 +5,8 @@ import 'package:personal_website/theme/minimal/minimal_typography.dart';
 import 'package:personal_website/features/home/presentation/minimal/widgets/minimal_section.dart';
 import 'package:personal_website/features/home/presentation/minimal/widgets/mono_label.dart';
 
+/// Three mono columns: platforms / services / tooling. "Recently" lives in
+/// the About section as "Currently working with".
 class MinimalSkills extends StatelessWidget {
   final DeveloperProfile profile;
 
@@ -12,46 +14,54 @@ class MinimalSkills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MinimalSection(
-      label: 'Skills & Services',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _group(context, 'Recently', profile.skills.recently),
-          _group(context, 'Platforms', profile.skills.platforms),
-          _group(context, 'Services', profile.skills.services),
-          _group(context, 'Tooling', profile.skills.tooling, last: true),
-        ],
-      ),
-    );
-  }
+    final wide = MediaQuery.sizeOf(context).width >= 700;
+    final groups = [
+      ('Platforms', profile.skills.platforms),
+      ('Services', profile.skills.services),
+      ('Tooling', profile.skills.tooling),
+    ];
 
-  Widget _group(BuildContext context, String title, List<String> items, {bool last = false}) {
-    final colors = context.minimal;
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 22),
-      decoration: BoxDecoration(
-        border: last ? null : Border(bottom: BorderSide(color: colors.hair)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MonoLabel(title, color: colors.faint, size: 10.5),
-          const SizedBox(height: 12),
-          Text.rich(
-            TextSpan(
-              style: MinimalTypography.heading(colors.fg, size: 16),
+    return MinimalSection(
+      label: 'Skills',
+      index: 3,
+      child: wide
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (var i = 0; i < items.length; i++) ...[
-                  TextSpan(text: items[i]),
-                  if (i < items.length - 1)
-                    TextSpan(text: '  ·  ', style: TextStyle(color: colors.faint)),
+                for (var i = 0; i < groups.length; i++) ...[
+                  if (i > 0) const SizedBox(width: 40),
+                  Expanded(
+                      child: _group(context, groups[i].$1, groups[i].$2)),
+                ],
+              ],
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (var i = 0; i < groups.length; i++) ...[
+                  if (i > 0) const SizedBox(height: 32),
+                  _group(context, groups[i].$1, groups[i].$2),
                 ],
               ],
             ),
+    );
+  }
+
+  Widget _group(BuildContext context, String title, List<String> items) {
+    final colors = context.minimal;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MonoLabel(title, color: colors.faint, size: 10.5),
+        const SizedBox(height: 14),
+        for (final item in items)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 9),
+            child: Text(item,
+                style:
+                    MinimalTypography.mono(colors.fg).copyWith(fontSize: 12.5)),
           ),
-        ],
-      ),
+      ],
     );
   }
 }

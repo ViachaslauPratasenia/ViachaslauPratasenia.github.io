@@ -25,7 +25,7 @@ void main() {
         ),
       ),
     ));
-    expect(find.text('WORK'), findsOneWidget);
+    expect(find.text('Work'), findsOneWidget);
     expect(find.text('content'), findsOneWidget);
   });
 }

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/theme/minimal/minimal_colors.dart';
 import 'package:personal_website/theme/minimal/minimal_typography.dart';
@@ -12,11 +13,19 @@ class MinimalNavBar extends StatelessWidget {
   final VoidCallback onToggleTheme;
   final ValueChanged<int> onItemTap;
 
+  /// Index into [kNavItems] of the section currently in view, -1 for none.
+  final ValueListenable<int> activeIndex;
+
+  /// Reading progress 0..1, drawn as a hairline-thin accent bar on top.
+  final ValueListenable<double> progress;
+
   const MinimalNavBar({
     super.key,
     required this.isDark,
     required this.onToggleTheme,
     required this.onItemTap,
+    required this.activeIndex,
+    required this.progress,
   });
 
   @override
@@ -30,54 +39,103 @@ class MinimalNavBar extends StatelessWidget {
         child: Container(
           height: 72,
           color: colors.navbg,
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 780),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: narrow ? 24 : 32),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: RichText(
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        text: TextSpan(
-                          style: MinimalTypography.heading(colors.fg, size: 14)
-                              .copyWith(fontWeight: FontWeight.w600),
-                          children: [
-                            const TextSpan(text: 'Viachaslau Pratasenia'),
-                            TextSpan(
-                                text: '.', style: TextStyle(color: colors.dot)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        if (!narrow)
-                          for (var i = 0; i < kNavItems.length; i++)
-                            Padding(
-                              padding: const EdgeInsets.only(left: 24),
-                              child: HoverBuilder(
-                                builder: (context, hovering) => GestureDetector(
-                                  onTap: () => onItemTap(i),
-                                  child: Text(
-                                    kNavItems[i].toUpperCase(),
-                                    style: MinimalTypography.monoLabel(
-                                        hovering ? colors.fg : colors.muted),
-                                  ),
-                                ),
+          child: Column(
+            children: [
+              _progressBar(context),
+              Expanded(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 1100),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: narrow ? 24 : 32),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: RichText(
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              text: TextSpan(
+                                style: MinimalTypography.heading(colors.fg,
+                                        size: 14)
+                                    .copyWith(fontWeight: FontWeight.w600),
+                                children: [
+                                  const TextSpan(
+                                      text: 'Viachaslau Pratasenia'),
+                                  TextSpan(
+                                      text: '.',
+                                      style: TextStyle(color: colors.dot)),
+                                ],
                               ),
                             ),
-                        if (!narrow) const SizedBox(width: 24),
-                        _toggle(context),
-                      ],
+                          ),
+                          Row(
+                            children: [
+                              if (!narrow)
+                                for (var i = 0; i < kNavItems.length; i++)
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 24),
+                                    child: _item(context, i),
+                                  ),
+                              if (!narrow) const SizedBox(width: 24),
+                              _toggle(context),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// 2px accent reading-progress bar hugging the top edge.
+  Widget _progressBar(BuildContext context) {
+    final colors = context.minimal;
+    return ValueListenableBuilder<double>(
+      valueListenable: progress,
+      builder: (context, value, _) => Align(
+        alignment: Alignment.centerLeft,
+        child: FractionallySizedBox(
+          widthFactor: value.clamp(0.0, 1.0),
+          child: Container(height: 2, color: colors.dot),
+        ),
+      ),
+    );
+  }
+
+  /// Nav item with an accent dot marking the active section.
+  Widget _item(BuildContext context, int i) {
+    final colors = context.minimal;
+    return ValueListenableBuilder<int>(
+      valueListenable: activeIndex,
+      builder: (context, active, _) => HoverBuilder(
+        builder: (context, hovering) => GestureDetector(
+          onTap: () => onItemTap(i),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOut,
+                width: active == i ? 5 : 0,
+                height: 5,
+                margin: EdgeInsets.only(right: active == i ? 7 : 0),
+                decoration:
+                    BoxDecoration(color: colors.dot, shape: BoxShape.circle),
+              ),
+              Text(
+                kNavItems[i].toUpperCase(),
+                style: MinimalTypography.monoLabel(
+                    hovering || active == i ? colors.fg : colors.muted),
+              ),
+            ],
           ),
         ),
       ),

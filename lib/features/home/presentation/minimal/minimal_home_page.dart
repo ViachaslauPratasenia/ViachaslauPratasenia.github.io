@@ -6,6 +6,7 @@ import 'package:personal_website/features/home/data/local/developer_profile.dart
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 import 'package:personal_website/features/home/presentation/minimal/nav/minimal_nav_bar.dart';
+import 'package:personal_website/features/home/presentation/minimal/widgets/minimal_loader.dart';
 import 'package:personal_website/features/home/presentation/minimal/sections/minimal_hero.dart';
 import 'package:personal_website/features/home/presentation/minimal/sections/minimal_about.dart';
 import 'package:personal_website/features/home/presentation/minimal/sections/minimal_experience.dart';
@@ -39,6 +40,40 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
     _contactKey,
   ];
 
+  final _scrollController = ScrollController();
+  final _progress = ValueNotifier<double>(0);
+  final _activeIndex = ValueNotifier<int>(-1);
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _progress.dispose();
+    _activeIndex.dispose();
+    super.dispose();
+  }
+
+  /// Updates the reading-progress bar and the active nav section. The active
+  /// section is the last nav target whose top has scrolled past the nav.
+  void _onScroll() {
+    final max = _scrollController.position.maxScrollExtent;
+    _progress.value = max <= 0 ? 0 : _scrollController.offset / max;
+
+    var active = -1;
+    for (var i = 0; i < _navTargets.length; i++) {
+      final ctx = _navTargets[i].currentContext;
+      final box = ctx?.findRenderObject() as RenderBox?;
+      if (box == null || !box.attached) continue;
+      if (box.localToGlobal(Offset.zero).dy <= 160) active = i;
+    }
+    _activeIndex.value = active;
+  }
+
   void _scrollTo(int index) {
     final ctx = _navTargets[index].currentContext;
     if (ctx == null) return;
@@ -71,6 +106,8 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
                   .read<ThemeCubit>()
                   .changeTheme(isDark ? ThemeMode.light : ThemeMode.dark),
               onItemTap: _scrollTo,
+              activeIndex: _activeIndex,
+              progress: _progress,
             ),
           ),
         ],
@@ -80,7 +117,7 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
 
   Widget _buildBody(BuildContext context, ProfileState state) {
     if (state.isLoading) {
-      return Center(child: CircularProgressIndicator(color: context.minimal.dot));
+      return const MinimalLoader();
     }
     final profile = state.developerProfile;
     if (profile == null) {
@@ -91,6 +128,7 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
     }
     return _Content(
       profile: profile,
+      scrollController: _scrollController,
       aboutKey: _aboutKey,
       workKey: _workKey,
       projectsKey: _projectsKey,
@@ -102,10 +140,12 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
 
 class _Content extends StatelessWidget {
   final DeveloperProfile profile;
+  final ScrollController scrollController;
   final GlobalKey aboutKey, workKey, projectsKey, writingKey, contactKey;
 
   const _Content({
     required this.profile,
+    required this.scrollController,
     required this.aboutKey,
     required this.workKey,
     required this.projectsKey,
@@ -116,6 +156,7 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: scrollController,
       child: Column(
         children: [
           MinimalHero(profile: profile),

@@ -16,6 +16,7 @@ class MinimalProjects extends StatelessWidget {
     final items = profile.projects;
     return MinimalSection(
       label: 'Projects',
+      index: 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,6 +27,8 @@ class MinimalProjects extends StatelessWidget {
     );
   }
 
+  /// Table row: big title with an accent ↗ on hover, mono meta right,
+  /// content eases 6px right + subtle highlight.
   Widget _project(BuildContext context, Project project, {required bool last}) {
     final colors = context.minimal;
     return HoverBuilder(
@@ -34,9 +37,13 @@ class MinimalProjects extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOut,
-          padding: EdgeInsets.only(top: 26, bottom: 26, left: hovering ? 10 : 0),
+          padding: EdgeInsets.only(top: 26, bottom: 26, left: hovering ? 6 : 0),
           decoration: BoxDecoration(
-            border: last ? null : Border(bottom: BorderSide(color: colors.hair)),
+            color: hovering
+                ? colors.fg.withValues(alpha: 0.035)
+                : Colors.transparent,
+            border:
+                last ? null : Border(bottom: BorderSide(color: colors.hair)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,20 +52,36 @@ class MinimalProjects extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Text(project.title,
-                        style: MinimalTypography.heading(hovering ? colors.dot : colors.fg)),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Text(project.title,
+                              style: MinimalTypography.heading(
+                                  hovering ? colors.dot : colors.fg,
+                                  size: 19)),
+                        ),
+                        const SizedBox(width: 8),
+                        Text('↗',
+                            style: MinimalTypography.mono(
+                                    hovering ? colors.dot : colors.faint)
+                                .copyWith(fontSize: 13)),
+                      ],
+                    ),
                   ),
                   const SizedBox(width: 16),
-                  Text('${project.linkName} ↗',
-                      style: MinimalTypography.mono(colors.faint).copyWith(fontSize: 11)),
+                  Text(project.linkName,
+                      style: MinimalTypography.mono(colors.faint)
+                          .copyWith(fontSize: 11)),
                 ],
               ),
               const SizedBox(height: 8),
               Text(project.description,
-                  style: MinimalTypography.prose(colors.muted).copyWith(fontSize: 14.5)),
+                  style: MinimalTypography.prose(colors.muted)
+                      .copyWith(fontSize: 14.5)),
               const SizedBox(height: 8),
               Text(project.tags.join(' · '),
-                  style: MinimalTypography.mono(colors.faint).copyWith(fontSize: 11)),
+                  style: MinimalTypography.mono(colors.faint)
+                      .copyWith(fontSize: 11)),
             ],
           ),
         ),
