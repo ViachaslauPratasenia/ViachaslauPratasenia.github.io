@@ -58,6 +58,12 @@ class MinimalHero extends StatelessWidget {
                       style: MinimalTypography.display(colors.fg,
                           size: displaySize),
                     ),
+                    // On narrow screens the CTA lives under the headline;
+                    // the bottom strip holds only the stat tiles.
+                    if (narrow) ...[
+                      const SizedBox(height: 36),
+                      _downloadCv(context),
+                    ],
                   ],
                 ),
               ),
@@ -128,18 +134,7 @@ class MinimalHero extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: narrow ? 24 : 32, vertical: 22),
             child: narrow
-                // Full width so the column stays left-aligned inside Center.
-                ? SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        meta,
-                        const SizedBox(height: 20),
-                        _downloadCvButton(context),
-                      ],
-                    ),
-                  )
+                ? _statRow(context)
                 : Row(
                     children: [
                       Expanded(child: meta),
@@ -153,27 +148,47 @@ class MinimalHero extends StatelessWidget {
     );
   }
 
-  /// Mobile "Download CV" — a full-width editorial row: label left, arrow
-  /// right, hairline above. Same language as the registry rows below.
-  Widget _downloadCvButton(BuildContext context) {
+  /// Mobile bottom strip: stat tiles separated by vertical hairlines —
+  /// value in the display face, mono label underneath.
+  Widget _statRow(BuildContext context) {
     final colors = context.minimal;
-    return GestureDetector(
-      onTap: onDownloadCv ?? () => launchUrlString(Const.config.CV_URL),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(top: 16),
-        decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: colors.hair)),
-        ),
+    final metas = profile.heroMeta;
+    return SizedBox(
+      width: double.infinity,
+      child: IntrinsicHeight(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MonoLabel('Download CV',
-                color: colors.fg, size: 12, weight: FontWeight.w500),
-            Text('↓', style: MinimalTypography.monoLink(colors.fg)),
+            for (var i = 0; i < metas.length; i++) ...[
+              if (i > 0) ...[
+                const SizedBox(width: 16),
+                VerticalDivider(width: 1, thickness: 1, color: colors.hair),
+                const SizedBox(width: 16),
+              ],
+              // Long values (the platform list) get twice the width.
+              Expanded(
+                  flex: metas[i].value.length > 14 ? 2 : 1,
+                  child: _stat(context, metas[i])),
+            ],
           ],
         ),
       ),
+    );
+  }
+
+  Widget _stat(BuildContext context, HeroMeta meta) {
+    final colors = context.minimal;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(meta.value,
+            style: MinimalTypography.sectionTitle(colors.fg, size: 15)),
+        if (meta.label.isNotEmpty) ...[
+          const SizedBox(height: 5),
+          MonoLabel(meta.label.replaceFirst('/ ', ''),
+              color: colors.faint, size: 9.5),
+        ],
+      ],
     );
   }
 
