@@ -135,8 +135,8 @@ class MinimalHero extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         meta,
-                        const SizedBox(height: 18),
-                        _downloadCv(context),
+                        const SizedBox(height: 20),
+                        _downloadCvButton(context),
                       ],
                     ),
                   )
@@ -148,6 +148,33 @@ class MinimalHero extends StatelessWidget {
                     ],
                   ),
           ),
+        ),
+      ),
+    );
+  }
+
+  /// Mobile "Download CV" — a full-width pill button echoing the theme
+  /// toggle, instead of a dangling underlined link.
+  Widget _downloadCvButton(BuildContext context) {
+    final colors = context.minimal;
+    return GestureDetector(
+      onTap: onDownloadCv ?? () => launchUrlString(Const.config.CV_URL),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          border: Border.all(color: colors.hair),
+          borderRadius: BorderRadius.circular(999),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            MonoLabel('Download CV',
+                color: colors.fg, size: 12, weight: FontWeight.w500),
+            const SizedBox(width: 10),
+            Text('↓', style: MinimalTypography.monoLink(colors.fg)),
+          ],
         ),
       ),
     );
