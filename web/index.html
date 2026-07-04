@@ -39,6 +39,13 @@
   <link rel="manifest" href="manifest.json">
 
   <style>
+    /* Inline subset of Inter SemiBold (just the brand glyphs, ~2 KB) so the
+       splash renders in the site's face instantly, with no extra request. */
+    @font-face {
+      font-family: 'Inter Brand';
+      font-weight: 600;
+      src: url(data:font/woff2;base64,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) format('woff2');
+    }
     /* Splash shown until Flutter paints its first frame. Colors mirror the
        app's OKLCH palette so the handoff is seamless in both themes. */
     html, body {
@@ -60,7 +67,7 @@
       background: #fafaf9;
       z-index: 9999;
       transition: opacity 240ms ease-out;
-      font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter Brand', ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     #splash .brand {
       font-size: 15px;
