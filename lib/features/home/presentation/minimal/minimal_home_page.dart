@@ -6,6 +6,7 @@ import 'package:personal_website/features/home/data/local/developer_profile.dart
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 import 'package:personal_website/features/home/presentation/minimal/nav/minimal_nav_bar.dart';
+import 'package:personal_website/features/home/presentation/minimal/widgets/minimal_loader.dart';
 import 'package:personal_website/features/home/presentation/minimal/sections/minimal_hero.dart';
 import 'package:personal_website/features/home/presentation/minimal/sections/minimal_about.dart';
 import 'package:personal_website/features/home/presentation/minimal/sections/minimal_experience.dart';
@@ -116,7 +117,7 @@ class _MinimalHomePageState extends State<MinimalHomePage> {
 
   Widget _buildBody(BuildContext context, ProfileState state) {
     if (state.isLoading) {
-      return Center(child: CircularProgressIndicator(color: context.minimal.dot));
+      return const MinimalLoader();
     }
     final profile = state.developerProfile;
     if (profile == null) {

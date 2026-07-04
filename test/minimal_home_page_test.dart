@@ -6,6 +6,7 @@ import 'package:personal_website/features/change_theme/domain/use_case/theme_cub
 import 'package:personal_website/features/home/domain/use_case/profile_cubit.dart';
 import 'package:personal_website/features/home/domain/use_case/profile_state.dart';
 import 'package:personal_website/features/home/presentation/minimal/minimal_home_page.dart';
+import 'package:personal_website/features/home/presentation/minimal/widgets/minimal_loader.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'helpers/sample_profile.dart';
 
@@ -38,7 +39,7 @@ void main() {
 
   testWidgets('shows loading indicator while loading', (tester) async {
     await tester.pumpWidget(host(loadingState, ThemeCubit()));
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.byType(MinimalLoader), findsOneWidget);
   });
 
   testWidgets('shows error fallback when profile is null and not loading', (tester) async {
