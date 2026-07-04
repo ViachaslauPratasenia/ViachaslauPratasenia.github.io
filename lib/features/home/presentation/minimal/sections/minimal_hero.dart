@@ -87,7 +87,10 @@ class MinimalHero extends StatelessWidget {
           children: [
             Container(width: 28, height: 1, color: colors.fg),
             const SizedBox(width: 12),
-            MonoLabel(profile.heroRole, color: colors.muted, size: 11),
+            // Flexible so a long role wraps on narrow screens instead of
+            // clipping at the viewport edge.
+            Flexible(
+                child: MonoLabel(profile.heroRole, color: colors.muted, size: 11)),
           ],
         ),
         Row(
