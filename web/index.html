@@ -56,6 +56,9 @@
     @media (prefers-color-scheme: dark) {
       html, body { background: #161b20; }
     }
+    /* The splash content stays invisible for the first ~250ms: fast loads
+       never see it, slower loads get a gentle fade-in instead of a flash.
+       The page background still covers the app area the whole time. */
     #splash {
       position: fixed;
       inset: 0;
@@ -66,9 +69,11 @@
       gap: 18px;
       background: #fafaf9;
       z-index: 9999;
-      transition: opacity 240ms ease-out;
+      opacity: 0;
+      transition: opacity 220ms ease;
       font-family: 'Inter Brand', ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
+    #splash.show { opacity: 1; }
     #splash .brand {
       font-size: 15px;
       font-weight: 600;
@@ -117,13 +122,37 @@
   </div>
 
   <script>
-    // Remove the splash once Flutter has painted its first frame.
-    window.addEventListener('flutter-first-frame', function () {
+    // Splash choreography: appear only after a short grace period, and once
+    // visible, stay long enough that fast loads don't produce a flash.
+    (function () {
+      var APPEAR_DELAY = 250;   // fast loads never see the splash
+      var MIN_VISIBLE = 600;    // once shown, hold at least this long
       var splash = document.getElementById('splash');
-      if (!splash) return;
-      splash.classList.add('done');
-      splash.addEventListener('transitionend', function () { splash.remove(); });
-    });
+      var shownAt = null;
+      var appearTimer = setTimeout(function () {
+        shownAt = performance.now();
+        splash.classList.add('show');
+      }, APPEAR_DELAY);
+
+      function hide() {
+        splash.classList.remove('show');
+        splash.classList.add('done');
+        // transitionend may not fire if no transition ran — remove anyway.
+        setTimeout(function () { splash.remove(); }, 400);
+      }
+
+      window.addEventListener('flutter-first-frame', function () {
+        if (!splash) return;
+        if (shownAt === null) {
+          // Never became visible — drop it instantly, no transition.
+          clearTimeout(appearTimer);
+          splash.remove();
+          return;
+        }
+        var left = MIN_VISIBLE - (performance.now() - shownAt);
+        setTimeout(hide, Math.max(0, left));
+      });
+    })();
   </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
